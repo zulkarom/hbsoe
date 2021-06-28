@@ -1,64 +1,81 @@
-<style type="text/css">
-  
-.center {
-  padding: 200px 0;
-  text-align: center;
-}
-</style>
-
 <?php
 use yii\helpers\Html;
 // use yii\bootstrap\ActiveForm;
 use kartik\widgets\ActiveForm;
-use backend\assets\CryptoAsset;
+use backend\assets\LoginAsset;
 use backend\assets\AppAsset;
 
-AppAsset::register($this);
-CryptoAsset::register($this);
+LoginAsset::register($this);
 
 $this->title = 'Sign In';
 
-$dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/crypto');
+$dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/loginAsset');
 
 ?>
-<div class="center">
-<div class="row justify-content-center">
-    <div class="col-lg-12">
-        
-            <div class="row justify-content-center">
-              
-                <div class="col-lg-6">
-                    <!-- sign_in  -->
-                    <div class="modal-content cs_modal">
-                        <div class="modal-header justify-content-center theme_bg_1">
-                            <h5 class="modal-title text_white">Sign in to start your session</h5>
-                        </div>
-                        
-                        <div class="modal-body">
-                            <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
-                                <div class="form-group">
-                                    <?= $form
-                                      ->field($model, 'username')
-                                      ->label(false)
-                                      ->textInput(['placeholder' => $model->getAttributeLabel('username')])
-                                    ?>
-                                </div>
-                                <div class="form-group">
-                                    <?= $form
-                                      ->field($model, 'password')
-                                      ->label(false)
-                                      ->passwordInput(['placeholder' => $model->getAttributeLabel('password')])
-                                    ?>
-                                </div>
 
-                                <?= Html::submitButton('Log in', ['class' => 'btn_1 full_width text-center', 'name' => 'login-button']) ?>
-                            <?php ActiveForm::end(); ?>
-                        </div>
+<style type="text/css">
+  
+.wrap-login100 {
+    padding: 120px 130px 120px 95px !important;
+}
+</style>
+
+<div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-pic js-tilt" data-tilt>
+                    <img src="<?= $dirAssests?>/images/img-01.png" alt="IMG">
+                </div>
+
+                <div class="login100-form validate-form">
+                    <span class="login100-form-title">
+                        Admin Login
+                    </span>
+
+                    <?php $form = ActiveForm::begin(['id' => 'login100-form', 'enableClientValidation' => false]); ?>
+                    <!-- <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                        <input class="input100" type="text" name="email" placeholder="Email">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                        </span>
+                    </div> -->
+                    <?= $form->field($model, 'username', ['template' => '
+                           <div class="wrap-input100">
+                                <span class="focus-input100"></span>
+                                <span class="symbol-input100">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                </span>
+                              {input}
+                           </div>
+                           {error}{hint}
+                           '])->textInput(['placeholder' => $model->getAttributeLabel('username'), 'class' => 'input100'])
+                    ?>
+
+                    <!-- <div class="wrap-input100 validate-input" data-validate = "Password is required">
+                        <input class="input100" type="password" name="pass" placeholder="Password">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        </span>
+                    </div> -->
+                    <?= $form->field($model, 'password', ['template' => '
+                           <div class="wrap-input100">
+                                <span class="focus-input100"></span>
+                                <span class="symbol-input100">
+                                    <i class="fa fa-lock" aria-hidden="true"></i>
+                                </span>
+                              {input}
+                           </div>
+                           {error}{hint}
+                           '])->passwordInput(['placeholder' => 'Password', 'class' => 'input100'])
+                        ?>
+                    <div class="container-login100-form-btn">
+                        <?= Html::submitButton('Login', ['class' => 'login100-form-btn', 'name' => 'login-button']) ?>
                     </div>
+                    <?php ActiveForm::end(); ?>
                 </div>
             </div>
-            
-        
+        </div>
     </div>
-</div>
-</div>
+
