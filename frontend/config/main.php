@@ -29,15 +29,11 @@ return [
             'enableUnconfirmedLogin' => true,
             'enableFlashMessages' => false,
         ],
-        'chat' => [
-            'class' => 'frontend\modules\chat\ChatModule',
-            'numberLastMessages' => 30,
+        'usahawan' => [
+            'class' => 'frontend\modules\usahawan\Module',
         ],
-        'client' => [
-            'class' => 'frontend\modules\client\Module',
-        ],
-        'expert' => [
-            'class' => 'frontend\modules\expert\Module',
+        'supplier' => [
+            'class' => 'frontend\modules\supplier\Module',
         ],
     ],
     'components' => [
@@ -77,6 +73,7 @@ return [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
             'profile/*',
+            'usahawan/*',
             //'application/*',
             //'some-controller/some-action',
             // The actions listed here will be allowed to everyone including guests.

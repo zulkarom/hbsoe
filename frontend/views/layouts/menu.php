@@ -24,12 +24,12 @@
             </ul>
         </li>
         <li class="">
-            <a  href="crypto_wallet.html" aria-expanded="false">
+            <a  href="index" aria-expanded="false">
               <div class="nav_icon_small">
                 <img src="<?= $dirAssests?>/img/menu-icon/2.svg" alt="">
             </div>
             <div class="nav_title">
-                <span>Crypto Wallet</span>
+                <span>Maklumat Usahawan</span>
             </div>
             </a>
         </li>

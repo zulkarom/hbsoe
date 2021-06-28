@@ -3,7 +3,7 @@
 namespace backend\models;
 
 use Yii;
-
+use common\models\User;
 /**
  * This is the model class for table "usahawan".
  *
@@ -30,9 +30,12 @@ class Usahawan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'age', 'address', 'location', 'profile_file'], 'required', 'on' => 'register'],
+            [['age', 'address', 'location', 'profile_file'], 'required', 'on' => 'insert'],
+            //Profile image
+            ['profile_file', 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
+
             [['user_id', 'age'], 'integer'],
-            [['address', 'location', 'profile_file'], 'string', 'max' => 225],
+            [['address', 'location'], 'string', 'max' => 225],
         ];
     }
 
@@ -49,5 +52,9 @@ class Usahawan extends \yii\db\ActiveRecord
             'location' => 'Location',
             'profile_file' => 'Profile File',
         ];
+    }
+
+    public function getUser(){
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 }

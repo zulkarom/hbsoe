@@ -25,7 +25,6 @@
         "specialist/yii2-crop-image-upload": "@dev",
         "specialist/yii2-cropper": "dev-master",
         "djabiev/yii2-autosize-textarea": "dev-master",
-        "slavkovrn/yii2-chat": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

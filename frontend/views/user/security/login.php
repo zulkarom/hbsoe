@@ -39,13 +39,6 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/loginAss
                     </span>
 
                     <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
-                    <!-- <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                        <input class="input100" type="text" name="email" placeholder="Email">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                        </span>
-                    </div> -->
                     <?= $form->field($model, 'role', ['template' => '
                            <div class="wrap-input100">
                                 <span class="focus-input100"></span>
@@ -55,7 +48,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/loginAss
                               {input}
                            </div>
                            {error}{hint}
-                           '])->dropDownList(Common::role(), ['prompt' => 'Select User Category', 'class' => 'input100'])
+                           '])->dropDownList(Common::role(), ['prompt' => 'Select User Category', 'class' => 'input100', 'style' => 'height:50px !important'])
                         ?>
                     <?= $form->field($model, 'login', ['template' => '
                            <div class="wrap-input100">
@@ -68,14 +61,6 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/loginAss
                            {error}{hint}
                            '])->textInput(['placeholder' => $model->getAttributeLabel('login'), 'class' => 'input100'])
                     ?>
-
-                    <!-- <div class="wrap-input100 validate-input" data-validate = "Password is required">
-                        <input class="input100" type="password" name="pass" placeholder="Password">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-                            <i class="fa fa-lock" aria-hidden="true"></i>
-                        </span>
-                    </div> -->
                     <?= $form->field($model, 'password', ['template' => '
                            <div class="wrap-input100">
                                 <span class="focus-input100"></span>
