@@ -4,8 +4,8 @@ namespace frontend\models\user;
 //use dektrium\user\models\User;
 use Yii;
 use dektrium\user\models\RegistrationForm as BaseRegistrationForm;
-use backend\modules\client\models\Client;
-use backend\modules\expert\models\Expert;
+use backend\models\Usahawan;
+use backend\models\Supplier;
 
 /**
  * Signup form
@@ -68,15 +68,15 @@ class RegistrationForm extends BaseRegistrationForm
 	        
        	// $user->role = $this->rol;
         if($user->role == 1){
-				$client = new Client;
+				$usahawan = new Usahawan;
 				// $client->scenario = "register";
-				$client->user_id = $user->id;
-				$client->save(); 
+				$usahawan->user_id = $user->id;
+				$usahawan->save(); 
 			}else if($user->role == 2){
-				$expert = new Expert;
+				$supplier = new Supplier;
 				// $expert->scenario = "register";
-				$expert->user_id = $user->id;
-				$expert->save(); 
+				$supplier->user_id = $user->id;
+				$supplier->save(); 
 			}
 			
 	        Yii::$app->session->setFlash(

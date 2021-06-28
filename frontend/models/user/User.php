@@ -3,8 +3,8 @@
 namespace frontend\models\user; 
 
 use Yii;
-use backend\modules\client\models\Client;
-use backend\modules\expert\models\Expert;
+use backend\models\Usahawan;
+use backend\models\Supplier;
 
 class User extends \dektrium\user\models\User
 {
@@ -43,12 +43,12 @@ class User extends \dektrium\user\models\User
 		return $arr;
 	}
 	
-	public function getClient(){
-		return $this->hasOne(Client::className(), ['user_id' => 'id']);
+	public function getUsahawan(){
+		return $this->hasOne(Usahawan::className(), ['user_id' => 'id']);
 	}
 	
-	public function getExpert(){
-		return $this->hasOne(Expert::className(), ['user_id' => 'id']);
+	public function getSupplier(){
+		return $this->hasOne(Supplier::className(), ['user_id' => 'id']);
 	}
 	
 	public function register(){
@@ -56,16 +56,6 @@ class User extends \dektrium\user\models\User
 		return parent::register();
 	}
 
-	public function getChatname()
-    {
-        return User::find()->where(['id' => Yii::$app->user->id])->one()['fullname'];
-    }
- 
-    public function getChaticon()
-    {
-        return User::find()->where(['id' => Yii::$app->user->id])->one()['username'];
-    }
-	
 	public static function checkRoleExistByUsername($username, $role_id){
 	    $role_table = self::getRoleTable($role_id);
 	    $check = self::find()->alias('u')
@@ -82,10 +72,10 @@ class User extends \dektrium\user\models\User
 	private static function getRoleTable($role_id){
 	    switch($role_id){
 	        case 1:
-	            return 'client';
+	            return 'usahawan';
 	            break;
 	        case 2:
-	            return 'expert';
+	            return 'supplier';
 	    }
 	    return false;
 	}

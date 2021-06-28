@@ -136,7 +136,7 @@ class Common {
 	}
 
 	public static function role(){
-		return [1 => 'Client', 2 => 'Expert'];
+		return [1 => 'Usahawan', 2 => 'Supplier'];
 	}
 	
 	public static function expertType(){
