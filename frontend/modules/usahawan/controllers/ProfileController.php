@@ -40,6 +40,8 @@ class ProfileController extends Controller
     public function actionIndex()
     {
         $id = Yii::$app->user->identity->id;
+        // echo $id;
+        // die();
         $model = $this->findUsahawanProfile($id);
 
         $model->setScenario('insert');
@@ -51,9 +53,7 @@ class ProfileController extends Controller
 
                     return $this->refresh();
                 }else{
-                    echo "<pre>";
-print_r(Yii::$app->request->post());
-die();
+                    return $model->flashError();
 
                 }
             }
@@ -62,19 +62,6 @@ die();
             'model' => $model,
         ]);
 
-    }
-
-    public function actionCreate()
-    {
-        $model = new Usahawan();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
     }
 
     public function actionProfileImage($id){

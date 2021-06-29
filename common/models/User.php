@@ -6,8 +6,8 @@ use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
-use backend\modules\client\models\Client;
-use backend\modules\expert\models\Expert;
+use backend\models\Usahawan;
+use backend\models\Supplier;
 /**
  * User model
  *
@@ -59,22 +59,12 @@ class User extends ActiveRecord implements IdentityInterface
         ];
     }
 
-    public function getClient(){
-        return $this->hasOne(Client::className(), ['user_id' => 'id']);
+    public function getUsahawan(){
+        return $this->hasOne(Usahawan::className(), ['user_id' => 'id']);
     }
     
-    public function getExpert(){
-        return $this->hasOne(Expert::className(), ['user_id' => 'id']);
-    }
-
-    public function getChatname()
-    {
-        return User::find()->where(['id' => Yii::$app->user->id])->one()['username'];
-    }
- 
-    public function getChaticon()
-    {
-        return User::find()->where(['id' => Yii::$app->user->id])->one()['username'];
+    public function getSupplier(){
+        return $this->hasOne(Supplier::className(), ['user_id' => 'id']);
     }
 
     /**

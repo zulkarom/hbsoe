@@ -30,7 +30,7 @@ class Usahawan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['age', 'address', 'location', 'profile_file'], 'required', 'on' => 'insert'],
+            [['age', 'address', 'profile_file'], 'required', 'on' => 'insert'],
             //Profile image
             ['profile_file', 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
 
@@ -56,5 +56,18 @@ class Usahawan extends \yii\db\ActiveRecord
 
     public function getUser(){
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    public function flashError(){
+        if($this->getErrors()){
+            foreach($this->getErrors() as $error){
+                if($error){
+                    foreach($error as $e){
+                        Yii::$app->session->addFlash('error', $e);
+                    }
+                }
+            }
+        }
+        
     }
 }

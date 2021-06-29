@@ -43,7 +43,7 @@ $this->title = "MAKLUMAT PERIBADI";
                         <table class="table table-striped">
                             <tbody><tr>
                               <th style="width: 500px"><?= $form->field($model, 'profile_file')->widget(CropImageUpload::className())?></th>
-                              <th><img src="<?=Url::to(['/usahawan/profile/profile-image', 'id' => Yii::$app->user->identity->id])?>" width="80" height="80"></th>
+                              <th><img src="<?=Url::to(['/usahawan/profile/profile-image', 'id' => Yii::$app->user->identity->usahawan->id])?>" width="80" height="80"></th>
                             </tr>
                           </tbody></table>
                     </div>
