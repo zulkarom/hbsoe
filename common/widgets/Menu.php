@@ -31,7 +31,7 @@ class Menu
 	   foreach($this->items as $item){
 			   switch($item['level']){
 				   case 0:
-				   $html .= '<li class="nav-small-cap">'.$item['label'].'</li>';
+				   $html .= '<li class="nav-title">'.$item['label'].'</li>';
 				   break;
 				   
 				   case 1:
@@ -51,27 +51,28 @@ class Menu
 	   $active = $this->isItemActive($item) ? 'active' : '';
 	   return '<li>
 				   <a href="'.Url::to($item['url']).'" class="'.$active.'">
-				   <i class="'.$item['icon'].'"></i>
-				   <span class="hide-menu">
+				   <div class="nav_icon_small '.$item['icon'].'"></div>
+				   <div class="nav_title">
+				   <span>
 					'.$item['label'].'
 					</span>
-				   </a></li>';
+				   </div></a></li>';
    }
-   
-    protected function children($item){
+
+   protected function children($item){
 	   $active = $this->isItemActive($item) ? 'active' : '';
 	   return '<li>
 				   <a href="'.Url::to($item['url']).'" class="'.$active.'">
 				   '.$item['label'].'
 				   </a></li>';
    }
-
+   
    protected function item2($item){
 	   $this->tree = false;
 	   $anak = '';
 	   $expand = $this->isItemActive($item) ? 'true' : 'false';
-	   $in = $this->isItemActive($item) ? 'in' : '';
-	   $active = $this->isItemActive($item) ? 'active' : '';
+	   $mm = $this->isItemActive($item) ? 'mm-show' : '';
+	   $active = $this->isItemActive($item) ? 'mm-active' : '';
 	   $children = $item['children'];
 			if($children){
 				foreach($children as $child){
@@ -80,13 +81,15 @@ class Menu
 			}
 	   
 	   $html =  '<li class="'.$active.'">
-			<a href="#" class="has-arrow waves-effect '.$active.'" aria-expanded="'.$expand.'">
-				<i class="'.$item['icon'].'"></i>
-				<span class="hide-menu">
+			<a href="#" class="has-arrow '.$active.'" aria-expanded="'.$expand.'">
+				<div class="nav_icon_small '.$item['icon'].'"></div>
+				<div class="nav_title">
+				   <span>
 					'.$item['label'].'
-				</span>
+					</span>
+				</div>
 			</a>
-			<ul aria-expanded ="'.$expand.'" class="collapse '.$in.'">';
+			<ul class="mm-collapse '.$mm.'">';
 			
 			$html .= $anak;
 						
