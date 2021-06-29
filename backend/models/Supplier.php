@@ -3,7 +3,7 @@
 namespace backend\models;
 
 use Yii;
-
+use common\models\User;
 /**
  * This is the model class for table "supplier".
  *
@@ -30,7 +30,9 @@ class Supplier extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'age', 'address', 'location', 'profile_file'], 'required'],
+            [['age', 'address', 'profile_file'], 'required', 'on' => 'insert'],
+            //Profile image
+            ['profile_file', 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
             [['user_id', 'age'], 'integer'],
             [['address', 'location', 'profile_file'], 'string', 'max' => 225],
         ];
@@ -49,5 +51,22 @@ class Supplier extends \yii\db\ActiveRecord
             'location' => 'Location',
             'profile_file' => 'Profile File',
         ];
+    }
+
+    public function getUser(){
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    public function flashError(){
+        if($this->getErrors()){
+            foreach($this->getErrors() as $error){
+                if($error){
+                    foreach($error as $e){
+                        Yii::$app->session->addFlash('error', $e);
+                    }
+                }
+            }
+        }
+        
     }
 }
