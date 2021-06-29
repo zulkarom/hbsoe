@@ -13,48 +13,55 @@ use karpoff\icrop\CropImageUpload;
 /* @var $form ActiveForm */
 
 $this->title = "MAKLUMAT PERIBADI";
-
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
-    
-<div class="box">
-    <div class="box-header"></div>
-    <div class="box-body">
-        <div class="profile-index">
-
-            <div class="row">
-                <div class="col-md-5"><?= $form->field($model, 'fullname')->textInput(['disabled' => 'disabled', 'value' => $model->user->fullname])->label('Nama Kadet') ?></div>
-
-                <div class="col-md-3">
-                <?= $form->field($model, 'email')->textInput(['disabled' => 'disabled', 'value' => $model->user->email]) ?>
-                 </div>
-            </div>
 
 
-            <div class="row">
-                <div class="col-md-3"><?= $form->field($model, 'age') ?></div>
-                <div class="col-md-6"><?= $form->field($model, 'address')->textarea(['rows' => '3'])->label('Alamat Surat Menyurat')?></div>
-            </div>
 
-               
+<div class="row">
+    <div class="col-12">
+        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
+            
+        <div class="white_card">
+            <div class="white_card_header"></div>
+            <div class="white_card_body">
+                <div class="profile-index">
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <table class="table table-striped">
-                            <tbody><tr>
-                              <th style="width: 500px"><?= $form->field($model, 'profile_file')->widget(CropImageUpload::className())?></th>
-                              <th><img src="<?=Url::to(['/usahawan/profile/profile-image', 'id' => Yii::$app->user->identity->usahawan->id])?>" width="80" height="80"></th>
-                            </tr>
-                          </tbody></table>
+                    <div class="row">
+                        <div class="col-md-5"><?= $form->field($model, 'fullname')->textInput(['disabled' => 'disabled', 'value' => $model->user->fullname])->label('Nama Kadet') ?></div>
+
+                        <div class="col-md-3">
+                        <?= $form->field($model, 'email')->textInput(['disabled' => 'disabled', 'value' => $model->user->email]) ?>
+                         </div>
                     </div>
+
+
+                    <div class="row">
+                        <div class="col-md-3"><?= $form->field($model, 'age') ?></div>
+                        <div class="col-md-6"><?= $form->field($model, 'address')->textarea(['rows' => '3'])->label('Alamat Surat Menyurat')?></div>
+                    </div>
+
+                       
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-striped">
+                                    <tbody><tr>
+                                      <th style="width: 500px"><?= $form->field($model, 'profile_file')->widget(CropImageUpload::className())?></th>
+                                      <th><img src="<?=Url::to(['/usahawan/profile/profile-image', 'id' => Yii::$app->user->identity->usahawan->id])?>" width="80" height="80"></th>
+                                    </tr>
+                                  </tbody></table>
+                            </div>
+                        </div>
                 </div>
+            </div>
         </div>
+
+        <br/>
+        <div class="form-group">
+            <?= Html::submitButton('<span class="glyphicon glyphicon-send"></span>  Hantar Maklumat', ['class' => 'btn btn-primary']) ?>
+        </div>
+            
+        <?php ActiveForm::end(); ?>
     </div>
 </div>
-
-<div class="form-group">
-    <?= Html::submitButton('<span class="glyphicon glyphicon-send"></span>  Hantar Maklumat', ['class' => 'btn btn-primary']) ?>
-</div>
-            
-            
-      <?php ActiveForm::end(); ?>
