@@ -16,6 +16,9 @@ use common\models\User;
  */
 class Supplier extends \yii\db\ActiveRecord
 {
+    public $s_longitude;
+    public $s_latitude;
+    public $s_location;
     /**
      * {@inheritdoc}
      */
@@ -30,11 +33,11 @@ class Supplier extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['age', 'address', 'postcode', 'city', 'state', 'location','profile_file'], 'required', 'on' => 'insert'],
+            [['age', 'address', 'postcode', 'city', 'state', 'location'], 'required', 'on' => 'insert'],
             //Profile image
             ['profile_file', 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
             [['user_id', 'age'], 'integer'],
-            [['address', 'location', 'longitude', 'latitude'], 'string', 'max' => 225],
+            [['address', 's_location', 's_longitude', 's_latitude', 'longitude', 'latitude', 'location'], 'string', 'max' => 225],
         ];
     }
 

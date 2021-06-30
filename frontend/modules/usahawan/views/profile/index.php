@@ -18,6 +18,10 @@ use backend\models\Negeri;
 
 $this->title = "MAKLUMAT PERIBADI";
 $this->params['breadcrumbs'][] = $this->title;
+
+$model->u_longitude = $model->longitude; 
+$model->u_latitude = $model->latitude;
+$model->u_location = $model->location;
 ?>
 
 
@@ -83,13 +87,12 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
                         <div class="row">
                             <div class="col-9">
-                                <?= $form->field($model, 'location')->widget(\kalyabin\maplocation\SelectMapLocationWidget::className(), [
-                                'attributeLatitude' => 'latitude',
-                                'attributeLongitude' => 'longitude',
+                                <?= $form->field($model, 'u_location')->widget(\kalyabin\maplocation\SelectMapLocationWidget::className(), [
+                                'attributeLatitude' => 'u_latitude',
+                                'attributeLongitude' => 'u_longitude',
                                 'googleMapApiKey' => 'AIzaSyCdaIFmGh8LWEfbXln7BkPnMfB1RDd9Rj4',
                                 'draggable' => true,
-                                'googleMapApiKey' => Yii::$app->params['secrets']['googleMaps']['API'],
-                            ]);?>
+                            ])->label('Location');?>
                             </div>
                         </div>
                 </div>

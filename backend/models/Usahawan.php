@@ -16,8 +16,9 @@ use common\models\User;
  */
 class Usahawan extends \yii\db\ActiveRecord
 {
-    public $longitude;
-    public $latitude;
+    public $u_longitude;
+    public $u_latitude;
+    public $u_location;
     /**
      * {@inheritdoc}
      */
@@ -32,12 +33,12 @@ class Usahawan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['age', 'address', 'postcode', 'city', 'state', 'location','profile_file'], 'required', 'on' => 'insert'],
+            [['age', 'address', 'postcode', 'city', 'state', 'location'], 'required', 'on' => 'insert'],
             //Profile image
             ['profile_file', 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
 
             [['user_id', 'age'], 'integer'],
-            [['address', 'location', 'u_longitude', 'u_latitude'], 'string', 'max' => 225],
+            [['address', 'u_location', 'u_longitude', 'u_latitude', 'longitude', 'latitude', 'location'], 'string', 'max' => 225],
         ];
     }
 

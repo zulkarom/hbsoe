@@ -46,8 +46,11 @@ class ProfileController extends Controller
 
         $model->setScenario('insert');
         if ($model->load(Yii::$app->request->post())) {
-                $model->u_longitude = $model->longitude;
-                $model->u_latitude = $model->latitude;
+            
+                $model->longitude = $model->u_longitude;
+                $model->latitude = $model->u_latitude;
+                $model->location = $model->u_location;
+
                 if($model->save()){
                    Yii::$app->session->addFlash('success', "Maklumat peribadi berjaya disimpan.");
 
