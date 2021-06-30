@@ -31,7 +31,7 @@ class Menu
 	   foreach($this->items as $item){
 			   switch($item['level']){
 				   case 0:
-				   $html .= '<li class="nav-title">'.$item['label'].'</li>';
+				   $html .= '<li class="nav-small-cap">'.$item['label'].'</li>';
 				   break;
 				   
 				   case 1:
@@ -51,28 +51,27 @@ class Menu
 	   $active = $this->isItemActive($item) ? 'active' : '';
 	   return '<li>
 				   <a href="'.Url::to($item['url']).'" class="'.$active.'">
-				   <div class="nav_icon_small '.$item['icon'].'"></div>
-				   <div class="nav_title">
-				   <span>
+				   <i class="'.$item['icon'].'"></i>
+				   <span class="hide-menu">
 					'.$item['label'].'
 					</span>
-				   </div></a></li>';
+				   </a></li>';
    }
-
-   protected function children($item){
+   
+    protected function children($item){
 	   $active = $this->isItemActive($item) ? 'active' : '';
 	   return '<li>
 				   <a href="'.Url::to($item['url']).'" class="'.$active.'">
 				   '.$item['label'].'
 				   </a></li>';
    }
-   
+
    protected function item2($item){
 	   $this->tree = false;
 	   $anak = '';
 	   $expand = $this->isItemActive($item) ? 'true' : 'false';
-	   $mm = $this->isItemActive($item) ? 'mm-show' : '';
-	   $active = $this->isItemActive($item) ? 'mm-active' : '';
+	   $in = $this->isItemActive($item) ? 'in' : '';
+	   $active = $this->isItemActive($item) ? 'active' : '';
 	   $children = $item['children'];
 			if($children){
 				foreach($children as $child){
@@ -81,15 +80,13 @@ class Menu
 			}
 	   
 	   $html =  '<li class="'.$active.'">
-			<a href="#" class="has-arrow '.$active.'" aria-expanded="'.$expand.'">
-				<div class="nav_icon_small '.$item['icon'].'"></div>
-				<div class="nav_title">
-				   <span>
+			<a href="#" class="has-arrow waves-effect '.$active.'" aria-expanded="'.$expand.'">
+				<i class="'.$item['icon'].'"></i>
+				<span class="hide-menu">
 					'.$item['label'].'
-					</span>
-				</div>
+				</span>
 			</a>
-			<ul class="mm-collapse '.$mm.'">';
+			<ul aria-expanded ="'.$expand.'" class="collapse '.$in.'">';
 			
 			$html .= $anak;
 						

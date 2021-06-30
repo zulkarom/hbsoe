@@ -30,11 +30,11 @@ class Supplier extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['age', 'address', 'profile_file'], 'required', 'on' => 'insert'],
+            [['age', 'address', 'postcode', 'city', 'state', 'location','profile_file'], 'required', 'on' => 'insert'],
             //Profile image
             ['profile_file', 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
             [['user_id', 'age'], 'integer'],
-            [['address', 'location', 'profile_file'], 'string', 'max' => 225],
+            [['address', 'location', 'longitude', 'latitude'], 'string', 'max' => 225],
         ];
     }
 

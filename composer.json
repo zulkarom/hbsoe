@@ -23,7 +23,10 @@
         "kartik-v/yii2-widgets": "*",
         "karpoff/yii2-crop-image-upload": "*",
         "aminkt/yii2-map-location-picker": "@dev",
-        "djabiev/yii2-autosize-textarea": "dev-master"
+        "djabiev/yii2-autosize-textarea": "dev-master",
+        "pavle/yii2-location-picker": "*",
+        "pigochu/yii2-jquery-locationpicker": ">=0.2.0",
+        "kalyabin/yii2-select-google-map-location": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
