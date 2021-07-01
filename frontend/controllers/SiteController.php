@@ -30,7 +30,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['signup', 'index', 'login', 'download'],
+                        'actions' => ['signup', 'index', 'login', 'download', 'language'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
@@ -97,6 +97,19 @@ class SiteController extends Controller
             return $this->render('login', [
                 'model' => $model,
             ]);
+        }
+    }
+
+    public function actionLanguage()
+    {
+        if(isset($_POST['lang'])){
+            Yii::$app->language = $_POST['lang'];
+            $cookie = new yii\web\Cookie([
+                'name' =>'lang',
+                'value' =>$_POST['lang']
+            ]);
+
+            Yii::$app->getResponse()->getCookies()->add($cookie);
         }
     }
 

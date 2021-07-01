@@ -225,6 +225,15 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/adminpre
                 </div>
                 
             </div>
+        <div class="row">
+            <div class="col-md-5">
+                <?php
+                    foreach(Yii::$app->params['languages'] as $key =>$language){
+                        echo '<span class="language" id="'.$key.'">'.$language.' | </span>';
+                    }
+                ?>
+            </div>
+        </div>
   
             <div class="container-fluid">
                 
@@ -265,3 +274,18 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/adminpre
 </body>
 </html>
 <?php $this->endPage() ?>
+
+<?php
+    $js = "$(function(){
+    $(document).on('click','.language',function(){
+        var lang = $(this).attr('id');
+
+        $.post('site/language',{'lang':lang},function(data){
+            location.reload();
+        });
+    });
+
+
+";
+$this->registerJs($js);
+?>

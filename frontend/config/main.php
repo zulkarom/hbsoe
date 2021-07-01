@@ -11,6 +11,8 @@ return [
 	'name'=>'frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language' => 'en-US',
+    'sourceLanguage' => 'en-US',
     'controllerNamespace' => 'frontend\controllers',
     'modules' => [
         'user' => [
@@ -37,6 +39,19 @@ return [
         ],
     ],
     'components' => [
+        'i18n' => [
+            'translations' => [
+                'app' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                        //'basePath' => '@app/messages',
+                    // 'sourceLanguage' =>'ms-my',
+                    'fileMap' => [
+                        'app' => 'app.php',
+                        'app/error' => 'error.php',
+                    ],
+                ],
+            ],
+        ],
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],
@@ -68,6 +83,9 @@ return [
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
+        ],
+        'as beforeRequest' =>[
+            'class'=>'frontend\components\CheckIfLoggedIn',
         ],
         'as access' => [
         'class' => 'mdm\admin\components\AccessControl',
