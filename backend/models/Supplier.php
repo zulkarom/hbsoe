@@ -19,6 +19,10 @@ class Supplier extends \yii\db\ActiveRecord
     public $s_longitude;
     public $s_latitude;
     public $s_location;
+    public $rawPassword;
+    public $username;
+    public $email;
+    public $fullname;
     /**
      * {@inheritdoc}
      */
@@ -34,6 +38,7 @@ class Supplier extends \yii\db\ActiveRecord
     {
         return [
             [['age', 'address', 'postcode', 'city', 'state', 'location'], 'required', 'on' => 'insert'],
+
             //Profile image
             ['profile_file', 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
             [['user_id', 'age'], 'integer'],

@@ -276,7 +276,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/adminpre
 <?php $this->endPage() ?>
 
 <?php
-    $js = "$(function(){
+    $js = "
     $(document).on('click','.language',function(){
         var lang = $(this).attr('id');
 
@@ -284,7 +284,6 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/adminpre
             location.reload();
         });
     });
-
 
 ";
 $this->registerJs($js);

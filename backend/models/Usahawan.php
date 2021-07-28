@@ -19,6 +19,10 @@ class Usahawan extends \yii\db\ActiveRecord
     public $u_longitude;
     public $u_latitude;
     public $u_location;
+    public $rawPassword;
+    public $username;
+    public $email;
+    public $fullname;
     /**
      * {@inheritdoc}
      */
@@ -36,6 +40,9 @@ class Usahawan extends \yii\db\ActiveRecord
             [['age', 'address', 'postcode', 'city', 'state', 'location'], 'required', 'on' => 'insert'],
             //Profile image
             ['profile_file', 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
+
+            //Admin Update
+            [['username', 'fullname', 'email'], 'required', 'on' => 'update'],
 
             [['user_id', 'age'], 'integer'],
             [['address', 'u_location', 'u_longitude', 'u_latitude', 'longitude', 'latitude', 'location'], 'string', 'max' => 225],

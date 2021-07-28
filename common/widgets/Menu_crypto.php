@@ -9,7 +9,7 @@ use yii\helpers\Html;
  * Class Menu
  * Theme menu widget.
  */
-class Menu 
+class Menu_crypto
 {
 	public $items;
 	public $tree = false;
