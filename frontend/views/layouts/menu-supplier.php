@@ -18,12 +18,20 @@ use common\widgets\Menu_crypto;
     <?=Menu_crypto::widget(
     [
             
-            ['label' => 'Dashboard', 'level' => 1, 'url' => ['/site/index'], 'icon' => $dirAssests.'/img/menu-icon/1.svg', 'children' => []],
+            ['label' => 'Dashboard', 'level' => 1, 'url' => ['/supplier/dashboard/index'], 'icon' => $dirAssests.'/img/menu-icon/1.svg', 'children' => []],
             
             // ['label' => 'Announcement', 'level' => 1, 'url' => ['/announcement/index'], 'icon' => 'fa fa-bullhorn', 'children' => []],
             
             ['label' => 'Maklumat Supplier', 'level' => 2 , 'icon' => $dirAssests.'/img/menu-icon/4.svg', 'children' => [
                 ['label' => 'Maklumat Peribadi', 'url' => ['/supplier/profile/index'], 'icon' => 'fa fa-circle'],
+            ]],
+
+            ['label' => \Yii::t('app', 'Sektor'), 'level' => 2 , 'icon' => $dirAssests.'/img/menu-icon/17.svg', 'children' => [
+                ['label' => \Yii::t('app', 'Pertanian'), 'url' => ['/supplier/dashboard/index'], 'icon' => 'fa fa-circle'],
+                
+                ['label' => \Yii::t('app', 'Restoran'), 'url' => ['/supplier/dashboard/index'], 'icon' => 'fa fa-circle'],
+                
+                ['label' => \Yii::t('app', 'Penternakan'), 'url' => ['/supplier/dashboard/index'], 'icon' => 'fa fa-circle'],
             ]],
             
             // ['label' => 'General', 'level' => 2 , 'icon' => 'fa fa-cog', 'children' => [

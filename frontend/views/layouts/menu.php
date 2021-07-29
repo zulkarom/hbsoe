@@ -18,7 +18,7 @@ use common\widgets\Menu_crypto;
     <?=Menu_crypto::widget(
     [
             
-            ['label' => 'Dashboard', 'level' => 1, 'url' => ['/site/index'], 'icon' => $dirAssests.'/img/menu-icon/1.svg', 'children' => []],
+            ['label' => 'Dashboard', 'level' => 1, 'url' => ['/usahawan/dashboard/index'], 'icon' => $dirAssests.'/img/menu-icon/1.svg', 'children' => []],
             
             // ['label' => 'Announcement', 'level' => 1, 'url' => ['/announcement/index'], 'icon' => 'fa fa-bullhorn', 'children' => []],
             
@@ -26,12 +26,13 @@ use common\widgets\Menu_crypto;
                 ['label' => 'Maklumat Peribadi', 'url' => ['/usahawan/profile/index'], 'icon' => 'fa fa-circle'],
             ]],
             
-            // ['label' => 'General', 'level' => 2 , 'icon' => 'fa fa-cog', 'children' => [
-            //     ['label' => 'Example 1', 'url' => ['/city'], 'icon' => 'fa fa-circle'],
-            //     ['label' => 'Example 2', 'url' => ['/client/prospect-type'], 'icon' => 'fa fa-circle'],
-            //     ['label' => 'Example 3', 'url' => ['/staff/grade'], 'icon' => 'fa fa-circle'],
-            
-            // ]],
+            ['label' => \Yii::t('app', 'Sektor'), 'level' => 2 , 'icon' => $dirAssests.'/img/menu-icon/17.svg', 'children' => [
+                ['label' => \Yii::t('app', 'Pertanian'), 'url' => ['/usahawan/dashboard/index'], 'icon' => 'fa fa-circle'],
+
+                ['label' => \Yii::t('app', 'Restoran'), 'url' => ['/usahawan/dashboard/index'], 'icon' => 'fa fa-circle'],
+                
+                ['label' => \Yii::t('app', 'Penternakan'), 'url' => ['/usahawan/dashboard/index'], 'icon' => 'fa fa-circle'],
+            ]],
         
         ]
     
