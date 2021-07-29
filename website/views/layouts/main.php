@@ -1,14 +1,10 @@
 <?php
 use website\assets\AppAsset;
 use yii\helpers\Html;
-use backend\modules\website\models\Section;
-use backend\modules\website\models\Introduction;
 
 AppAsset::register($this);
 $dirAssests=Yii::$app->assetManager->getPublishedUrl('@website/views/myassets');
 
-$section = Section::find()->all();
-$intro = Introduction::findOne(1);
 
 ?>
 <?php $this->beginPage() ?>

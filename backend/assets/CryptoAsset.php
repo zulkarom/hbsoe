@@ -36,6 +36,7 @@ class CryptoAsset extends AssetBundle
 
     public $js = [
         
+        'js/main.js',
         //footer//
         // 'js/jquery-3.4.1.min.js',
         //popper js -->

@@ -15,6 +15,24 @@ use yii\helpers\Html;
                     </div>
                     <div class="header_right d-flex justify-content-between align-items-center">
                         <div class="header_notification_warp d-flex align-items-center">
+                            
+                            <li>
+
+                                <?php
+                                    foreach(Yii::$app->params['languages'] as $key =>$language){
+
+                                        if($key == 'en'){
+                                          echo '<span class="language" id="'.$key.'">'.$language.' | </span>';  
+                                      }else{
+                                        echo '<span class="language" id="'.$key.'">'.$language.'  </span>';
+                                      }
+                                        
+                                       
+                                    }
+                                ?>
+                                &nbsp &nbsp
+                                    
+                            </li>
                             <li>
                                 <a class="CHATBOX_open nav-link-notify" href="#"> <img src="<?= $dirAssests?>/img/icon/msg.svg" alt="">   </a>
                             </li>
