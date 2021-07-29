@@ -6,8 +6,8 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\Users */
 
-$this->title = 'Update Pembekal: ' . $model->fullname;
-$this->params['breadcrumbs'][] = ['label' => 'Pembekal', 'url' => ['index']];
+$this->title = 'Update Supplier: ' . $model->fullname;
+$this->params['breadcrumbs'][] = ['label' => 'Supplier', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->fullname, 'url' => ['view', 'id' => $supplier->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>

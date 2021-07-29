@@ -11,6 +11,7 @@ use yii\web\ForbiddenHttpException;
  */
 class DashboardController extends Controller
 {
+    public $layout = '//main';
     /**
      * @inheritdoc
      */

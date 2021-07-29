@@ -15,6 +15,7 @@ use frontend\models\UploadFile;
  */
 class ProfileController extends Controller
 {
+    public $layout = '//main';
     /**
      * {@inheritdoc}
      */

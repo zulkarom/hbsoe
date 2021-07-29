@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\UsahawanSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Pembekal';
+$this->title = 'Supplier';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
