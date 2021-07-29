@@ -3,7 +3,8 @@
 return [
     //Menu Left Side
     'Dashboard' => 'Dashboard',
-    'Entrepreneur Profile' => 'Maklumat Usahawan',
+    'Entrepreneurs' => 'Usahawan',
+    'Suppliers' => 'Pembekal',
     'Sector' => 'Sektor',
     'Restaurant' => 'Restoran',
     'Agriculture' => 'Pertanian',
