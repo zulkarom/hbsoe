@@ -51,7 +51,7 @@ class Menu_crypto
 	   $active = $this->isItemActive($item) ? 'active' : '';
 	   return '<li>
 				   <a href="'.Url::to($item['url']).'" class="'.$active.'">
-				   <div class="nav_icon_small '.$item['icon'].'"></div>
+				   <div class="nav_icon_small"><img src="'.$item['icon'].'" alt=""></div>
 				   <div class="nav_title">
 				   <span>
 					'.$item['label'].'
@@ -82,7 +82,7 @@ class Menu_crypto
 	   
 	   $html =  '<li class="'.$active.'">
 			<a href="#" class="has-arrow '.$active.'" aria-expanded="'.$expand.'">
-				<div class="nav_icon_small '.$item['icon'].'"></div>
+				<div class="nav_icon_small"><img src="'.$item['icon'].'" alt=""></div>
 				<div class="nav_title">
 				   <span>
 					'.$item['label'].'

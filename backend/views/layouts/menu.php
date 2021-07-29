@@ -18,11 +18,11 @@ use common\widgets\Menu_crypto;
     <?=Menu_crypto::widget(
     [
             
-            ['label' => \Yii::t('app', 'Dashboard'), 'level' => 1, 'url' => ['/site/index'], 'icon' => 'fa fa-chart-pie', 'children' => []],
+            ['label' => \Yii::t('app', 'Dashboard'), 'level' => 1, 'url' => ['/site/index'], 'icon' => $dirAssests.'/img/menu-icon/1.svg', 'children' => []],
             
             // ['label' => 'Announcement', 'level' => 1, 'url' => ['/announcement/index'], 'icon' => 'fa fa-bullhorn', 'children' => []],
             
-            ['label' => \Yii::t('app', 'Senarai Pengguna'), 'level' => 2 , 'icon' => 'fa fa-user', 'children' => [
+            ['label' => \Yii::t('app', 'Senarai Pengguna'), 'level' => 2 , 'icon' => $dirAssests.'/img/menu-icon/4.svg', 'children' => [
                 ['label' => \Yii::t('app', 'Usahawan'), 'url' => ['/usahawan/index'], 'icon' => 'fa fa-circle'],
                 ['label' => \Yii::t('app', 'Supplier'), 'url' => ['/supplier/index'], 'icon' => 'fa fa-circle'],
             ]],

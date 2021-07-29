@@ -18,11 +18,11 @@ use common\widgets\Menu_crypto;
     <?=Menu_crypto::widget(
     [
             
-            ['label' => 'Dashboard', 'level' => 1, 'url' => ['/site/index'], 'icon' => 'fa fa-chart-pie', 'children' => []],
+            ['label' => 'Dashboard', 'level' => 1, 'url' => ['/site/index'], 'icon' => $dirAssests.'/img/menu-icon/1.svg', 'children' => []],
             
             // ['label' => 'Announcement', 'level' => 1, 'url' => ['/announcement/index'], 'icon' => 'fa fa-bullhorn', 'children' => []],
             
-            ['label' => 'Maklumat Usahawan', 'level' => 2 , 'icon' => 'fa fa-user', 'children' => [
+            ['label' => 'Maklumat Usahawan', 'level' => 2 , 'icon' => $dirAssests.'/img/menu-icon/4.svg', 'children' => [
                 ['label' => 'Maklumat Peribadi', 'url' => ['/usahawan/profile/index'], 'icon' => 'fa fa-circle'],
             ]],
             
