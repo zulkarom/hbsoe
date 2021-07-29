@@ -1,29 +1,76 @@
 <?php 
 
 use yii\helpers\Url;
-use common\widgets\Menu;
+use common\widgets\Menu_crypto;
 
 ?> 
-  <nav class="sidebar-nav">
-                    <ul id="sidebarnav">
-                    	<li class="nav-devider"></li>
-                        <?=Menu::widget([
-			['label' => \Yii::t('app', 'Dashboard'), 'level' => 1, 'url' => ['/site/index'], 'icon' => 'mdi mdi-gauge', 'children' => []],
+<nav class="sidebar dark_sidebar">
+    <div class="logo d-flex justify-content-between">
+        <a class="large_logo" href="index.html"><img src="<?= $dirAssests?>/img/logo_white.png" alt=""></a>
+        <a class="small_logo" href="index.html"><img src="<?= $dirAssests?>/img/mini_logo.png" alt=""></a>
+        <div class="sidebar_close_icon d-lg-none">
+            <i class="ti-close"></i>
+        </div>
+    </div>
+    <ul id="sidebar_menu"> 
+                
 
-			['label' => \Yii::t('app', 'Entrepreneur Profile'), 'level' => 1,'url' => ['/usahawan/profile/index'], 'icon' => 'mdi mdi-settings-box'],
+    <?=Menu_crypto::widget(
+    [
+            
+            ['label' => 'Dashboard', 'level' => 1, 'url' => ['/site/index'], 'icon' => 'fa fa-chart-pie', 'children' => []],
+            
+            // ['label' => 'Announcement', 'level' => 1, 'url' => ['/announcement/index'], 'icon' => 'fa fa-bullhorn', 'children' => []],
+            
+            ['label' => 'Maklumat Usahawan', 'level' => 2 , 'icon' => 'fa fa-user', 'children' => [
+                ['label' => 'Maklumat Peribadi', 'url' => ['/usahawan/profile/index'], 'icon' => 'fa fa-circle'],
+            ]],
+            
+            // ['label' => 'General', 'level' => 2 , 'icon' => 'fa fa-cog', 'children' => [
+            //     ['label' => 'Example 1', 'url' => ['/city'], 'icon' => 'fa fa-circle'],
+            //     ['label' => 'Example 2', 'url' => ['/client/prospect-type'], 'icon' => 'fa fa-circle'],
+            //     ['label' => 'Example 3', 'url' => ['/staff/grade'], 'icon' => 'fa fa-circle'],
+            
+            // ]],
+        
+        ]
+    
+    )?>
+
+                    
+                    
+                    
+<br /><br /><br /><br /><br /><br />
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+    </ul>
+</nav>
+<?php 
+/* 
+$this->registerJs('
+
+$(".has-treeview").click(function(){
+    
+    if($(this.hasClass("menu-open") == false){
+        $(".has-treeview").each(function(i, obj) {
+            $(this).removeClass("menu-open");
+        });
+    }
+    
+    
+});
+
+');
 
 
-			['label' => \Yii::t('app', 'Sector'), 'level' => 0],
-                            
-            ['label' => \Yii::t('app', 'Agriculture'), 'level' => 1, 'url' => ['/account/invoice/index'], 'icon' => 'mdi mdi-file-check', 'children' => []],
-                            
-             ['label' => \Yii::t('app', 'Restaurant'), 'level' => 1, 'url' => ['/account/client-payment/index'], 'icon' => 'mdi mdi-currency-usd', 'children' => []],
-                            
-          ['label' => \Yii::t('app', 'LiveStock'), 'level' => 1, 'url' => ['/account/pv/index'], 'icon' => 'mdi mdi-credit-card', 'children' => []],
-		
-		]
-	
-	)?>
-                       
-                    </ul>
-                </nav>
+ */
+?>

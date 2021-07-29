@@ -1,7 +1,7 @@
 <?php 
 
 use yii\helpers\Url;
-use common\widgets\Menu;
+use common\widgets\Menu_crypto;
 
 ?> 
 <nav class="sidebar dark_sidebar">
@@ -15,23 +15,23 @@ use common\widgets\Menu;
     <ul id="sidebar_menu"> 
                 
 
-    <?=Menu::widget(
+    <?=Menu_crypto::widget(
     [
             
             ['label' => 'Dashboard', 'level' => 1, 'url' => ['/site/index'], 'icon' => 'fa fa-chart-pie', 'children' => []],
             
-            ['label' => 'Announcement', 'level' => 1, 'url' => ['/announcement/index'], 'icon' => 'fa fa-bullhorn', 'children' => []],
+            // ['label' => 'Announcement', 'level' => 1, 'url' => ['/announcement/index'], 'icon' => 'fa fa-bullhorn', 'children' => []],
             
-            ['label' => 'Maklumat Usahawan', 'level' => 2 , 'icon' => 'fa fa-user', 'children' => [
-                ['label' => 'Maklumat Peribadi', 'url' => ['/usahawan/profile/index'], 'icon' => 'fa fa-circle'],
+            ['label' => 'Maklumat Supplier', 'level' => 2 , 'icon' => 'fa fa-user', 'children' => [
+                ['label' => 'Maklumat Peribadi', 'url' => ['/supplier/profile/index'], 'icon' => 'fa fa-circle'],
             ]],
             
-            ['label' => 'General', 'level' => 2 , 'icon' => 'fa fa-cog', 'children' => [
-                ['label' => 'First', 'url' => ['/city'], 'icon' => 'fa fa-circle'],
-                ['label' => 'Second', 'url' => ['/client/prospect-type'], 'icon' => 'fa fa-circle'],
-                ['label' => 'Third', 'url' => ['/staff/grade'], 'icon' => 'fa fa-circle'],
+            // ['label' => 'General', 'level' => 2 , 'icon' => 'fa fa-cog', 'children' => [
+            //     ['label' => 'Example 1', 'url' => ['/city'], 'icon' => 'fa fa-circle'],
+            //     ['label' => 'Example 2', 'url' => ['/client/prospect-type'], 'icon' => 'fa fa-circle'],
+            //     ['label' => 'Example 3', 'url' => ['/staff/grade'], 'icon' => 'fa fa-circle'],
             
-            ]],
+            // ]],
         
         ]
     

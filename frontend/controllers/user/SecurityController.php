@@ -27,10 +27,12 @@ class SecurityController extends BaseSecurityController
         $this->trigger(self::EVENT_BEFORE_LOGIN, $event);
 
         if ($model->load(\Yii::$app->getRequest()->post()) && $model->login()) {
-            $this->trigger(self::EVENT_AFTER_LOGIN, $event);
-            //$this->goHome();
-            $this->redirect(['/dashboard/index']);
-            //return $this->goBack();
+            
+            if($model->role == 1){
+                return $this->redirect(['/usahawan/dashboard/index']);
+            }else if($model->role == 2){
+                return $this->redirect(['/supplier/dashboard/index']);
+            }
         }
 
         return $this->render('login', [
