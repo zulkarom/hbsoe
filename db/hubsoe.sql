@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 30, 2021 at 03:17 AM
+-- Generation Time: Jul 30, 2021 at 03:32 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -311,7 +311,7 @@ CREATE TABLE `supplier` (
 --
 
 INSERT INTO `supplier` (`id`, `user_id`, `age`, `address`, `postcode`, `city`, `state`, `location`, `longitude`, `latitude`, `profile_file`) VALUES
-(1, 12, 0, 'Skyhint Enterprise Tingakat Satu', 16100, 4, '1', 'KFC Jalan Pengkalan Chepa, Jalan Pengkalan Chepa, Kota Bharu, Kelantan, Malaysia', '102.2673491', '6.1472444', '60dbc6166e53c.jpg');
+(1, 12, 0, 'Skyhint Enterprise Tingakat Satu', 16500, 4, '1', 'KB Mall, Jalan Hamzah, Seksyen 16, Kota Bharu, Kelantan, Malaysia', '102.2399248', '6.117447800000001', '6102893c41d37.png');
 
 -- --------------------------------------------------------
 
@@ -359,7 +359,7 @@ CREATE TABLE `usahawan` (
 --
 
 INSERT INTO `usahawan` (`id`, `user_id`, `age`, `address`, `postcode`, `city`, `state`, `location`, `longitude`, `latitude`, `profile_file`) VALUES
-(1, 11, 26, 'Skyhint Enterprise Tingakat Satu', '16100', 4, '1', 'Edusage Network, Kota Bharu, Kelantan, Malaysia', '102.2764503', '6.1561491', '60dbc3eb2129c.jpg');
+(1, 11, 26, 'Skyhint Enterprise Tingakat Satu', '16100', 4, '1', 'Chabang Empat Police Station, Jalan Berangan, Kampung Jirat, Tumpat, Kelantan, Malaysia', '102.1566186', '6.1532991', '61027e5f6e58f.jpeg');
 
 -- --------------------------------------------------------
 
@@ -393,8 +393,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `username`, `fullname`, `email`, `role`, `password_hash`, `auth_key`, `confirmed_at`, `unconfirmed_email`, `blocked_at`, `registration_ip`, `created_at`, `updated_at`, `flags`, `last_login_at`, `status`, `password_reset_token`) VALUES
 (10, 'superadmin', 'Super Administrator', '', 0, '$2y$10$G2CqfuUqiTshvYmzFbh/seDgLVXbHRvUrb8fu.8UxCHgyaF9vd3pG', '', 1624467684, NULL, NULL, NULL, 1624467474, 1624467474, 0, NULL, 10, ''),
-(11, 'iqramrafien21@gmail.com', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 1, '$2y$10$u9uqOZjMUbcQleTF0vzOfOIzmfo54rcsMoX0r6WI/WSToQP9EJWqq', 'wAkoWzyn9YtDTWT8M-qTrrHBkpbu88lT', 1624893933, NULL, NULL, '::1', 1624893783, 1624893783, 0, 1625004683, 10, ''),
-(12, 'iqramrafien@gmail.com', 'Fakhrul Iqram', 'iqramrafien@gmail.com', 2, '$2y$10$WBb4.a5zRbEwE/hNuZ9vpu2mynXI3RcFXYx7r0QXDjLDQT7X5t5Uu', 'pd_NFm4flNQHaH1RGF3Mkm0GTYixwdlL', NULL, NULL, NULL, '::1', 1625004492, 1625004492, 0, 1625015564, 10, '');
+(11, 'iqramrafien21@gmail.com', 'Iqram Rafien', 'iqramrafien21@gmail.com', 1, '$2y$10$u9uqOZjMUbcQleTF0vzOfOIzmfo54rcsMoX0r6WI/WSToQP9EJWqq', 'wAkoWzyn9YtDTWT8M-qTrrHBkpbu88lT', 1624893933, NULL, NULL, '::1', 1624893783, 1627469903, 0, 1627598024, 10, ''),
+(12, 'iqramrafien@gmail.com', 'Fakhrul Iqram', 'iqramrafien@gmail.com', 2, '$2y$10$WBb4.a5zRbEwE/hNuZ9vpu2mynXI3RcFXYx7r0QXDjLDQT7X5t5Uu', 'pd_NFm4flNQHaH1RGF3Mkm0GTYixwdlL', NULL, NULL, NULL, '::1', 1625004492, 1627469367, 0, 1627597934, 10, '');
 
 --
 -- Indexes for dumped tables
@@ -476,7 +476,7 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT for table `usahawan`
 --
 ALTER TABLE `usahawan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`
