@@ -32,5 +32,7 @@ return [
     'City' => 'Bandar',
     'State' => 'Negeri',
     'Save Information' => 'Simpan Maklumat',
-    'Search Supplier' => 'Cari Pembekal'
+    'Search Supplier' => 'Cari Pembekal',
+    'Change Language' => 'Tukar Bahasa',
+    'Clients' => 'Pelanggan'
 ];

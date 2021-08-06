@@ -18,11 +18,11 @@ use common\widgets\Menu_crypto;
     <?=Menu_crypto::widget(
     [
             
-            ['label' => 'Dashboard', 'level' => 1, 'url' => ['/supplier/dashboard/index'], 'icon' => $dirAssests.'/img/menu-icon/1.svg', 'children' => []],
+        ['label' => \Yii::t('app', 'Dashboard'), 'level' => 1, 'url' => ['/supplier/dashboard/index'], 'icon' => $dirAssests.'/img/menu-icon/1.svg', 'children' => []],
             
-        ['label' => 'Profile', 'level' => 1, 'url' => ['/supplier/profile/index'], 'icon' => $dirAssests.'/img/menu-icon/4.svg', 'children' => []],
+        ['label' => \Yii::t('app', 'Profile'), 'level' => 1, 'url' => ['/supplier/profile/index'], 'icon' => $dirAssests.'/img/menu-icon/4.svg', 'children' => []],
         
-        ['label' => 'Location', 'level' => 1, 'url' => ['/supplier/profile/location'], 'icon' => $dirAssests.'/img/menu-icon/map.svg', 'children' => []],
+        ['label' => \Yii::t('app', 'Location'), 'level' => 1, 'url' => ['/supplier/profile/location'], 'icon' => $dirAssests.'/img/menu-icon/map.svg', 'children' => []],
         
         ['label' => \Yii::t('app', 'Sectors'), 'level' => 1, 'url' => ['/supplier/sector/index'], 'icon' => $dirAssests.'/img/menu-icon/17.svg', 'children' => []],
         ['label' => \Yii::t('app', 'Clients'), 'level' => 1, 'url' => ['/supplier/client/index'], 'icon' => $dirAssests.'/img/menu-icon/5.svg', 'children' => []],

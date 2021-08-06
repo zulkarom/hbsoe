@@ -35,7 +35,7 @@ use yii\helpers\Url;
                                 <!-- Menu_NOtification_Wrap  -->
                             <div class="Menu_NOtification_Wrap">
                                 <div class="notification_Header">
-                                    <h4>Change Language</h4>
+                                    <h4><?=\Yii::t('app', 'Change Language')?></h4>
                                 </div>
                                 <div class="Notification_body">
                                 
