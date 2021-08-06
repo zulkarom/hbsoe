@@ -104,6 +104,7 @@ return [
             'profile/*',
             'entrepreneur/*',
             'user/*',
+            'dashboard/*',
             'site/*'
             //'application/*',
             //'some-controller/some-action',

@@ -54,7 +54,7 @@ class ProfileController extends Controller
 
                     return $this->refresh();
                 }else{
-                    return $model->flashError();
+                    $model->flashError();
 
                 }
             }

@@ -37,7 +37,7 @@ class Entrepreneur extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['age', 'address', 'postcode', 'city', 'state', 'location', 'phone'], 'required', 'on' => 'insert'],
+            [['age', 'address', 'postcode', 'city', 'state', 'phone'], 'required', 'on' => 'insert'],
             //Profile image
             ['profile_file', 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
 
