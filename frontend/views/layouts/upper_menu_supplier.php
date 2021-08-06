@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
 ?>
 
 <div class="container-fluid no-gutters">
@@ -100,7 +101,7 @@ use yii\helpers\Html;
                         </div>
                         <div class="profile_info d-flex align-items-center">
                             <div class="profile_thumb mr_20">
-                                <img src="<?= $dirAssests?>/img/transfer/4.png" alt="#">
+                                <img src="<?=Url::to(['/supplier/profile/profile-image', 'id' => Yii::$app->user->identity->supplier->id])?>" alt="#">
                             </div>
                             <div class="author_name">
                                 <h4 class="f_s_15 f_w_500 mb-0"><?=Yii::$app->user->identity->fullname?></h4>

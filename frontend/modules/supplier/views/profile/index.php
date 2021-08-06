@@ -2,18 +2,13 @@
 
 use yii\helpers\Html;
 use kartik\widgets\ActiveForm;
-use common\models\Common;
-use kartik\date\DatePicker;
-use backend\models\Institution;
 use yii\helpers\ArrayHelper;
 use kartik\select2\Select2;
 use yii\helpers\Url;
 use karpoff\icrop\CropImageUpload;
-use yii\web\JsExpression;
 use backend\models\Daerah;
 use backend\models\Negeri;
 /* @var $this yii\web\View */
-/* @var $model backend\models\Fasi */
 /* @var $form ActiveForm */
 
 $this->title = "MAKLUMAT PERIBADI";
@@ -35,16 +30,22 @@ $model->s_location = $model->location;
                 <div class="profile-index">
 
                     <div class="row">
-                        <div class="col-md-5"><?= $form->field($model, 'fullname')->textInput(['disabled' => 'disabled', 'value' => $model->user->fullname])->label('Nama Kadet') ?></div>
+                        <div class="col-md-5"><?= $form->field($model, 'fullname')->textInput(['disabled' => 'disabled', 'value' => $model->user->fullname]) ?></div>
 
                         <div class="col-md-3">
                         <?= $form->field($model, 'email')->textInput(['disabled' => 'disabled', 'value' => $model->user->email]) ?>
                          </div>
-
-                         <div class="col-md-1"><?= $form->field($model, 'age') ?></div>
+ <div class="col-md-1"><?= $form->field($model, 'age') ?></div>
+                        
                     </div>
+                    
+                    <div class="row">
+                        <div class="col-md-5"><?= $form->field($model, 'biz_name')->textInput() ?></div>
 
-
+ 
+  <div class="col-md-3"><?= $form->field($model, 'phone') ?></div>
+             
+                    </div>
                     <div class="row">
                         <div class="col-md-9"><?= $form->field($model, 'address')->textarea(['rows' => '3'])->label('Alamat Surat Menyurat')?>
                         </div>
@@ -85,16 +86,7 @@ $model->s_location = $model->location;
                                   </tbody></table>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-9">
-                                <?= $form->field($model, 's_location')->widget(\kalyabin\maplocation\SelectMapLocationWidget::className(), [
-                                'attributeLatitude' => 's_latitude',
-                                'attributeLongitude' => 's_longitude',
-                                'googleMapApiKey' => 'AIzaSyCdaIFmGh8LWEfbXln7BkPnMfB1RDd9Rj4',
-                                'draggable' => true,
-                            ])->label('Location');?>
-                            </div>
-                        </div>
+     
                 </div>
             </div>
         </div>

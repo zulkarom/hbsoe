@@ -29,7 +29,7 @@ class SecurityController extends BaseSecurityController
         if ($model->load(\Yii::$app->getRequest()->post()) && $model->login()) {
             
             if($model->role == 1){
-                return $this->redirect(['/usahawan/dashboard/index']);
+                return $this->redirect(['/entrepreneur/dashboard/index']);
             }else if($model->role == 2){
                 return $this->redirect(['/supplier/dashboard/index']);
             }

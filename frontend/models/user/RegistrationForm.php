@@ -4,7 +4,7 @@ namespace frontend\models\user;
 //use dektrium\user\models\User;
 use Yii;
 use dektrium\user\models\RegistrationForm as BaseRegistrationForm;
-use backend\models\Usahawan;
+use backend\models\Entrepreneur;
 use backend\models\Supplier;
 
 /**
@@ -68,10 +68,10 @@ class RegistrationForm extends BaseRegistrationForm
 	        
        	// $user->role = $this->rol;
         if($user->role == 1){
-				$usahawan = new Usahawan;
+				$entrepreneur = new Entrepreneur;
 				// $client->scenario = "register";
-				$usahawan->user_id = $user->id;
-				$usahawan->save(); 
+				$entrepreneur->user_id = $user->id;
+				$entrepreneur->save(); 
 			}else if($user->role == 2){
 				$supplier = new Supplier;
 				// $expert->scenario = "register";

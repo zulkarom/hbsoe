@@ -35,7 +35,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * Lists all Usahawan models.
+     * Lists all Entrepreneur models.
      * @return mixed
      */
     public function actionIndex()
@@ -47,13 +47,10 @@ class ProfileController extends Controller
 
         $model->setScenario('insert');
         if ($model->load(Yii::$app->request->post())) {
-            
-                $model->longitude = $model->s_longitude;
-                $model->latitude = $model->s_latitude;
-                $model->location = $model->s_location;
+
 
                 if($model->save()){
-                   Yii::$app->session->addFlash('success', "Maklumat peribadi berjaya disimpan.");
+                   Yii::$app->session->addFlash('success', "Date Updated.");
 
                     return $this->refresh();
                 }else{
@@ -66,6 +63,36 @@ class ProfileController extends Controller
             'model' => $model,
         ]);
 
+    }
+    
+    public function actionLocation()
+    {
+        $id = Yii::$app->user->identity->id;
+        // echo $id;
+        // die();
+        $model = $this->findSupplier($id);
+        
+        $model->setScenario('insert');
+        if ($model->load(Yii::$app->request->post())) {
+            
+            $model->longitude = $model->s_longitude;
+            $model->latitude = $model->s_latitude;
+            $model->location = $model->s_location;
+            
+            if($model->save()){
+                Yii::$app->session->addFlash('success', "Data Updated.");
+                
+                return $this->refresh();
+            }else{
+                return $model->flashError();
+                
+            }
+        }
+        
+        return $this->render('location', [
+            'model' => $model,
+        ]);
+        
     }
 
     public function actionProfileImage($id){
@@ -87,6 +114,15 @@ class ProfileController extends Controller
             return $model;
         }
 
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+    
+    protected function findSupplier($id)
+    {
+        if (($model = Supplier::findOne(['user_id' => $id])) !== null) {
+            return $model;
+        }
+        
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 

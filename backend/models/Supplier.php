@@ -37,12 +37,12 @@ class Supplier extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['age', 'address', 'postcode', 'city', 'state', 'location'], 'required', 'on' => 'insert'],
+            [['age', 'address', 'postcode', 'city', 'state', 'location', 'phone'], 'required', 'on' => 'insert'],
 
             //Profile image
             ['profile_file', 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
             [['user_id', 'age'], 'integer'],
-            [['address', 's_location', 's_longitude', 's_latitude', 'longitude', 'latitude', 'location'], 'string', 'max' => 225],
+            [['address', 's_location', 's_longitude', 's_latitude', 'longitude', 'latitude', 'location', 'biz_name', 'phone'], 'string', 'max' => 225],
         ];
     }
 
@@ -57,6 +57,8 @@ class Supplier extends \yii\db\ActiveRecord
             'age' => 'Age',
             'address' => 'Address',
             'location' => 'Location',
+            'biz_name' => 'Business Name',
+            'fullname' => 'Full Name',
             'profile_file' => 'Profile File',
         ];
     }
@@ -64,6 +66,19 @@ class Supplier extends \yii\db\ActiveRecord
     public function getUser(){
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
+    
+    public function getCityModel(){
+        return $this->hasOne(Daerah::className(), ['id' => 'city']);
+    }
+    
+    public function getStateModel(){
+        return $this->hasOne(Negeri::className(), ['id' => 'state']);
+    }
+    
+    public function getSectorSuppliers(){
+         return $this->hasMany(SectorSupplier::className(), ['supplier_id' => 'id']);
+    }
+
 
     public function flashError(){
         if($this->getErrors()){

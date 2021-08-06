@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 30, 2021 at 03:17 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.3.21
+-- Generation Time: Aug 06, 2021 at 12:42 PM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 7.4.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,77 @@ SET time_zone = "+00:00";
 --
 -- Database: `hubsoe`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auth_assignment`
+--
+
+CREATE TABLE `auth_assignment` (
+  `item_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `user_id` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auth_item`
+--
+
+CREATE TABLE `auth_item` (
+  `name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `type` smallint(6) NOT NULL,
+  `description` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `rule_name` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `data` blob DEFAULT NULL,
+  `created_at` int(11) DEFAULT NULL,
+  `updated_at` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auth_item_child`
+--
+
+CREATE TABLE `auth_item_child` (
+  `parent` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `child` varchar(64) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auth_rule`
+--
+
+CREATE TABLE `auth_rule` (
+  `name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `data` blob DEFAULT NULL,
+  `created_at` int(11) DEFAULT NULL,
+  `updated_at` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `competency`
+--
+
+CREATE TABLE `competency` (
+  `id` int(11) NOT NULL,
+  `entrepreneur_id` int(11) NOT NULL,
+  `description` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `competency`
+--
+
+INSERT INTO `competency` (`id`, `entrepreneur_id`, `description`) VALUES
+(1, 1, 'Kemahiran Menjahit Baju');
 
 -- --------------------------------------------------------
 
@@ -221,6 +292,55 @@ INSERT INTO `daerah` (`id`, `daerah_name`, `negeri`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `entrepreneur`
+--
+
+CREATE TABLE `entrepreneur` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `biz_name` varchar(200) DEFAULT NULL,
+  `phone` varchar(100) DEFAULT NULL,
+  `age` int(11) NOT NULL,
+  `address` varchar(225) NOT NULL,
+  `postcode` varchar(7) NOT NULL,
+  `city` int(11) NOT NULL,
+  `state` varchar(100) NOT NULL,
+  `location` varchar(225) NOT NULL,
+  `longitude` varchar(225) NOT NULL,
+  `latitude` varchar(225) NOT NULL,
+  `profile_file` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `entrepreneur`
+--
+
+INSERT INTO `entrepreneur` (`id`, `user_id`, `biz_name`, `phone`, `age`, `address`, `postcode`, `city`, `state`, `location`, `longitude`, `latitude`, `profile_file`) VALUES
+(1, 11, 'Skyhint Design Enterprise', '+60133671531', 26, 'Skyhint Enterprise Tingkat 1', '16020', 1, '1', 'Pasir Gudang, Johor, Malaysia', '103.9029689', '1.470288', '610b6e991cd7b.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `entre_supplier`
+--
+
+CREATE TABLE `entre_supplier` (
+  `id` int(11) NOT NULL,
+  `entrepreneur_id` int(11) NOT NULL,
+  `supplier_id` int(11) NOT NULL,
+  `created_at` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `entre_supplier`
+--
+
+INSERT INTO `entre_supplier` (`id`, `entrepreneur_id`, `supplier_id`, `created_at`) VALUES
+(4, 1, 1, 1628160102);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migration`
 --
 
@@ -289,12 +409,87 @@ INSERT INTO `profile` (`user_id`, `name`, `public_email`, `gravatar_email`, `gra
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `sector`
+--
+
+CREATE TABLE `sector` (
+  `id` int(11) NOT NULL,
+  `sector_name` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sector`
+--
+
+INSERT INTO `sector` (`id`, `sector_name`) VALUES
+(1, 'Makanan'),
+(2, 'Komunikasi dan internet'),
+(3, 'Keselamatan dan pertahanan'),
+(4, 'Perbankan dan kewangan'),
+(5, 'E-dagang'),
+(6, 'Logistik'),
+(7, 'Perkilangan'),
+(8, 'Perladangan'),
+(9, 'Pertanian'),
+(10, 'Pembinaan'),
+(11, 'Perlombongan'),
+(12, 'Restoran'),
+(13, 'Pembersihan'),
+(14, 'Hotel'),
+(15, 'Teknologi Maklumat');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sector_entrepreneur`
+--
+
+CREATE TABLE `sector_entrepreneur` (
+  `id` int(11) NOT NULL,
+  `entrepreneur_id` int(11) NOT NULL,
+  `description` text DEFAULT NULL,
+  `sector_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sector_entrepreneur`
+--
+
+INSERT INTO `sector_entrepreneur` (`id`, `entrepreneur_id`, `description`, `sector_id`) VALUES
+(1, 1, 'Kami menjual barang frozen food', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sector_supplier`
+--
+
+CREATE TABLE `sector_supplier` (
+  `id` int(11) NOT NULL,
+  `supplier_id` int(11) NOT NULL,
+  `description` text DEFAULT NULL,
+  `sector_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sector_supplier`
+--
+
+INSERT INTO `sector_supplier` (`id`, `supplier_id`, `description`, `sector_id`) VALUES
+(1, 1, 'Penyediaan talian internet', 2),
+(2, 1, 'Menyediakan cctv', 3);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `supplier`
 --
 
 CREATE TABLE `supplier` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `biz_name` varchar(200) DEFAULT NULL,
+  `phone` varchar(100) DEFAULT NULL,
   `age` int(11) NOT NULL,
   `address` varchar(225) NOT NULL,
   `postcode` int(7) NOT NULL,
@@ -310,8 +505,8 @@ CREATE TABLE `supplier` (
 -- Dumping data for table `supplier`
 --
 
-INSERT INTO `supplier` (`id`, `user_id`, `age`, `address`, `postcode`, `city`, `state`, `location`, `longitude`, `latitude`, `profile_file`) VALUES
-(1, 12, 0, 'Skyhint Enterprise Tingakat Satu', 16100, 4, '1', 'KFC Jalan Pengkalan Chepa, Jalan Pengkalan Chepa, Kota Bharu, Kelantan, Malaysia', '102.2673491', '6.1472444', '60dbc6166e53c.jpg');
+INSERT INTO `supplier` (`id`, `user_id`, `biz_name`, `phone`, `age`, `address`, `postcode`, `city`, `state`, `location`, `longitude`, `latitude`, `profile_file`) VALUES
+(1, 12, 'Skyhint Design Enterprise', '+60133671531', 22, 'Skyhint Enterprise Tingakat Satu', 16020, 1, '1', 'UMK Kampus Kota, Taman Bendahara, Pengkalan Chepa, Kelantan, Malaysia', '102.2846742', '6.1640081', '6103c9dd22939.jpg');
 
 -- --------------------------------------------------------
 
@@ -333,33 +528,6 @@ CREATE TABLE `token` (
 INSERT INTO `token` (`user_id`, `code`, `created_at`, `type`) VALUES
 (11, 'TvPZDhzQFtU4otZ08vF6avHivHUkLktX', 1624895055, 1),
 (12, 'HfqIMXYN6AZJqc_u7Sqz8scqbgtVw54f', 1625004492, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `usahawan`
---
-
-CREATE TABLE `usahawan` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `age` int(11) NOT NULL,
-  `address` varchar(225) NOT NULL,
-  `postcode` varchar(7) NOT NULL,
-  `city` int(11) NOT NULL,
-  `state` varchar(100) NOT NULL,
-  `location` varchar(225) NOT NULL,
-  `longitude` varchar(225) NOT NULL,
-  `latitude` varchar(225) NOT NULL,
-  `profile_file` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `usahawan`
---
-
-INSERT INTO `usahawan` (`id`, `user_id`, `age`, `address`, `postcode`, `city`, `state`, `location`, `longitude`, `latitude`, `profile_file`) VALUES
-(1, 11, 26, 'Skyhint Enterprise Tingakat Satu', '16100', 4, '1', 'Edusage Network, Kota Bharu, Kelantan, Malaysia', '102.2764503', '6.1561491', '60dbc3eb2129c.jpg');
 
 -- --------------------------------------------------------
 
@@ -393,17 +561,63 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `username`, `fullname`, `email`, `role`, `password_hash`, `auth_key`, `confirmed_at`, `unconfirmed_email`, `blocked_at`, `registration_ip`, `created_at`, `updated_at`, `flags`, `last_login_at`, `status`, `password_reset_token`) VALUES
 (10, 'superadmin', 'Super Administrator', '', 0, '$2y$10$G2CqfuUqiTshvYmzFbh/seDgLVXbHRvUrb8fu.8UxCHgyaF9vd3pG', '', 1624467684, NULL, NULL, NULL, 1624467474, 1624467474, 0, NULL, 10, ''),
-(11, 'iqramrafien21@gmail.com', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 1, '$2y$10$u9uqOZjMUbcQleTF0vzOfOIzmfo54rcsMoX0r6WI/WSToQP9EJWqq', 'wAkoWzyn9YtDTWT8M-qTrrHBkpbu88lT', 1624893933, NULL, NULL, '::1', 1624893783, 1624893783, 0, 1625004683, 10, ''),
-(12, 'iqramrafien@gmail.com', 'Fakhrul Iqram', 'iqramrafien@gmail.com', 2, '$2y$10$WBb4.a5zRbEwE/hNuZ9vpu2mynXI3RcFXYx7r0QXDjLDQT7X5t5Uu', 'pd_NFm4flNQHaH1RGF3Mkm0GTYixwdlL', NULL, NULL, NULL, '::1', 1625004492, 1625004492, 0, 1625015564, 10, '');
+(11, 'iqramrafien21@gmail.com', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 1, '$2y$10$u9uqOZjMUbcQleTF0vzOfOIzmfo54rcsMoX0r6WI/WSToQP9EJWqq', 'wAkoWzyn9YtDTWT8M-qTrrHBkpbu88lT', 1624893933, NULL, NULL, '::1', 1624893783, 1624893783, 0, 1628217957, 10, ''),
+(12, 'iqramrafien@gmail.com', 'Fakhrul Iqram', 'iqramrafien@gmail.com', 2, '$2y$10$WBb4.a5zRbEwE/hNuZ9vpu2mynXI3RcFXYx7r0QXDjLDQT7X5t5Uu', 'pd_NFm4flNQHaH1RGF3Mkm0GTYixwdlL', NULL, NULL, NULL, '::1', 1625004492, 1625004492, 0, 1628147794, 10, '');
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indexes for table `auth_assignment`
+--
+ALTER TABLE `auth_assignment`
+  ADD PRIMARY KEY (`item_name`,`user_id`),
+  ADD KEY `auth_assignment_user_id_idx` (`user_id`);
+
+--
+-- Indexes for table `auth_item`
+--
+ALTER TABLE `auth_item`
+  ADD PRIMARY KEY (`name`),
+  ADD KEY `rule_name` (`rule_name`),
+  ADD KEY `idx-auth_item-type` (`type`);
+
+--
+-- Indexes for table `auth_item_child`
+--
+ALTER TABLE `auth_item_child`
+  ADD PRIMARY KEY (`parent`,`child`),
+  ADD KEY `child` (`child`);
+
+--
+-- Indexes for table `auth_rule`
+--
+ALTER TABLE `auth_rule`
+  ADD PRIMARY KEY (`name`);
+
+--
+-- Indexes for table `competency`
+--
+ALTER TABLE `competency`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `daerah`
 --
 ALTER TABLE `daerah`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `entrepreneur`
+--
+ALTER TABLE `entrepreneur`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `entre_supplier`
+--
+ALTER TABLE `entre_supplier`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -425,6 +639,28 @@ ALTER TABLE `profile`
   ADD PRIMARY KEY (`user_id`);
 
 --
+-- Indexes for table `sector`
+--
+ALTER TABLE `sector`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sector_entrepreneur`
+--
+ALTER TABLE `sector_entrepreneur`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `sector_id` (`sector_id`),
+  ADD KEY `entrepreneur_id` (`entrepreneur_id`);
+
+--
+-- Indexes for table `sector_supplier`
+--
+ALTER TABLE `sector_supplier`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `sector_id` (`sector_id`),
+  ADD KEY `supplier_id` (`supplier_id`);
+
+--
 -- Indexes for table `supplier`
 --
 ALTER TABLE `supplier`
@@ -435,12 +671,6 @@ ALTER TABLE `supplier`
 --
 ALTER TABLE `token`
   ADD UNIQUE KEY `token_unique` (`user_id`,`code`,`type`);
-
---
--- Indexes for table `usahawan`
---
-ALTER TABLE `usahawan`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user`
@@ -455,10 +685,28 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `competency`
+--
+ALTER TABLE `competency`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `daerah`
 --
 ALTER TABLE `daerah`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=200;
+
+--
+-- AUTO_INCREMENT for table `entrepreneur`
+--
+ALTER TABLE `entrepreneur`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `entre_supplier`
+--
+ALTER TABLE `entre_supplier`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `negeri`
@@ -467,16 +715,28 @@ ALTER TABLE `negeri`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
+-- AUTO_INCREMENT for table `sector`
+--
+ALTER TABLE `sector`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `sector_entrepreneur`
+--
+ALTER TABLE `sector_entrepreneur`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `sector_supplier`
+--
+ALTER TABLE `sector_supplier`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `usahawan`
---
-ALTER TABLE `usahawan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -489,10 +749,43 @@ ALTER TABLE `user`
 --
 
 --
+-- Constraints for table `auth_assignment`
+--
+ALTER TABLE `auth_assignment`
+  ADD CONSTRAINT `auth_assignment_ibfk_1` FOREIGN KEY (`item_name`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `auth_item`
+--
+ALTER TABLE `auth_item`
+  ADD CONSTRAINT `auth_item_ibfk_1` FOREIGN KEY (`rule_name`) REFERENCES `auth_rule` (`name`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `auth_item_child`
+--
+ALTER TABLE `auth_item_child`
+  ADD CONSTRAINT `auth_item_child_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `auth_item_child_ibfk_2` FOREIGN KEY (`child`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `profile`
 --
 ALTER TABLE `profile`
   ADD CONSTRAINT `fk_user_profile` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `sector_entrepreneur`
+--
+ALTER TABLE `sector_entrepreneur`
+  ADD CONSTRAINT `sector_entrepreneur_ibfk_1` FOREIGN KEY (`sector_id`) REFERENCES `sector` (`id`),
+  ADD CONSTRAINT `sector_entrepreneur_ibfk_2` FOREIGN KEY (`entrepreneur_id`) REFERENCES `entrepreneur` (`id`);
+
+--
+-- Constraints for table `sector_supplier`
+--
+ALTER TABLE `sector_supplier`
+  ADD CONSTRAINT `sector_supplier_ibfk_1` FOREIGN KEY (`sector_id`) REFERENCES `sector` (`id`),
+  ADD CONSTRAINT `sector_supplier_ibfk_2` FOREIGN KEY (`supplier_id`) REFERENCES `sector_supplier` (`id`);
 
 --
 -- Constraints for table `token`

@@ -42,7 +42,11 @@ class DashboardController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        if(Yii::$app->user->identity->entrepreneur){
+            return $this->redirect(['/entrepreneur/dashboard']);
+        }else if(Yii::$app->user->identity->supplier){
+            return $this->redirect(['/supplier/dashboard']);
+        }
     }
 	
 

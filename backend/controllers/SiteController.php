@@ -60,20 +60,34 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        /* Yii::$app->language = 'ms-my';
+        $cookie = new yii\web\Cookie([
+            'name' =>'lang',
+            'value' =>'ms-my'
+        ]);
+        
+        Yii::$app->getResponse()->getCookies()->add($cookie);
+         */
+        
         return $this->render('index');
     }
 
      public function actionLanguage()
     {
-        if(isset($_POST['lang'])){
-            Yii::$app->language = $_POST['lang'];
+         if(isset($_POST['lang'])){
+             //echo $_POST['lang'];
+             
+             
+             Yii::$app->language = $_POST['lang'];
             $cookie = new yii\web\Cookie([
                 'name' =>'lang',
                 'value' =>$_POST['lang']
             ]);
 
-            Yii::$app->getResponse()->getCookies()->add($cookie);
-        }
+            Yii::$app->getResponse()->getCookies()->add($cookie); 
+            echo 'good';
+        } 
+ 
     }
 
 

@@ -8,7 +8,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-frontend',
-	'name'=>'frontend',
+	'name'=>'HubsoE',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'language' => 'en-US',
@@ -31,8 +31,8 @@ return [
             'enableUnconfirmedLogin' => true,
             'enableFlashMessages' => false,
         ],
-        'usahawan' => [
-            'class' => 'frontend\modules\usahawan\Module',
+        'entrepreneur' => [
+            'class' => 'frontend\modules\entrepreneur\Module',
         ],
         'supplier' => [
             'class' => 'frontend\modules\supplier\Module',
@@ -84,14 +84,27 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        'as beforeRequest' =>[
-            'class'=>'frontend\components\CheckIfLoggedIn',
+        
+
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => [
+            ],
         ],
-        'as access' => [
+    ],
+    
+    
+    'as beforeRequest' =>[
+        'class'=>'frontend\components\CheckIfLoggedIn',
+    ],
+    'as access' => [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
             'profile/*',
-            'usahawan/*',
+            'entrepreneur/*',
+            'user/*',
+            'site/*'
             //'application/*',
             //'some-controller/some-action',
             // The actions listed here will be allowed to everyone including guests.
@@ -99,16 +112,7 @@ return [
             // But in the earlier stages of your development, you may probably want to
             // add a lot of actions here until you finally completed setting up rbac,
             // otherwise you may not even take a first step.
-            ]
-        ],
-        /*
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
-        ],
-        */
+        ]
     ],
 	
 	/* 'modules' => [

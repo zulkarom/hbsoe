@@ -20,5 +20,8 @@ class Module extends \yii\base\Module
         parent::init();
 
         // custom initialization code goes here
+        if(!\Yii::$app->user && !\Yii::$app->user->identity->supplier) {
+            throw new \yii\web\NotFoundHttpException('The page is meant for a supplier');
+        }
     }
 }

@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\Usahawan */
+/* @var $model backend\models\Entrepreneur */
 
 $this->title = $model->user->fullname;
 $this->params['breadcrumbs'][] = ['label' => 'Supplier', 'url' => ['index']];
@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="white_card card_height_100 mb_30">
 <div class="white_card_header">
-<div class="usahawan-view">
+<div class="entrepreneur-view">
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [

@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\UsahawanSearch */
+/* @var $searchModel backend\models\EntrepreneurSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Supplier';
@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="white_card card_height_100 mb_30">
 <div class="white_card_header">
-<div class="usahawan-index">
+<div class="entrepreneur-index">
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

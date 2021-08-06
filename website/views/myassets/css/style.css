@@ -874,7 +874,7 @@ section {
 }
 
 .slider-overlay {
-	background:url("../images/pattern.png") repeat rgba(0, 0, 0, .4);
+	background:rgba(0, 0, 0, .4);
 	position: absolute;
 	left: 0;
 	top: 0;

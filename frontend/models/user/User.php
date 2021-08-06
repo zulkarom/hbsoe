@@ -3,7 +3,7 @@
 namespace frontend\models\user; 
 
 use Yii;
-use backend\models\Usahawan;
+use backend\models\Entrepreneur;
 use backend\models\Supplier;
 
 class User extends \dektrium\user\models\User
@@ -43,8 +43,8 @@ class User extends \dektrium\user\models\User
 		return $arr;
 	}
 	
-	public function getUsahawan(){
-		return $this->hasOne(Usahawan::className(), ['user_id' => 'id']);
+	public function getEntrepreneur(){
+		return $this->hasOne(Entrepreneur::className(), ['user_id' => 'id']);
 	}
 	
 	public function getSupplier(){
@@ -72,7 +72,7 @@ class User extends \dektrium\user\models\User
 	private static function getRoleTable($role_id){
 	    switch($role_id){
 	        case 1:
-	            return 'usahawan';
+	            return 'entrepreneur';
 	            break;
 	        case 2:
 	            return 'supplier';

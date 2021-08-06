@@ -6,7 +6,7 @@ use common\widgets\Menu_crypto;
 ?> 
 <nav class="sidebar dark_sidebar">
     <div class="logo d-flex justify-content-between">
-        <a class="large_logo" href="index.html"><img src="<?= $dirAssests?>/img/logo_white.png" alt=""></a>
+        <a class="large_logo" href="index.html"><img src="<?= $dirAssests?>/img/logo_white_supplier.png" alt=""></a>
         <a class="small_logo" href="index.html"><img src="<?= $dirAssests?>/img/mini_logo.png" alt=""></a>
         <div class="sidebar_close_icon d-lg-none">
             <i class="ti-close"></i>
@@ -20,20 +20,14 @@ use common\widgets\Menu_crypto;
             
             ['label' => 'Dashboard', 'level' => 1, 'url' => ['/supplier/dashboard/index'], 'icon' => $dirAssests.'/img/menu-icon/1.svg', 'children' => []],
             
-            // ['label' => 'Announcement', 'level' => 1, 'url' => ['/announcement/index'], 'icon' => 'fa fa-bullhorn', 'children' => []],
-            
-            ['label' => 'Maklumat Supplier', 'level' => 2 , 'icon' => $dirAssests.'/img/menu-icon/4.svg', 'children' => [
-                ['label' => 'Maklumat Peribadi', 'url' => ['/supplier/profile/index'], 'icon' => 'fa fa-circle'],
-            ]],
-
-            ['label' => \Yii::t('app', 'Sektor'), 'level' => 2 , 'icon' => $dirAssests.'/img/menu-icon/17.svg', 'children' => [
-                ['label' => \Yii::t('app', 'Pertanian'), 'url' => ['/supplier/dashboard/index'], 'icon' => 'fa fa-circle'],
-                
-                ['label' => \Yii::t('app', 'Restoran'), 'url' => ['/supplier/dashboard/index'], 'icon' => 'fa fa-circle'],
-                
-                ['label' => \Yii::t('app', 'Penternakan'), 'url' => ['/supplier/dashboard/index'], 'icon' => 'fa fa-circle'],
-            ]],
-            
+        ['label' => 'Profile', 'level' => 1, 'url' => ['/supplier/profile/index'], 'icon' => $dirAssests.'/img/menu-icon/4.svg', 'children' => []],
+        
+        ['label' => 'Location', 'level' => 1, 'url' => ['/supplier/profile/location'], 'icon' => $dirAssests.'/img/menu-icon/map.svg', 'children' => []],
+        
+        ['label' => \Yii::t('app', 'Sectors'), 'level' => 1, 'url' => ['/supplier/sector/index'], 'icon' => $dirAssests.'/img/menu-icon/17.svg', 'children' => []],
+        ['label' => \Yii::t('app', 'Clients'), 'level' => 1, 'url' => ['/supplier/client/index'], 'icon' => $dirAssests.'/img/menu-icon/5.svg', 'children' => []],
+        
+      
             // ['label' => 'General', 'level' => 2 , 'icon' => 'fa fa-cog', 'children' => [
             //     ['label' => 'Example 1', 'url' => ['/city'], 'icon' => 'fa fa-circle'],
             //     ['label' => 'Example 2', 'url' => ['/client/prospect-type'], 'icon' => 'fa fa-circle'],
@@ -48,7 +42,7 @@ use common\widgets\Menu_crypto;
                     
                     
                     
-<br /><br /><br /><br /><br /><br />
+
                     
                     
                     
@@ -61,6 +55,7 @@ use common\widgets\Menu_crypto;
                     
                     
     </ul>
+
 </nav>
 <?php 
 /* 

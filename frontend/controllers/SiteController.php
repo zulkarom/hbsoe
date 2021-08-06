@@ -8,9 +8,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
-use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
-use frontend\models\SignupForm;
 use yii\helpers\Url;
 /**
  * Site controller
@@ -27,12 +25,12 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['signup', 'index', 'login', 'download', 'language'],
+                        'actions' => ['signup', 'index', 'login', 'download', 'language', 'error'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index', 'error', 'language'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -45,6 +43,16 @@ class SiteController extends Controller
                 ],
             ],
         ];
+    }
+    
+    public function beforeAction($action) {
+        if (parent::beforeAction($action)) {
+            // change layout for error action
+            if ($action->id=='error') $this->layout ='error';
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

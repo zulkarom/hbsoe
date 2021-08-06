@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
 ?>
 
 <div class="container-fluid no-gutters">
@@ -14,118 +15,75 @@ use yii\helpers\Html;
                     </div>
                     <div class="header_right d-flex justify-content-between align-items-center">
                         <div class="header_notification_warp d-flex align-items-center">
+                        <ul>
+                 
+                    
                             <li>
-
-                                <?php
-                                    foreach(Yii::$app->params['languages'] as $key =>$language){
-
-                                        if($key == 'en'){
-                                          echo '<span class="language" id="'.$key.'">'.$language.' | </span>';  
-                                      }else{
-                                        echo '<span class="language" id="'.$key.'">'.$language.'  </span>';
-                                      }
-                                        
-                                       
-                                    }
-                                ?>
-                                &nbsp &nbsp
-                                    
-                            </li>
-                            <li>
-                                <a class="CHATBOX_open nav-link-notify" href="#"> <img src="<?= $dirAssests?>/img/icon/msg.svg" alt="">   </a>
-                            </li>
-                            <li>
-                                <a class="bell_notification_clicker nav-link-notify" href="#"> <img src="<?= $dirAssests?>/img/icon/bell.svg" alt="">
+                            
+                            <?php 
+                            //echo \Yii::$app->language;
+                            $icon = 'en';
+                            if(\Yii::$app->language == 'ms-my'){
+                                $icon = 'ms-my';
+                            }
+                            
+                            ?>
+                            
+                                <a class="bell_notification_clicker nav-link-notify" href="#"> <img src="<?= $dirAssests?>/img/icon/<?=$icon?>.svg" alt="">
                                     <!-- <span>2</span> -->
                                 </a>
                                 <!-- Menu_NOtification_Wrap  -->
                             <div class="Menu_NOtification_Wrap">
                                 <div class="notification_Header">
-                                    <h4>Notifications</h4>
+                                    <h4>Change Language</h4>
                                 </div>
                                 <div class="Notification_body">
+                                
+                                
                                     <!-- single_notify  -->
                                     <div class="single_notify d-flex align-items-center">
+                                    
+                                    
                                         <div class="notify_thumb">
-                                            <a href="#"><img src="<?= $dirAssests?>/img/staf/2.png" alt=""></a>
+                                            <a href="javascript:void(0)"><img src="<?= $dirAssests?>/img/icon/ms-my.svg" alt=""></a>
                                         </div>
                                         <div class="notify_content">
-                                            <a href="#"><h5>Cool Marketing </h5></a>
-                                            <p>Lorem ipsum dolor sit amet</p>
+                                            <h5> <a href="javascript:void(0)" id="ms-my" class="lang">Bahasa Melayu</a></h5>
+                            
                                         </div>
                                     </div>
                                     <!-- single_notify  -->
                                     <div class="single_notify d-flex align-items-center">
                                         <div class="notify_thumb">
-                                            <a href="#"><img src="<?= $dirAssests?>/img/staf/4.png" alt=""></a>
+                                            <a href="javascript:void(0)" ><img src="<?= $dirAssests?>/img/icon/en.svg" alt=""></a>
                                         </div>
                                         <div class="notify_content">
-                                            <a href="#"><h5>Awesome packages</h5></a>
-                                            <p>Lorem ipsum dolor sit amet</p>
+                                           <h5> <a href="javascript:void(0)" id="en" class="lang">English</a></h5>
+                                  
                                         </div>
                                     </div>
-                                    <!-- single_notify  -->
-                                    <div class="single_notify d-flex align-items-center">
-                                        <div class="notify_thumb">
-                                            <a href="#"><img src="<?= $dirAssests?>/img/staf/3.png" alt=""></a>
-                                        </div>
-                                        <div class="notify_content">
-                                            <a href="#"><h5>what a packages</h5></a>
-                                            <p>Lorem ipsum dolor sit amet</p>
-                                        </div>
-                                    </div>
-                                    <!-- single_notify  -->
-                                    <div class="single_notify d-flex align-items-center">
-                                        <div class="notify_thumb">
-                                            <a href="#"><img src="<?= $dirAssests?>/img/staf/2.png" alt=""></a>
-                                        </div>
-                                        <div class="notify_content">
-                                            <a href="#"><h5>Cool Marketing </h5></a>
-                                            <p>Lorem ipsum dolor sit amet</p>
-                                        </div>
-                                    </div>
-                                    <!-- single_notify  -->
-                                    <div class="single_notify d-flex align-items-center">
-                                        <div class="notify_thumb">
-                                            <a href="#"><img src="<?= $dirAssests?>/img/staf/4.png" alt=""></a>
-                                        </div>
-                                        <div class="notify_content">
-                                            <a href="#"><h5>Awesome packages</h5></a>
-                                            <p>Lorem ipsum dolor sit amet</p>
-                                        </div>
-                                    </div>
-                                    <!-- single_notify  -->
-                                    <div class="single_notify d-flex align-items-center">
-                                        <div class="notify_thumb">
-                                            <a href="#"><img src="<?= $dirAssests?>/img/staf/3.png" alt=""></a>
-                                        </div>
-                                        <div class="notify_content">
-                                            <a href="#"><h5>what a packages</h5></a>
-                                            <p>Lorem ipsum dolor sit amet</p>
-                                        </div>
-                                    </div>
+                                    
+                                    
+                                   
                                 </div>
-                                <div class="nofity_footer">
-                                    <div class="submit_button text-center pt_20">
-                                        <a href="#" class="btn_1 green">See More</a>
-                                    </div>
-                                </div>
+                       
                             </div>
                             <!--/ Menu_NOtification_Wrap  -->
                             </li>
+                            </ul>
                             
                         </div>
                         <div class="profile_info d-flex align-items-center">
                             <div class="profile_thumb mr_20">
-                                <img src="<?= $dirAssests?>/img/transfer/4.png" alt="#">
+                                <img src="<?=Url::to(['/entrepreneur/profile/profile-image', 'id' => Yii::$app->user->identity->entrepreneur->id])?>" alt="#">
                             </div>
                             <div class="author_name">
                                 <h4 class="f_s_15 f_w_500 mb-0"><?=Yii::$app->user->identity->fullname?></h4>
-                                <p class="f_s_12 f_w_400">Usahawan</p>
+                                <p class="f_s_12 f_w_400">Entrepreneur</p>
                             </div>
                             <div class="profile_info_iner">
                                 <div class="profile_author_name">
-                                    <p>Usahawan</p>
+                                    <p>Entrepreneur</p>
                                     <h5><?=Yii::$app->user->identity->fullname?></h5>
                                 </div>
                                 <div class="profile_info_details">
@@ -141,3 +99,22 @@ use yii\helpers\Html;
         </div>
         
     </div>
+    
+    <?php 
+
+$this->registerJs("
+    
+ $(document).on('click', '.lang', function(e){
+    e.preventDefault();
+  var lang = $(this).attr('id');
+
+   $.post('". Url::to(['/site/language']) ."', {'lang': lang}, function(data){
+console.log(data);
+    location.reload();
+  }); 
+    
+});
+
+");
+
+?>

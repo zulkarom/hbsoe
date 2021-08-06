@@ -6,8 +6,9 @@ use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
-use backend\models\Usahawan;
+use backend\models\Entrepreneur;
 use backend\models\Supplier;
+use backend\models\Daerah;
 /**
  * User model
  *
@@ -63,9 +64,16 @@ class User extends ActiveRecord implements IdentityInterface
             [['username', 'fullname', 'email'], 'required', 'on' => 'update'],
         ];
     }
+    
+    public function attributeLabels()
+    {
+        return [
+            'fullname' => 'Full Name',
+        ];
+    }
 
-    public function getUsahawan(){
-        return $this->hasOne(Usahawan::className(), ['user_id' => 'id']);
+    public function getEntrepreneur(){
+        return $this->hasOne(Entrepreneur::className(), ['user_id' => 'id']);
     }
     
     public function getSupplier(){
@@ -223,4 +231,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+    
+    
+
 }

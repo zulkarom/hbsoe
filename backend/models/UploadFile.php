@@ -266,7 +266,7 @@ class UploadFile
 	public static function profileImage($type, $model){
 	    $file = Yii::getAlias('@frontend/views/myasset/img/user.png');
 	    if($type == 1){
-	        $file = Yii::getAlias('@uploaded/usahawan/profile/'.$model->user_id.'/'. $model->profile_file);
+	        $file = Yii::getAlias('@uploaded/entrepreneur/profile/'.$model->user_id.'/'. $model->profile_file);
 	    }else if($type == 2){
 	        $file = Yii::getAlias('@uploaded/supplier/profile/'.$model->user_id.'/'. $model->profile_file);
 	    }
