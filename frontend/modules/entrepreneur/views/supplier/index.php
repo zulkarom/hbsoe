@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'supplier.biz_name',
             [
-                'label' => 'Location',
+                'label' => \Yii::t('app', 'Location'),
                 'value' => function($model){
                 return $model->supplier->cityModel->daerah_name . ', ' . $model->supplier->stateModel->negeri_name;
                 

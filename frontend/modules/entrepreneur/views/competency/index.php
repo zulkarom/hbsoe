@@ -7,14 +7,14 @@ use yii\grid\GridView;
 /* @var $searchModel frontend\modules\entrepreneur\models\CompetencySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Competencies';
+$this->title = \Yii::t('app', 'Competencies');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="competency-index">
 
 
     <p>
-        <?= Html::a('New Competency', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(\Yii::t('app', 'New Competency'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 <br />
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

@@ -55,11 +55,11 @@ class Supplier extends \yii\db\ActiveRecord
             'id' => 'ID',
             'user_id' => 'User ID',
             'age' => 'Age',
-            'address' => 'Address',
-            'location' => 'Location',
-            'biz_name' => 'Business Name',
-            'fullname' => 'Full Name',
-            'profile_file' => 'Profile File',
+            'address' => \Yii::t('app', 'Address'),
+            'location' => \Yii::t('app', 'Location'),
+            'biz_name' => \Yii::t('app', 'Business Name'),
+            'fullname' => \Yii::t('app', 'Full Name'),
+            'profile_file' => \Yii::t('app', 'Profile File'),
         ];
     }
 

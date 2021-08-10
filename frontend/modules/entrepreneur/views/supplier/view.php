@@ -7,8 +7,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\EntrepreneurSupplier */
 
-$this->title = 'View Supplier';
-$this->params['breadcrumbs'][] = ['label' => 'Entrepreneur Suppliers', 'url' => ['index']];
+$this->title = \Yii::t('app', 'View Supplier');
+$this->params['breadcrumbs'][] = ['label' => \Yii::t('app', 'Supplier'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>

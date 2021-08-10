@@ -6,7 +6,7 @@ use kartik\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $form ActiveForm */
 
-$this->title = "Location";
+$this->title = \Yii::t('app', 'Location');
 $this->params['breadcrumbs'][] = $this->title;
 
 $model->u_longitude = $model->longitude; 

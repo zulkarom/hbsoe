@@ -32,7 +32,23 @@ return [
     'City' => 'Bandar',
     'State' => 'Negeri',
     'Save Information' => 'Simpan Maklumat',
+    'Save' => 'Simpan',
     'Search Supplier' => 'Cari Pembekal',
     'Change Language' => 'Tukar Bahasa',
-    'Clients' => 'Pelanggan'
+    'Clients' => 'Pelanggan',
+    'Update' => 'Kemaskini',
+    'Delete' => 'Padam',
+
+    //Entrepreneur
+    'Entrepreneur' => 'Usahawan',
+    'Description' => 'Keterangan',
+    'New Sector' => 'Sektor Baru',
+    'My Sector' => 'Sektor Saya',
+    'View Sector' => 'View Sektor',
+    'View Supplier' => 'View Pembekal',
+    'State' => 'Negeri',
+    'New Competency' => 'Kompetensi Baru',
+    'View Competency' => 'View Kompetensi',
+    'Competencies' => 'Kompetensi',
+    'Search Suppliers' => 'Cari Pembekal',
 ];

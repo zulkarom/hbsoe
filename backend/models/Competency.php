@@ -40,9 +40,9 @@ class Competency extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'entrepreneur_id' => 'Entrepreneur',
-            'entrepreneurName' => 'Entrepreneur',
-            'description' => 'Description',
+            'entrepreneur_id' => \Yii::t('app', 'Entrepreneur'),
+            'entrepreneurName' => \Yii::t('app', 'Entrepreneur'),
+            'description' => \Yii::t('app', 'Description'),
         ];
     }
     

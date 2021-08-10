@@ -79,11 +79,11 @@ use yii\helpers\Url;
                             </div>
                             <div class="author_name">
                                 <h4 class="f_s_15 f_w_500 mb-0"><?=Yii::$app->user->identity->fullname?></h4>
-                                <p class="f_s_12 f_w_400">Entrepreneur</p>
+                                <?=\Yii::t('app', 'Entrepreneur')?></p>
                             </div>
                             <div class="profile_info_iner">
                                 <div class="profile_author_name">
-                                    <p>Entrepreneur</p>
+                                    <p><?=\Yii::t('app', 'Entrepreneur')?></p>
                                     <h5><?=Yii::$app->user->identity->fullname?></h5>
                                 </div>
                                 <div class="profile_info_details">

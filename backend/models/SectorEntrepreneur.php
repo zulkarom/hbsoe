@@ -41,11 +41,11 @@ class SectorEntrepreneur extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'entrepreneur_id' => 'Entrepreneur',
-            'entrepreneurName' => 'Entrepreneur',
-            'sector_id' => 'Sector',
-            'sectorName' => 'Sector',
-            'description' => 'Description',
-            'descriptionx' => 'Description',
+            'entrepreneurName' => \Yii::t('app', 'Entrepreneur'),
+            'sector_id' => \Yii::t('app', 'Sector'),
+            'sectorName' => \Yii::t('app', 'Sector'),
+            'description' => \Yii::t('app', 'Description'),
+            'descriptionx' => \Yii::t('app', 'Description'),
         ];
     }
     

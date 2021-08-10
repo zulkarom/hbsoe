@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\SectorEntrepreneur */
 
-$this->title = 'New Sector';
-$this->params['breadcrumbs'][] = ['label' => 'Sector Entrepreneurs', 'url' => ['index']];
+$this->title = \Yii::t('app', 'New Sector');
+$this->params['breadcrumbs'][] = ['label' => \Yii::t('app', 'My Sector'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
