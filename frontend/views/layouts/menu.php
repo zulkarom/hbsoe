@@ -27,10 +27,10 @@ use common\widgets\Menu_crypto;
         ['label' => \Yii::t('app', 'Sectors'), 'level' => 1, 'url' => ['/entrepreneur/sector/index'], 'icon' => $dirAssests.'/img/menu-icon/17.svg', 'children' => []],
         ['label' => \Yii::t('app', 'Competency'), 'level' => 1, 'url' => ['/entrepreneur/competency/index'], 'icon' => $dirAssests.'/img/menu-icon/icon.svg', 'children' => []],
         
-        ['label' => \Yii::t('app', 'Social Impact'), 'level' => 1, 'url' => ['/site/xx'], 'icon' => $dirAssests.'/img/menu-icon/14.svg', 'children' => []],
+        ['label' => \Yii::t('app', 'Social Impact'), 'level' => 1, 'url' => ['/entrepreneur/social-impact/index'], 'icon' => $dirAssests.'/img/menu-icon/14.svg', 'children' => []],
         
-        ['label' => \Yii::t('app', 'Economics'), 'level' => 1, 'url' => ['/site/xx'], 'icon' => $dirAssests.'/img/menu-icon/2.svg', 'children' => []],
-        ['label' => \Yii::t('app', 'Agency'), 'level' => 1, 'url' => ['/site/xx'], 'icon' => $dirAssests.'/img/menu-icon/10.svg', 'children' => []],
+        ['label' => \Yii::t('app', 'Economics'), 'level' => 1, 'url' => ['/entrepreneur/economic/index'], 'icon' => $dirAssests.'/img/menu-icon/2.svg', 'children' => []],
+        ['label' => \Yii::t('app', 'Agency'), 'level' => 1, 'url' => ['/entrepreneur/agency/index'], 'icon' => $dirAssests.'/img/menu-icon/10.svg', 'children' => []],
         ['label' => \Yii::t('app', 'Module Program'), 'level' => 1, 'url' => ['/site/xx'], 'icon' => $dirAssests.'/img/menu-icon/Pages.svg', 'children' => []],
         
         ['label' => \Yii::t('app', 'Suppliers'), 'level' => 1, 'url' => ['/entrepreneur/supplier/index'], 'icon' => $dirAssests.'/img/menu-icon/4.svg', 'children' => []],
