@@ -38,11 +38,15 @@ return [
     'Clients' => 'Pelanggan',
     'Update' => 'Kemaskini',
     'Delete' => 'Padam',
+    'Settings' => 'Tetapan',
+    'Setting' => 'Tetapan',
+    'Log Out' => 'Log Keluar',
 
     //Entrepreneur
     'Entrepreneur' => 'Usahawan',
     'Description' => 'Keterangan',
     'New Sector' => 'Sektor Baru',
+    'Update Sector' => 'Kemaskini Sektor',
     'My Sector' => 'Sektor Saya',
     'View Sector' => 'View Sektor',
     'View Supplier' => 'View Pembekal',
@@ -63,5 +67,7 @@ return [
     'Update Economic' => 'Kemaskini Ekonomi',
     'Economic' => 'Ekonomi',
     'Search Suppliers' => 'Cari Pembekal',
+    'Sector Suppliers' => 'Sektor Pembekal',
+    'My Client' => 'Client Saya',
 
 ];

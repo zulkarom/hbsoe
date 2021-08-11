@@ -41,11 +41,11 @@ class SectorSupplier extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'supplier_id' => 'Supplier',
-            'supplierName' => 'Supplier',
-            'sector_id' => 'Sector',
-            'sectorName' => 'Sector',
-            'description' => 'Description',
-            'descriptionx' => 'Description',
+            'supplierName' => \Yii::t('app', 'Supplier'),
+            'sector_id' => \Yii::t('app', 'Sector'),
+            'sectorName' => \Yii::t('app', 'Sector'),
+            'description' => \Yii::t('app', 'Description'),
+            'descriptionx' => \Yii::t('app', 'Description'),
         ];
     }
     

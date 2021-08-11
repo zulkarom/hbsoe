@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel frontend\modules\supplier\models\EntrepreneurSupplierSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'My Client';
+$this->title = \Yii::t('app', 'My Client');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="entrepreneur-supplier-index">

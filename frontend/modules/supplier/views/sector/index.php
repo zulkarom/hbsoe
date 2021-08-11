@@ -7,13 +7,13 @@ use yii\grid\GridView;
 /* @var $searchModel frontend\modules\supplier\models\SectorSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Sector Suppliers';
+$this->title = \Yii::t('app', 'Sector Suppliers');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="sector-supplier-index">
 
     <p>
-        <?= Html::a('New Sector', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(\Yii::t('app', 'New Sector'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 <br />
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

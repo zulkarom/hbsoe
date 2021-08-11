@@ -87,9 +87,9 @@ use yii\helpers\Url;
                                     <h5><?=Yii::$app->user->identity->fullname?></h5>
                                 </div>
                                 <div class="profile_info_details">
-                                    <a href="#">My Profile </a>
-                                    <a href="#">Settings</a>
-                                    <?= Html::a('Log Out',['/site/logout'],['data-method' => 'post']) ?>
+                                    <a href="#"><?=\Yii::t('app', 'My Profile')?></a>
+                                    <a href="#"><?=\Yii::t('app', 'Settings')?></a>
+                                    <?= Html::a(\Yii::t('app', 'Log Out'),['/site/logout'],['data-method' => 'post']) ?>
                                 </div>
                             </div>
                         </div>

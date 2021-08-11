@@ -79,17 +79,17 @@ use yii\helpers\Url;
                             </div>
                             <div class="author_name">
                                 <h4 class="f_s_15 f_w_500 mb-0"><?=Yii::$app->user->identity->fullname?></h4>
-                                <p class="f_s_12 f_w_400">Supplier</p>
+                                <p class="f_s_12 f_w_400"><?=\Yii::t('app', 'Supplier')?></p>
                             </div>
                             <div class="profile_info_iner">
                                 <div class="profile_author_name">
-                                    <p>Supplier</p>
+                                    <p><?=\Yii::t('app', 'Supplier')?></p>
                                     <h5><?=Yii::$app->user->identity->fullname?></h5>
                                 </div>
                                 <div class="profile_info_details">
-                                    <a href="#">My Profile </a>
-                                    <a href="#">Settings</a>
-                                    <?= Html::a('Log Out',['/site/logout'],['data-method' => 'post']) ?>
+                                    <a href="#"><?=\Yii::t('app', 'My Profile')?></a>
+                                    <a href="#"><?=\Yii::t('app', 'Settings')?></a>
+                                    <?= Html::a(\Yii::t('app', 'Log Out'),['/site/logout'],['data-method' => 'post']) ?>
                                 </div>
                             </div>
                         </div>
