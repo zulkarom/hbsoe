@@ -9,12 +9,14 @@ $this->title = 'Create Agency';
 $this->params['breadcrumbs'][] = ['label' => 'Agencies', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<div class="card">
+    <div class="card-body">
 <div class="agency-create">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
 
+</div>
+</div>
 </div>

@@ -12,27 +12,24 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="agency-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Create Agency', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
+    <div class="card">
+    <div class="card-body">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        //'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'entrepreneur_id',
+            'entrepreneurName',
             'description',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+
+  </div>
+    </div>
 
 
 </div>
