@@ -40,7 +40,7 @@ $model->u_location = $model->location;
         </div>
         <br/>
         <div class="form-group">
-            <?= Html::submitButton('<span class="glyphicon glyphicon-send"></span> '\Yii::t('app', 'Save'), ['class' => 'btn btn-primary']) ?>
+            <?= Html::submitButton(\Yii::t('app', 'Save'), ['class' => 'btn btn-primary']) ?>
         </div>
             
         <?php ActiveForm::end(); ?>
