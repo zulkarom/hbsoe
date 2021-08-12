@@ -31,7 +31,7 @@ use common\widgets\Menu_crypto;
         
         ['label' => \Yii::t('app', 'Economics'), 'level' => 1, 'url' => ['/entrepreneur/economic/index'], 'icon' => $dirAssests.'/img/menu-icon/2.svg', 'children' => []],
         ['label' => \Yii::t('app', 'Agency'), 'level' => 1, 'url' => ['/entrepreneur/agency/index'], 'icon' => $dirAssests.'/img/menu-icon/10.svg', 'children' => []],
-        ['label' => \Yii::t('app', 'Module Program'), 'level' => 1, 'url' => ['/site/xx'], 'icon' => $dirAssests.'/img/menu-icon/Pages.svg', 'children' => []],
+        ['label' => \Yii::t('app', 'Module Program'), 'level' => 1, 'url' => ['/entrepreneur/module-peserta/index'], 'icon' => $dirAssests.'/img/menu-icon/Pages.svg', 'children' => []],
         
         ['label' => \Yii::t('app', 'Suppliers'), 'level' => 1, 'url' => ['/entrepreneur/supplier/index'], 'icon' => $dirAssests.'/img/menu-icon/4.svg', 'children' => []],
             

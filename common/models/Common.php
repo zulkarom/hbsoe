@@ -146,4 +146,8 @@ class Common {
 	public static function reportStatus(){
 		return [0 => 'Not Submit', 10 => 'Draft', 20 => 'Submit', 30 => 'Approved'];
 	}
+
+	public static function statusModule(){
+	    return [10 => 'Submit', 20 => 'Paid', 30 => 'Complete', 40 => 'Reject'];
+	}
 }
