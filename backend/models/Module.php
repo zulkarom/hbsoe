@@ -9,8 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property string $module_name
- * @property string $created_at
- * @property string $updated_at
+ * @property int $kategori_id
  */
 class Module extends \yii\db\ActiveRecord
 {
@@ -28,9 +27,9 @@ class Module extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['module_name'], 'required'],
-            [['created_at', 'updated_at'], 'safe'],
-            [['module_name'], 'string', 'max' => 250],
+            [['module_name', 'kategori_id'], 'required'],
+            [['kategori_id'], 'integer'],
+            [['module_name'], 'string', 'max' => 225],
         ];
     }
 
@@ -42,8 +41,7 @@ class Module extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'module_name' => 'Module Name',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'kategori_id' => 'Kategori ID',
         ];
     }
 

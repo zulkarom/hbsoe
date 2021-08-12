@@ -3,17 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\ModulePeserta;
-use backend\models\ModulePesertaSearch;
+use backend\models\ModuleKategori;
+use backend\models\ModuleKategoriSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
-use backend\models\AdminAnjur;
-
+use yii\db\Expression;
 /**
- * ModulePesertaController implements the CRUD actions for ModulePeserta model.
+ * ModuleKategoriController implements the CRUD actions for ModuleKategori model.
  */
-class ModulePesertaController extends Controller
+class ModuleKategoriController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -34,25 +33,22 @@ class ModulePesertaController extends Controller
     }
 
     /**
-     * Lists all ModulePeserta models.
+     * Lists all ModuleKategori models.
      * @return mixed
      */
-    public function actionIndex($anjur_id)
+    public function actionIndex()
     {
-        $searchModel = new ModulePesertaSearch(['anjur_id' => $anjur_id]);
+        $searchModel = new ModuleKategoriSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        $anjur = AdminAnjur::findOne($anjur_id);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'anjur' => $anjur,
         ]);
     }
 
     /**
-     * Displays a single ModulePeserta model.
+     * Displays a single ModuleKategori model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -65,17 +61,24 @@ class ModulePesertaController extends Controller
     }
 
     /**
-     * Creates a new ModulePeserta model.
+     * Creates a new ModuleKategori model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new ModulePeserta();
+        $model = new ModuleKategori();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->created_at = new Expression('NOW()');
+            
+            if($model->save()){
+                Yii::$app->session->addFlash('success', "Module Category Added");
+                return $this->redirect('index');
+            }
+            
         }
+
 
         return $this->render('create', [
             'model' => $model,
@@ -83,7 +86,7 @@ class ModulePesertaController extends Controller
     }
 
     /**
-     * Updates an existing ModulePeserta model.
+     * Updates an existing ModuleKategori model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -93,8 +96,14 @@ class ModulePesertaController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->updated_at = new Expression('NOW()');
+            
+            if($model->save()){
+                Yii::$app->session->addFlash('success', "Module Category Updated");
+                return $this->redirect('index');
+            }
+            
         }
 
         return $this->render('update', [
@@ -103,7 +112,7 @@ class ModulePesertaController extends Controller
     }
 
     /**
-     * Deletes an existing ModulePeserta model.
+     * Deletes an existing ModuleKategori model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -117,15 +126,15 @@ class ModulePesertaController extends Controller
     }
 
     /**
-     * Finds the ModulePeserta model based on its primary key value.
+     * Finds the ModuleKategori model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return ModulePeserta the loaded model
+     * @return ModuleKategori the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = ModulePeserta::findOne($id)) !== null) {
+        if (($model = ModuleKategori::findOne($id)) !== null) {
             return $model;
         }
 

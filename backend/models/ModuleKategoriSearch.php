@@ -4,12 +4,12 @@ namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\KursusPeserta;
+use backend\models\ModuleKategori;
 
 /**
- * KursusPesertaSearch represents the model behind the search form of `backend\models\KursusPeserta`.
+ * ModuleKategoriSearch represents the model behind the search form of `backend\models\ModuleKategori`.
  */
-class KursusPesertaSearch extends KursusPeserta
+class ModuleKategoriSearch extends ModuleKategori
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class KursusPesertaSearch extends KursusPeserta
     public function rules()
     {
         return [
-            [['id', 'user_id', 'anjur_id', 'status', 'is_paid', 'payment_method'], 'integer'],
-            [['submitted_at', 'paid_at'], 'safe'],
+            [['id'], 'integer'],
+            [['kategori_name', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class KursusPesertaSearch extends KursusPeserta
      */
     public function search($params)
     {
-        $query = KursusPeserta::find();
+        $query = ModuleKategori::find();
 
         // add conditions that should always apply here
 
@@ -59,14 +59,11 @@ class KursusPesertaSearch extends KursusPeserta
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'user_id' => $this->user_id,
-            'anjur_id' => $this->anjur_id,
-            'status' => $this->status,
-            'submitted_at' => $this->submitted_at,
-            'paid_at' => $this->paid_at,
-            'is_paid' => $this->is_paid,
-            'payment_method' => $this->payment_method,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ]);
+
+        $query->andFilterWhere(['like', 'kategori_name', $this->kategori_name]);
 
         return $dataProvider;
     }

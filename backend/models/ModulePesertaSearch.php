@@ -17,7 +17,7 @@ class ModulePesertaSearch extends ModulePeserta
     public function rules()
     {
         return [
-            [['id', 'user_id', 'anjur_id', 'status', 'is_paid', 'payment_method', 'user_type'], 'integer'],
+            [['id', 'user_id', 'anjur_id', 'status', 'is_paid', 'payment_method'], 'integer'],
             [['submitted_at', 'paid_at'], 'safe'],
         ];
     }
@@ -66,7 +66,6 @@ class ModulePesertaSearch extends ModulePeserta
             'paid_at' => $this->paid_at,
             'is_paid' => $this->is_paid,
             'payment_method' => $this->payment_method,
-            'user_type' => $this->user_type,
         ]);
 
         return $dataProvider;

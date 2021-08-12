@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\moduleAnjurSearch */
+/* @var $model backend\models\moduleKategoriSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="admin-anjur-search">
+<div class="module-kategori-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -17,17 +17,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'module_siri') ?>
+    <?= $form->field($model, 'kategori_name') ?>
 
-    <?= $form->field($model, 'date_start') ?>
+    <?= $form->field($model, 'created_at') ?>
 
-    <?= $form->field($model, 'date_end') ?>
-
-    <?= $form->field($model, 'capacity') ?>
-
-    <?php // echo $form->field($model, 'location') ?>
-
-    <?php // echo $form->field($model, 'module_id') ?>
+    <?= $form->field($model, 'updated_at') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

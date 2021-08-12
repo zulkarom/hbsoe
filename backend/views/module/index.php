@@ -4,21 +4,17 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\ModuleSearch */
+/* @var $searchModel backend\models\moduleSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Modules';
+$this->title = 'Module';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="module-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
-        <?= Html::a('Create Module', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create module', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -28,12 +24,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'module_name',
-            'created_at',
-            'updated_at',
+            'kategori_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-
-
 </div>

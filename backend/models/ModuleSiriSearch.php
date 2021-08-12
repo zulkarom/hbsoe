@@ -4,12 +4,12 @@ namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Kursus;
+use backend\models\ModuleSiri;
 
 /**
- * KursusSearch represents the model behind the search form of `backend\models\Kursus`.
+ * ModuleSiriSearch represents the model behind the search form of `backend\models\ModuleSiri`.
  */
-class KursusSearch extends Kursus
+class ModuleSiriSearch extends ModuleSiri
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class KursusSearch extends Kursus
     public function rules()
     {
         return [
-            [['id', 'kategori_id'], 'integer'],
-            [['kursus_name'], 'safe'],
+            [['id', 'capacity', 'module_id'], 'integer'],
+            [['date_start', 'date_end', 'location'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class KursusSearch extends Kursus
      */
     public function search($params)
     {
-        $query = Kursus::find();
+        $query = ModuleSiri::find();
 
         // add conditions that should always apply here
 
@@ -59,10 +59,13 @@ class KursusSearch extends Kursus
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'kategori_id' => $this->kategori_id,
+            'date_start' => $this->date_start,
+            'date_end' => $this->date_end,
+            'capacity' => $this->capacity,
+            'module_id' => $this->module_id,
         ]);
 
-        $query->andFilterWhere(['like', 'kursus_name', $this->kursus_name]);
+        $query->andFilterWhere(['like', 'location', $this->location]);
 
         return $dataProvider;
     }

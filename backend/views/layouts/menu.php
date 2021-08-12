@@ -39,7 +39,13 @@ use common\widgets\Menu_crypto;
         
         ['label' => \Yii::t('app', 'Economics'), 'level' => 1, 'url' => ['/economic/index'], 'icon' => $dirAssests.'/img/menu-icon/2.svg', 'children' => []],
         ['label' => \Yii::t('app', 'Agency'), 'level' => 1, 'url' => ['/agency/index'], 'icon' => $dirAssests.'/img/menu-icon/10.svg', 'children' => []],
-        ['label' => \Yii::t('app', 'Module Program'), 'level' => 1, 'url' => ['/site/xx'], 'icon' => $dirAssests.'/img/menu-icon/Pages.svg', 'children' => []],
+        // ['label' => \Yii::t('app', 'Module Program'), 'level' => 1, 'url' => ['/module-kategori/index'], 'icon' => $dirAssests.'/img/menu-icon/Pages.svg', 'children' => []],
+
+        ['label' => \Yii::t('app', 'Module Program'), 'level' => 2 , 'icon' => $dirAssests.'/img/menu-icon/10.svg', 'children' => [
+             ['label' => 'Module Category', 'url' => ['/module-kategori/index'], 'icon' => 'fa fa-circle'],
+             ['label' => 'Admin Anjur', 'url' => ['/admin-anjur/index'], 'icon' => 'fa fa-circle'],
+        
+         ]],
             
 
             

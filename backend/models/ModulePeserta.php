@@ -3,19 +3,19 @@
 namespace backend\models;
 
 use Yii;
-use backend\models\AdminAnjur;
+use common\models\User;
+use common\models\Common;
 /**
  * This is the model class for table "module_peserta".
  *
  * @property int $id
  * @property int $user_id
- * @property int $anjur_id
+ * @property int $module_id
  * @property int $status
  * @property string $submitted_at
  * @property string $paid_at
  * @property int $is_paid
  * @property int $payment_method
- * @property int $user_type
  */
 class ModulePeserta extends \yii\db\ActiveRecord
 {
@@ -47,14 +47,21 @@ class ModulePeserta extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'user_id' => 'User ID',
-            'anjur_id' => 'Anjur ID',
+            'anjur_id' => 'Module ID',
             'status' => 'Status',
             'submitted_at' => 'Submitted At',
             'paid_at' => 'Paid At',
             'is_paid' => 'Is Paid',
             'payment_method' => 'Payment Method',
-            'user_type' => 'User Type',
         ];
+    }
+
+    public function getStatusText(){
+        if($this->status > 0){
+            return Common::statusModule()[$this->status];
+        }else{
+            return '';
+        }
     }
 
     public function getAdminAnjur()

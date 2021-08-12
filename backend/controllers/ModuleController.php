@@ -7,7 +7,7 @@ use backend\models\Module;
 use backend\models\ModuleSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * ModuleController implements the CRUD actions for Module model.
@@ -20,10 +20,13 @@ class ModuleController extends Controller
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
                 ],
             ],
         ];
@@ -62,15 +65,23 @@ class ModuleController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($pid)
     {
         $model = new Module();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->kategori_id = $pid;
+            if($model->save()){
+
+                Yii::$app->session->addFlash('success', "New Module Added");
+                
+            }else{
+                $model->flashError();
+            }
+            return $this->redirect(['/module-kategori/view', 'id' => $pid]);
         }
 
-        return $this->render('create', [
+        return $this->renderAjax('create', [
             'model' => $model,
         ]);
     }

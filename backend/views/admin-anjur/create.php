@@ -6,12 +6,10 @@ use yii\helpers\Html;
 /* @var $model backend\models\AdminAnjur */
 
 $this->title = 'Create Admin Anjur';
-$this->params['breadcrumbs'][] = ['label' => 'Admin Anjurs', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Admin Anjur', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="admin-anjur-create">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,

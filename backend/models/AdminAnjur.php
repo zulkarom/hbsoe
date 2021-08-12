@@ -3,7 +3,7 @@
 namespace backend\models;
 
 use Yii;
-use backend\models\Module;
+use backend\models\ModuleAnjur;
 /**
  * This is the model class for table "admin_anjur".
  *
@@ -50,7 +50,7 @@ class AdminAnjur extends \yii\db\ActiveRecord
             'date_end' => 'Date End',
             'capacity' => 'Capacity',
             'location' => 'Location',
-            'module_id' => 'Module ID',
+            'module_id' => 'Module Id',
         ];
     }
 

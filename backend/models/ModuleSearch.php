@@ -17,8 +17,8 @@ class ModuleSearch extends Module
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['module_name', 'created_at', 'updated_at'], 'safe'],
+            [['id', 'kategori_id'], 'integer'],
+            [['module_name'], 'safe'],
         ];
     }
 
@@ -59,8 +59,7 @@ class ModuleSearch extends Module
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'kategori_id' => $this->kategori_id,
         ]);
 
         $query->andFilterWhere(['like', 'module_name', $this->module_name]);

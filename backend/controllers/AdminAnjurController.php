@@ -7,8 +7,8 @@ use backend\models\AdminAnjur;
 use backend\models\AdminAnjurSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-
+use yii\filters\AccessControl;
+use backend\models\ModulePesertaSearch;
 /**
  * AdminAnjurController implements the CRUD actions for AdminAnjur model.
  */
@@ -20,10 +20,13 @@ class AdminAnjurController extends Controller
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
                 ],
             ],
         ];
@@ -52,8 +55,15 @@ class AdminAnjurController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+
+        $searchModel = new ModulePesertaSearch(['anjur_id' => $id]);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -65,9 +75,14 @@ class AdminAnjurController extends Controller
     public function actionCreate()
     {
         $model = new AdminAnjur();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        
+        if ($model->load(Yii::$app->request->post())) {
+            
+            if($model->save()){
+                Yii::$app->session->addFlash('success', "Admin Anjur Added");
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+            
         }
 
         return $this->render('create', [
