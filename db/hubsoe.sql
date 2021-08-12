@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 09, 2021 at 04:47 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.4.13
+-- Generation Time: Aug 12, 2021 at 05:38 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,48 @@ SET time_zone = "+00:00";
 --
 -- Database: `hubsoe`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_anjur`
+--
+
+CREATE TABLE `admin_anjur` (
+  `id` int(11) NOT NULL,
+  `module_siri` varchar(225) NOT NULL,
+  `date_start` date NOT NULL,
+  `date_end` date NOT NULL,
+  `capacity` int(11) NOT NULL,
+  `location` varchar(225) NOT NULL,
+  `module_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin_anjur`
+--
+
+INSERT INTO `admin_anjur` (`id`, `module_siri`, `date_start`, `date_end`, `capacity`, `location`, `module_id`) VALUES
+(1, 'Example of Module Siri', '2021-08-10', '2021-09-10', 10, 'test  location', 20);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `agency`
+--
+
+CREATE TABLE `agency` (
+  `id` int(11) NOT NULL,
+  `entrepreneur_id` int(11) NOT NULL,
+  `description` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `agency`
+--
+
+INSERT INTO `agency` (`id`, `entrepreneur_id`, `description`) VALUES
+(1, 1, 'test');
 
 -- --------------------------------------------------------
 
@@ -292,6 +334,25 @@ INSERT INTO `daerah` (`id`, `daerah_name`, `negeri`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `economic`
+--
+
+CREATE TABLE `economic` (
+  `id` int(11) NOT NULL,
+  `entrepreneur_id` int(11) NOT NULL,
+  `description` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `economic`
+--
+
+INSERT INTO `economic` (`id`, `entrepreneur_id`, `description`) VALUES
+(1, 1, 'test 123');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `entrepreneur`
 --
 
@@ -348,6 +409,71 @@ CREATE TABLE `migration` (
   `version` varchar(180) NOT NULL,
   `apply_time` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `module`
+--
+
+CREATE TABLE `module` (
+  `id` int(11) NOT NULL,
+  `module_name` varchar(225) NOT NULL,
+  `kategori_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `module`
+--
+
+INSERT INTO `module` (`id`, `module_name`, `kategori_id`) VALUES
+(20, 'Module 1', 2),
+(21, 'Module 2', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `module_kategori`
+--
+
+CREATE TABLE `module_kategori` (
+  `id` int(11) NOT NULL,
+  `kategori_name` varchar(250) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `module_kategori`
+--
+
+INSERT INTO `module_kategori` (`id`, `kategori_name`, `created_at`, `updated_at`) VALUES
+(2, 'Example of category 1', '2021-08-12 13:38:32', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `module_peserta`
+--
+
+CREATE TABLE `module_peserta` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `anjur_id` int(11) NOT NULL,
+  `status` tinyint(2) NOT NULL,
+  `submitted_at` datetime NOT NULL,
+  `paid_at` datetime NOT NULL,
+  `is_paid` tinyint(1) NOT NULL,
+  `payment_method` int(11) NOT NULL,
+  `user_type` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `module_peserta`
+--
+
+INSERT INTO `module_peserta` (`id`, `user_id`, `anjur_id`, `status`, `submitted_at`, `paid_at`, `is_paid`, `payment_method`, `user_type`) VALUES
+(18, 11, 1, 10, '2021-08-12 18:12:58', '0000-00-00 00:00:00', 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -482,6 +608,25 @@ INSERT INTO `sector_supplier` (`id`, `supplier_id`, `description`, `sector_id`) 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `social_impact`
+--
+
+CREATE TABLE `social_impact` (
+  `id` int(11) NOT NULL,
+  `entrepreneur_id` int(11) NOT NULL,
+  `description` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `social_impact`
+--
+
+INSERT INTO `social_impact` (`id`, `entrepreneur_id`, `description`) VALUES
+(1, 1, 'test 123');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `supplier`
 --
 
@@ -561,12 +706,24 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `username`, `fullname`, `email`, `role`, `password_hash`, `auth_key`, `confirmed_at`, `unconfirmed_email`, `blocked_at`, `registration_ip`, `created_at`, `updated_at`, `flags`, `last_login_at`, `status`, `password_reset_token`) VALUES
 (10, 'superadmin', 'Super Administrator', '', 0, '$2y$10$G2CqfuUqiTshvYmzFbh/seDgLVXbHRvUrb8fu.8UxCHgyaF9vd3pG', '', 1624467684, NULL, NULL, NULL, 1624467474, 1624467474, 0, NULL, 10, ''),
-(11, 'iqramrafien21@gmail.com', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 1, '$2y$10$u9uqOZjMUbcQleTF0vzOfOIzmfo54rcsMoX0r6WI/WSToQP9EJWqq', 'wAkoWzyn9YtDTWT8M-qTrrHBkpbu88lT', 1624893933, NULL, NULL, '::1', 1624893783, 1624893783, 0, 1628519883, 10, ''),
-(12, 'iqramrafien@gmail.com', 'Fakhrul Iqram', 'iqramrafien@gmail.com', 2, '$2y$10$WBb4.a5zRbEwE/hNuZ9vpu2mynXI3RcFXYx7r0QXDjLDQT7X5t5Uu', 'pd_NFm4flNQHaH1RGF3Mkm0GTYixwdlL', NULL, NULL, NULL, '::1', 1625004492, 1625004492, 0, 1628262259, 10, '');
+(11, 'iqramrafien21@gmail.com', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 1, '$2y$10$u9uqOZjMUbcQleTF0vzOfOIzmfo54rcsMoX0r6WI/WSToQP9EJWqq', 'wAkoWzyn9YtDTWT8M-qTrrHBkpbu88lT', 1624893933, NULL, NULL, '::1', 1624893783, 1624893783, 0, 1628776778, 10, ''),
+(12, 'iqramrafien@gmail.com', 'Fakhrul Iqram', 'iqramrafien@gmail.com', 2, '$2y$10$WBb4.a5zRbEwE/hNuZ9vpu2mynXI3RcFXYx7r0QXDjLDQT7X5t5Uu', 'pd_NFm4flNQHaH1RGF3Mkm0GTYixwdlL', NULL, NULL, NULL, '::1', 1625004492, 1625004492, 0, 1628776816, 10, '');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin_anjur`
+--
+ALTER TABLE `admin_anjur`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `agency`
+--
+ALTER TABLE `agency`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `auth_assignment`
@@ -609,6 +766,12 @@ ALTER TABLE `daerah`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `economic`
+--
+ALTER TABLE `economic`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `entrepreneur`
 --
 ALTER TABLE `entrepreneur`
@@ -625,6 +788,24 @@ ALTER TABLE `entre_supplier`
 --
 ALTER TABLE `migration`
   ADD PRIMARY KEY (`version`);
+
+--
+-- Indexes for table `module`
+--
+ALTER TABLE `module`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `module_kategori`
+--
+ALTER TABLE `module_kategori`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `module_peserta`
+--
+ALTER TABLE `module_peserta`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `negeri`
@@ -661,6 +842,12 @@ ALTER TABLE `sector_supplier`
   ADD KEY `supplier_id` (`supplier_id`);
 
 --
+-- Indexes for table `social_impact`
+--
+ALTER TABLE `social_impact`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `supplier`
 --
 ALTER TABLE `supplier`
@@ -685,6 +872,18 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `admin_anjur`
+--
+ALTER TABLE `admin_anjur`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `agency`
+--
+ALTER TABLE `agency`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `competency`
 --
 ALTER TABLE `competency`
@@ -697,6 +896,12 @@ ALTER TABLE `daerah`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=200;
 
 --
+-- AUTO_INCREMENT for table `economic`
+--
+ALTER TABLE `economic`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `entrepreneur`
 --
 ALTER TABLE `entrepreneur`
@@ -707,6 +912,24 @@ ALTER TABLE `entrepreneur`
 --
 ALTER TABLE `entre_supplier`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `module`
+--
+ALTER TABLE `module`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `module_kategori`
+--
+ALTER TABLE `module_kategori`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `module_peserta`
+--
+ALTER TABLE `module_peserta`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `negeri`
@@ -731,6 +954,12 @@ ALTER TABLE `sector_entrepreneur`
 --
 ALTER TABLE `sector_supplier`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `social_impact`
+--
+ALTER TABLE `social_impact`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `supplier`
