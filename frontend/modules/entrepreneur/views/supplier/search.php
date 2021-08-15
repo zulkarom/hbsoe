@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ListView;
-
+use voime\GoogleMaps\Map;
 use kartik\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -70,7 +70,35 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="card-body">
     <h4 class="card-title">Map</h4>
       <br />
+      <?php
 
+        $location = array();
+        $cen = '';
+        $zm = '';
+        $count = 0;
+        foreach($dataProvider->models as $model){
+            $location[] = ['position' => [$model->supplier->latitude, $model->supplier->longitude], 'content' => '<strong><b>'.$model->supplier->biz_name.'</b></strong>'];
+            if($model->supplier->state != 1){
+                $count++;
+            }
+        }
+        if($count != 0){
+            $cen = [4.210484, 101.975769];
+            $zm = 7;
+        }else{
+            $cen = [6.124785, 102.254379];
+            $zm = 12;
+        }
+      ?>
+
+      <?php echo Map::widget([
+            'apiKey'=> 'AIzaSyCdaIFmGh8LWEfbXln7BkPnMfB1RDd9Rj4',
+            'width' => '760px',
+            'height' => '450px',
+            'zoom' => $zm,
+            'center' => $cen,
+            'markers' => $location
+        ]);?>
 
   </div>
     </div>

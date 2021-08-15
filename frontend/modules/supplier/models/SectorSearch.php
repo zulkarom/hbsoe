@@ -2,6 +2,7 @@
 
 namespace frontend\modules\supplier\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\models\SectorSupplier;
@@ -40,7 +41,8 @@ class SectorSearch extends SectorSupplier
      */
     public function search($params)
     {
-        $query = SectorSupplier::find();
+        $query = SectorSupplier::find()
+        ->where(['supplier_id' => Yii::$app->user->identity->supplier->id]);
 
         // add conditions that should always apply here
 

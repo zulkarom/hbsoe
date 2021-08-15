@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+
 ?>
 
 <article class="item" data-key="<?= $model->id; ?>">
@@ -14,4 +15,5 @@ use yii\helpers\Url;
      <br /><i class="fa fa-map-marker-alt"></i> <?= Html::encode($model->supplier->cityModel->daerah_name)?>, 
      <?= Html::encode($model->supplier->stateModel->negeri_name)?>
     </div>
+    
 </article>
