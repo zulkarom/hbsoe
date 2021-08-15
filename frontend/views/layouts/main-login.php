@@ -24,10 +24,10 @@ LoginAsset::register($this);
 
 <?php $this->beginBody() ?>
     
-    <center>
+
         <?= Alert::widget() ?>
         <?= $content ?>
-    </center>
+    
 
 <?php $this->endBody() ?>
 </body>

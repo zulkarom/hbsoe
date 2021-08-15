@@ -7,9 +7,9 @@
 .p-t-136 {
     padding-top: 10px !important;
 }
-.wrap-login100 {
+/*.wrap-login100 {
     padding: 120px 130px 120px 95px !important;
-}
+}*/
 </style>
 
 <?php
