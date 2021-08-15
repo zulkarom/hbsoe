@@ -28,7 +28,8 @@
         "pigochu/yii2-jquery-locationpicker": ">=0.2.0",
         "kalyabin/yii2-select-google-map-location": "*",
         "mdmsoft/yii2-admin": "~2.0",
-        "mohorev/yii2-upload-behavior": "*"
+        "mohorev/yii2-upload-behavior": "*",
+        "voime/yii2-google-maps": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

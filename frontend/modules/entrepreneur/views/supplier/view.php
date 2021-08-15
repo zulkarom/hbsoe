@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\DetailView;
 use kartik\widgets\ActiveForm;
-
+use voime\GoogleMaps\Map;
 /* @var $this yii\web\View */
 /* @var $model backend\models\EntrepreneurSupplier */
 
@@ -71,14 +71,19 @@ if($model->sectorSuppliers){
 	
 	</div>
     <div class="col-md-6">
-        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
-        <?= $form->field($model, 'location')->widget(\kalyabin\maplocation\SelectMapLocationWidget::className(), [
-            'attributeLatitude' => 's_latitude',
-            'attributeLongitude' => 's_longitude',
-            'googleMapApiKey' => 'AIzaSyCdaIFmGh8LWEfbXln7BkPnMfB1RDd9Rj4',
-            'draggable' => false,
-        ])->label(\Yii::t('app', 'Location'));?>
-        <?php ActiveForm::end(); ?>
+        <label><?=\Yii::t('app', 'Location')?></label>
+        <?= Html::textInput('text', $model->location, ['class' => 'form-control', 'readonly'=> true])?>
+        <br/>
+        <?php echo Map::widget([
+            'apiKey'=> 'AIzaSyCdaIFmGh8LWEfbXln7BkPnMfB1RDd9Rj4',
+            'width' => '760px',
+            'height' => '450px',
+            'center' => [$model->s_latitude, $model->s_longitude],
+            'markers' => [
+                ['position' => [$model->s_latitude, $model->s_longitude]],
+            ]
+            
+        ]);?>
     </div>
 </div>
     
