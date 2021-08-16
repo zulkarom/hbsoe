@@ -37,6 +37,9 @@ class Supplier extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+
+            [['user_id'], 'required', 'on' => 'insert'],
+
             [['age', 'address', 'postcode', 'city', 'state', 'phone'], 'required', 'on' => 'insert'],
 
             //Profile image

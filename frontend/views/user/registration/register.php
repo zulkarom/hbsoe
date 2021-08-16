@@ -4,9 +4,6 @@
   padding: 200px 0;
   text-align: center;
 }
-.wrap-login100 {
-    padding: 120px 130px 120px 95px !important;
-}
 .p-t-136 {
     padding-top: 30px !important;
 }
@@ -59,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
                               {input}
                            </div>
                            {error}{hint}
-                           '])->dropDownList(Common::role(), ['prompt' => 'Select User Category', 'class' => 'input100', 'style' => 'height:50px !important'])
+                           '])->dropDownList(Common::role(), ['prompt' => 'Select User Category', 'class' => 'input100', 'style' => 'height:50px !important', 'disabled' => 'disabled'])
                         ?>
                         <?= $form->field($model, 'username', ['template' => '
                            <div class="wrap-input100">
@@ -81,7 +78,7 @@ $this->params['breadcrumbs'][] = $this->title;
                               {input}
                            </div>
                            {error}{hint}
-                           '])->textInput(['placeholder' => $model->getAttributeLabel('fullname'), 'class' => 'input100'])
+                           '])->textInput(['placeholder' => $model->getAttributeLabel('fullname'), 'class' => 'input100', 'disabled' => 'disabled'])
                         ?>
                         <?= $form->field($model, 'password', ['template' => '
                            <div class="wrap-input100">

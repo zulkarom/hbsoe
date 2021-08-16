@@ -15,7 +15,7 @@ class SecurityController extends BaseSecurityController
         $this->layout = "//main-login";
         if (!\Yii::$app->user->isGuest) {
             //$this->goHome();
-            $this->redirect(['/dashboard/index']);
+            return $this->user_redirect();
         }
 
         /** @var LoginForm $model */
@@ -27,11 +27,14 @@ class SecurityController extends BaseSecurityController
         $this->trigger(self::EVENT_BEFORE_LOGIN, $event);
 
         if ($model->load(\Yii::$app->getRequest()->post()) && $model->login()) {
-            
-            if($model->role == 1){
-                return $this->redirect(['/entrepreneur/dashboard/index']);
-            }else if($model->role == 2){
+
+            if(!\Yii::$app->user && !\Yii::$app->user->identity->entrepreneur) {
+                throw new \yii\web\NotFoundHttpException('The page is meant for an entrepreneur');
                 return $this->redirect(['/supplier/dashboard/index']);
+            }
+            if(!\Yii::$app->user && !\Yii::$app->user->identity->supplier) {
+                throw new \yii\web\NotFoundHttpException('The page is meant for a supplier');
+                return $this->redirect(['/entrepreneur/dashboard/index']);
             }
         }
 
@@ -53,5 +56,16 @@ class SecurityController extends BaseSecurityController
         $this->trigger(self::EVENT_AFTER_LOGOUT, $event);
 
         return $this->redirect(['/user/login']);
+    }
+
+    private function user_redirect(){
+        if(!\Yii::$app->user && !\Yii::$app->user->identity->entrepreneur) {
+            throw new \yii\web\NotFoundHttpException('The page is meant for an entrepreneur');
+            return $this->redirect(['/supplier/dashboard/index']);
+        }
+        if(!\Yii::$app->user && !\Yii::$app->user->identity->supplier) {
+            throw new \yii\web\NotFoundHttpException('The page is meant for a supplier');
+            return $this->redirect(['/entrepreneur/dashboard/index']);
+        }
     }
 }

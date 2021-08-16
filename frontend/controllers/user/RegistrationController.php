@@ -16,10 +16,58 @@ class RegistrationController extends BaseRegistrationController
      * @return string
      * @throws \yii\web\HttpException
      */
-    public function actionRegister()
+ //    public function actionRegister()
+ //    {
+	// 	$this->layout = "//main-login";
+	// 	return parent::actionRegister();
+	// }
+
+	public function actionRegister()
     {
 		$this->layout = "//main-login";
-		return parent::actionRegister();
+
+		$request = Yii::$app->request;
+		// echo "<pre>";
+		// print_r($request) ;
+		// die();
+
+		$username = $request->get('param1');
+		$role = $request->get('param2');
+		
+
+		$post = Yii::$app->request->post();
+
+
+		if (!$this->module->enableRegistration) {
+            throw new NotFoundHttpException();
+        }
+
+        /** @var RegistrationForm $model */
+        $model = \Yii::createObject(RegistrationForm::className());
+        $event = $this->getFormEvent($model);
+        // echo $post['param1'];
+        // die();
+        // $model->rol = $role;
+		$model->role = $role; 
+		$model->username = $username;
+
+        $this->trigger(self::EVENT_BEFORE_REGISTER, $event);
+
+        $this->performAjaxValidation($model);
+
+        if ($model->load(\Yii::$app->request->post()) && $model->register()) {
+            $this->trigger(self::EVENT_AFTER_REGISTER, $event);
+
+            return $this->render('/message', [
+                'title'  => \Yii::t('user', 'Your account has been created'),
+                'module' => $this->module,
+            ]);
+        }
+
+        return $this->render('register', [
+            'model'  => $model,
+            'module' => $this->module,
+        ]);
 	}
 	
 	public function actionResend(){
