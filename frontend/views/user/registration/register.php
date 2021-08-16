@@ -56,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
                               {input}
                            </div>
                            {error}{hint}
-                           '])->dropDownList(Common::role(), ['prompt' => 'Select User Category', 'class' => 'input100', 'style' => 'height:50px !important', 'disabled' => 'disabled'])
+                           '])->dropDownList(Common::role(), ['prompt' => 'Select User Category', 'class' => 'input100', 'style' => 'height:50px !important'])
                         ?>
                         <?= $form->field($model, 'username', ['template' => '
                            <div class="wrap-input100">
@@ -78,7 +78,7 @@ $this->params['breadcrumbs'][] = $this->title;
                               {input}
                            </div>
                            {error}{hint}
-                           '])->textInput(['placeholder' => $model->getAttributeLabel('fullname'), 'class' => 'input100', 'disabled' => 'disabled'])
+                           '])->textInput(['placeholder' => $model->getAttributeLabel('fullname'), 'class' => 'input100'])
                         ?>
                         <?= $form->field($model, 'password', ['template' => '
                            <div class="wrap-input100">

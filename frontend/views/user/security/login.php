@@ -82,7 +82,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/loginAss
 
                     
                     <div class="text-center p-t-136">
-                        <?= Html::a('Create your Account', ['/user-register/register'], ['class' => 'txt2']) ?>
+                        <?= Html::a('Create your Account', ['/user/registration/register'], ['class' => 'txt2']) ?>
                         <!-- <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i> -->
                     </div>
                     <?php ActiveForm::end(); ?>
