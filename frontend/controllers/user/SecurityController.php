@@ -63,13 +63,11 @@ class SecurityController extends BaseSecurityController
     }
 
     private function user_redirect(){
-        if(!\Yii::$app->user && !\Yii::$app->user->identity->entrepreneur) {
-            throw new \yii\web\NotFoundHttpException('The page is meant for an entrepreneur');
-            return $this->redirect(['/supplier/dashboard/index']);
-        }
-        if(!\Yii::$app->user && !\Yii::$app->user->identity->supplier) {
-            throw new \yii\web\NotFoundHttpException('The page is meant for a supplier');
+        if(\Yii::$app->user && \Yii::$app->user->identity->entrepreneur) {
             return $this->redirect(['/entrepreneur/dashboard/index']);
+        }
+        if(\Yii::$app->user && \Yii::$app->user->identity->supplier) {
+            return $this->redirect(['/supplier/dashboard/index']);
         }
     }
 }
