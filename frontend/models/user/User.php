@@ -29,9 +29,7 @@ class User extends \dektrium\user\models\User
         
         $rules['fullnameRequired'] = ['fullname', 'required', 'on' => ['register', 'create', 'connect', 'update']];
 		
-		$rules['is_usahawanRequired'] = ['is_usahawan', 'required', 'on' => ['register']];
-
-		$rules['is_supplierRequired'] = ['is_supplier', 'required', 'on' => ['register']];
+		$rules['roleRequired'] = ['role', 'required', 'on' => ['register']];
 		
 		$rules['fullnameLength']   = ['fullname', 'string', 'min' => 3, 'max' => 255];
 		

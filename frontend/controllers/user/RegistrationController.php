@@ -16,11 +16,6 @@ class RegistrationController extends BaseRegistrationController
      * @return string
      * @throws \yii\web\HttpException
      */
- //    public function actionRegister()
- //    {
-	// 	$this->layout = "//main-login";
-	// 	return parent::actionRegister();
-	// }
 
 	public function actionRegister()
     {
@@ -35,9 +30,6 @@ class RegistrationController extends BaseRegistrationController
 		$role = $request->get('param2');
 		
 
-		$post = Yii::$app->request->post();
-
-
 		if (!$this->module->enableRegistration) {
             throw new NotFoundHttpException();
         }
@@ -45,9 +37,7 @@ class RegistrationController extends BaseRegistrationController
         /** @var RegistrationForm $model */
         $model = \Yii::createObject(RegistrationForm::className());
         $event = $this->getFormEvent($model);
-        // echo $post['param1'];
-        // die();
-        // $model->rol = $role;
+        
 		$model->role = $role; 
 		$model->username = $username;
 
@@ -56,6 +46,7 @@ class RegistrationController extends BaseRegistrationController
         $this->performAjaxValidation($model);
 
         if ($model->load(\Yii::$app->request->post()) && $model->register()) {
+
             $this->trigger(self::EVENT_AFTER_REGISTER, $event);
 
             return $this->render('/message', [

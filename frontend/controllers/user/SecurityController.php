@@ -28,14 +28,18 @@ class SecurityController extends BaseSecurityController
 
         if ($model->load(\Yii::$app->getRequest()->post()) && $model->login()) {
 
-            if(!\Yii::$app->user && !\Yii::$app->user->identity->entrepreneur) {
-                throw new \yii\web\NotFoundHttpException('The page is meant for an entrepreneur');
-                return $this->redirect(['/supplier/dashboard/index']);
+            if($model->role == 1){
+                if(\Yii::$app->user && \Yii::$app->user->identity->entrepreneur) {
+                    return $this->redirect(['/entrepreneur/dashboard/index']);
+                }
+            }else if($model->role == 2){
+                if(\Yii::$app->user && \Yii::$app->user->identity->supplier) {
+                    return $this->redirect(['/supplier/dashboard/index']);
+                }
             }
-            if(!\Yii::$app->user && !\Yii::$app->user->identity->supplier) {
-                throw new \yii\web\NotFoundHttpException('The page is meant for a supplier');
-                return $this->redirect(['/entrepreneur/dashboard/index']);
-            }
+
+            
+            
         }
 
         return $this->render('login', [

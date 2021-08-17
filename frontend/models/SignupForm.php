@@ -1,5 +1,5 @@
 <?php
-namespace bgm\models;
+namespace frontend\models;
 
 use yii\base\Model;
 use Yii;
@@ -42,7 +42,7 @@ class SignupForm extends Model
     {
         $label = parent::attributeLabels();
         $label['role'] = 'Pilih Kategori Pengguna';
-        $label['username'] = 'No. Kad Pengenalan';
+        $label['username'] = 'Email';
         $label['fullname'] = 'Nama Penuh';
         $label['password'] = 'Kata Laluan';
         $label['password_repeat'] = 'Ulang Kata Laluan';

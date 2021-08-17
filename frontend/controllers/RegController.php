@@ -7,9 +7,8 @@ use frontend\models\user\User;
 use frontend\models\SignupForm;
 
 
-class UserRegisterController extends \yii\web\Controller
+class RegController extends \yii\web\Controller
 {
-    public $layout = '//main-login';
     // public function behaviors()
     // {
     //  return [
@@ -26,6 +25,8 @@ class UserRegisterController extends \yii\web\Controller
     // }
     
     public function actionRegister(){
+
+        $this->layout = "//main-login";
         
         $model = new SignupForm();
         

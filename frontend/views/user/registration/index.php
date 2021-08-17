@@ -28,7 +28,6 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="container-login100">
             <div class="wrap-login100">
                 <div class="login100-pic js-tilt" data-tilt>
-                    <br/><br/><br/><br/>
                     <img src="<?= $dirAssests?>/images/img-01.png" alt="IMG">
 
                 </div>
@@ -49,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
                               {input}
                            </div>
                            {error}{hint}
-                           '])->dropDownList(Common::role(), ['prompt' => 'Select User Category', 'class' => 'input100', 'style' => 'height:50px !important', 'disabled' => 'disabled'])
+                           '])->dropDownList(Common::role(), ['prompt' => 'Select User Category', 'class' => 'input100', 'style' => 'height:50px !important'])
                         ?>
                         <?= $form->field($model, 'username', ['template' => '
                            <div class="wrap-input100">
@@ -60,12 +59,12 @@ $this->params['breadcrumbs'][] = $this->title;
                               {input}
                            </div>
                            {error}{hint}
-                           '])->textInput(['placeholder' => $model->getAttributeLabel('username'), 'class' => 'input100', 'disabled' => 'disabled'])
+                           '])->textInput(['placeholder' => $model->getAttributeLabel('username'), 'class' => 'input100'])
                         ?>                  
                      
                 
                     <div class="container-login100-form-btn">
-                        <?= Html::submitButton('Sign up', ['class' => 'login100-form-btn', 'name' => 'submit']) ?>
+                        <?= Html::submitButton('Next', ['class' => 'login100-form-btn', 'name' => 'submit']) ?>
                     </div>
 
                     
