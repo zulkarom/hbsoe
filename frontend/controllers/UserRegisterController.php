@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use Yii;
+use yii\filters\AccessControl;
 use frontend\models\user\User;
 use frontend\models\SignupForm;
 
@@ -10,20 +11,7 @@ use frontend\models\SignupForm;
 class UserRegisterController extends \yii\web\Controller
 {
     public $layout = '//main-login';
-    // public function behaviors()
-    // {
-    //  return [
-    //      'access' => [
-    //          'class' => AccessControl::className(),
-    //          'rules' => [
-    //              [
-    //                  'allow' => true,
-    //                  'roles' => ['@'],
-    //              ],
-    //          ],
-    //      ],
-    //  ];
-    // }
+
     
     public function actionRegister(){
         

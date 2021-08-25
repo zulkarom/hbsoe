@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="wrap-login100">
                 <div class="login100-pic js-tilt" data-tilt>
                     <br/><br/><br/><br/>
-                    <img src="<?= $dirAssests?>/images/img-01.png" alt="IMG">
+                    <img src="<?= $dirAssests?>/images/logo.png" alt="IMG">
 
                 </div>
 

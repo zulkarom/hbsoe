@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="container-login100">
             <div class="wrap-login100">
                 <div class="login100-pic js-tilt" data-tilt>
-                    <img src="<?= $dirAssests?>/images/img-01.png" alt="IMG">
+                    <img src="<?= $dirAssests?>/images/logo.png" alt="IMG">
                 </div>
 
                 <div class="login100-form validate-form">

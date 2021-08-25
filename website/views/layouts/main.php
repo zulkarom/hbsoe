@@ -45,7 +45,7 @@ $dirAssests=Yii::$app->assetManager->getPublishedUrl('@website/views/myassets');
                             </button>
                             <!--Start Logo -->
                             <div class="logo-nav">
-                                <a href="index.html">
+                                <a href="">
                                     <img src="<?= $dirAssests?>/images/logo.png" alt="Company logo" />
                                 </a>
                             </div>
@@ -61,7 +61,7 @@ $dirAssests=Yii::$app->assetManager->getPublishedUrl('@website/views/myassets');
                                     
                                     <li> <a href="<?php echo Url::to(['member/user/login'])?>">Login</a> </li>
                                     
-                                     <li> <a href="<?php echo Url::to(['member/user/register'])?>">Register</a> </li>
+                                     <li> <a href="<?php echo Url::to(['member/user-register/register'])?>">Register</a> </li>
                                   
              
                                         
@@ -161,10 +161,11 @@ $dirAssests=Yii::$app->assetManager->getPublishedUrl('@website/views/myassets');
    </section> 
   <!--End Services-->
 
+ <?php 
  
-  
- 
-    <!--Start clients-->
+ /* 
+  * 
+  *    <!--Start clients-->
     <section id="clients" class="section">
            <div class="container">
                <div class="row">
@@ -251,6 +252,15 @@ $dirAssests=Yii::$app->assetManager->getPublishedUrl('@website/views/myassets');
          </div> <!--/.container-->
     </section>
    <!--End clients-->
+  *  
+  *  
+  *  */
+ 
+ 
+ ?>
+  
+ 
+  
    
 
    
