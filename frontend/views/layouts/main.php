@@ -101,7 +101,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/crypto')
 
 <?php
     Modal::begin([
-        'title' => '<h4>Register Module</h4>',
+        'title' => '<h4>Lihat Modul Kategori</h4>',
         'id' =>'createModule',
         'size' => 'modal-lg'
     ]);

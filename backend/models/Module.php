@@ -3,7 +3,7 @@
 namespace backend\models;
 
 use Yii;
-
+use backend\models\ModuleKategori;
 /**
  * This is the model class for table "module".
  *
@@ -30,6 +30,7 @@ class Module extends \yii\db\ActiveRecord
             [['module_name', 'kategori_id'], 'required'],
             [['kategori_id'], 'integer'],
             [['module_name'], 'string', 'max' => 225],
+            [['description'], 'string'],
         ];
     }
 
@@ -43,6 +44,11 @@ class Module extends \yii\db\ActiveRecord
             'module_name' => 'Module Name',
             'kategori_id' => 'Kategori ID',
         ];
+    }
+
+    public function getModuleKategori()
+    {
+        return $this->hasOne(ModuleKategori::className(), ['id' => 'kategori_id']);
     }
 
     public function flashError(){

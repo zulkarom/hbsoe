@@ -14,6 +14,7 @@ use backend\models\Module;
  */
 class ModuleKategori extends \yii\db\ActiveRecord
 {
+    public $kategori;
     /**
      * {@inheritdoc}
      */
@@ -31,6 +32,8 @@ class ModuleKategori extends \yii\db\ActiveRecord
             [['kategori_name'], 'required'],
             [['created_at', 'updated_at'], 'safe'],
             [['kategori_name'], 'string', 'max' => 250],
+            [['description'], 'string'],
+            [['kategori'], 'integer'],
         ];
     }
 

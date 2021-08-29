@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <p>
-    <?php echo Html::button('Register Module', ['value' => Url::to(['create']), 'class' => 'btn btn-success', 'id' => 'modalBttnModule']);
+    <?php echo Html::button('Daftar Modul', ['value' => Url::to(['create']), 'class' => 'btn btn-success', 'id' => 'modalBttnModule']);
     
 
     $this->registerJs('

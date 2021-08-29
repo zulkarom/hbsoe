@@ -18,9 +18,6 @@ class SignupForm extends Model
     public $username;
     public $email;
 
-    public $ic;
-    public $rol;
-
     /**
      * @inheritdoc
      */
@@ -30,10 +27,9 @@ class SignupForm extends Model
 			
             ['username', 'email'],
 
-            ['username', 'required'],
-
-
             ['role', 'integer'],
+
+            [['username', 'role'], 'required', 'on' => 'register'],
 
         ];
     }

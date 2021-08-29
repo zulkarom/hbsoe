@@ -5,7 +5,9 @@ namespace frontend\modules\entrepreneur\controllers;
 use Yii;
 use backend\models\AdminAnjur;
 use backend\models\ModulePeserta;
+use backend\models\ModuleKategori;
 use frontend\modules\entrepreneur\models\ModulePesertaSearch;
+use frontend\modules\entrepreneur\models\AdminAnjurSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
@@ -69,42 +71,72 @@ class ModulePesertaController extends Controller
      */
     public function actionCreate()
     {
-        $model = new ModulePeserta();
-        $model->setScenario('daftar');
+        $model = new ModuleKategori();
 
         if ($model->load(Yii::$app->request->post())) {
-
-            $checkModule = ModulePeserta::find()
-            ->where(['user_id' => Yii::$app->user->identity->id])
-            ->andWhere(['anjur_id' => $model->anjur_id])
-            ->one();
-
-            if($checkModule){
-                Yii::$app->session->addFlash('warning', "Modul yang dipilih telah didaftarkan. Sila pilih modul lain.");
-                return $this->redirect(['index']);
-
-            }else if($model->getCountPeserta($model->anjur_id) >= $model->adminAnjur->capacity){
-                Yii::$app->session->addFlash('warning', "Kapasiti modul penuh. Sila pilih module lain.");
-                return $this->redirect(['index']);
-
-            }else{
-                $model->user_type = 1;
-                $model->user_id = Yii::$app->user->identity->id;
-                $model->status = 10;
-                $model->submitted_at = new Expression('NOW()');
-
-                if($model->save()){
-                    Yii::$app->session->addFlash('success', "Daftar Modul Berjaya");
-                    return $this->redirect(['index']);
-                }else{
-                    $model->flashError();
-                }
-            }
+            return $this->redirect(['anjur', 'cid' => $model->kategori]);
         }
+
 
         return $this->renderAjax('create', [
             'model' => $model,
         ]);
+    }
+
+    public function actionAnjur($cid){
+
+        $searchModel = new AdminAnjurSearch();
+        $searchModel->kategori = $cid;
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('anjur', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionAnjurView($id)
+    {
+        $model = AdminAnjur::findOne($id);
+
+        return $this->render('anjur_view', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionAnjurRegister($id){
+
+        $anjur = AdminAnjur::findOne($id);
+        $model = new ModulePeserta();
+
+        $checkKursus = ModulePeserta::find()
+        ->where(['user_id' => Yii::$app->user->identity->id])
+        ->andWhere(['anjur_id' => $anjur->id, 'user_type' => 1])
+        ->one();
+
+        if($checkKursus){
+            Yii::$app->session->addFlash('warning', "Modul yang dipilih telah didaftarkan. Sila pilih modul lain.");
+            return $this->redirect(['anjur-view', 'id' => $id]);
+
+        }else if($model->getCountPeserta($anjur->id) >= $anjur->capacity){
+            Yii::$app->session->addFlash('warning', "Kapasiti modul penuh. Sila pilih modul lain.");
+            return $this->redirect(['anjur-view', 'id' => $id]);
+
+        }else{
+            $model->anjur_id = $anjur->id;
+            $model->user_type = 1;
+            $model->user_id = Yii::$app->user->identity->id;
+            $model->status = 10;
+            $model->submitted_at = new Expression('NOW()');
+
+            if($model->save()){
+                Yii::$app->session->addFlash('success', "Daftar Modul Berjaya");
+                return $this->redirect(['index']);
+                // return $this->redirect(['anjur', 'cid' => $anjur->kursus->kategori_id]);
+            }else{
+                $model->flashError();
+            }
+        }
     }
 
     /**

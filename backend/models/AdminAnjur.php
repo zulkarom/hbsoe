@@ -35,6 +35,7 @@ class AdminAnjur extends \yii\db\ActiveRecord
             [['date_start', 'date_end'], 'safe'],
             [['capacity', 'module_id'], 'integer'],
             [['module_siri', 'location'], 'string', 'max' => 225],
+            [['description'], 'string'],
         ];
     }
 
