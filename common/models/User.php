@@ -62,6 +62,9 @@ class User extends ActiveRecord implements IdentityInterface
 
             //Admin Update
             [['username', 'fullname', 'email'], 'required', 'on' => 'update'],
+            [['username', 'fullname', 'email', 'role'], 'required', 'on' => 'create'],
+
+            [['rawPassword'], 'string', 'min' => 6],
         ];
     }
     

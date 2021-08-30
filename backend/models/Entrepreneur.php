@@ -19,10 +19,6 @@ class Entrepreneur extends \yii\db\ActiveRecord
     public $u_longitude;
     public $u_latitude;
     public $u_location;
-    public $rawPassword;
-    public $username;
-    public $email;
-    public $fullname;
     /**
      * {@inheritdoc}
      */
@@ -39,12 +35,9 @@ class Entrepreneur extends \yii\db\ActiveRecord
         return [
             [['user_id'], 'required', 'on' => 'signup'],
 
-            [['age', 'address', 'postcode', 'city', 'state', 'phone'], 'required', 'on' => 'insert'],
+            [['age', 'address', 'postcode', 'city', 'state', 'phone', 'biz_name'], 'required', 'on' => 'insert'],
             //Profile image
             ['profile_file', 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
-
-            //Admin Update
-            [['username', 'fullname', 'email'], 'required', 'on' => 'update'],
 
             [['user_id', 'age'], 'integer'],
             [['address', 'u_location', 'u_longitude', 'u_latitude', 'longitude', 'latitude', 'location', 'biz_name', 'phone'], 'string', 'max' => 225],

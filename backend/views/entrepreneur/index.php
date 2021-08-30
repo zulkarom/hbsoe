@@ -11,6 +11,11 @@ $this->title = 'Entrepreneur';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
+<p>
+    <?= Html::a('Add Entrepreneur', ['create'], ['class' => 'btn btn-success']) ?>
+</p>
+<br/>
+
 <div class="white_card card_height_100 mb_30">
 <div class="white_card_header">
 <div class="entrepreneur-index">

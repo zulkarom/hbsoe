@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\Entrepreneur;
+use backend\models\EntrepreneurProfile;
 use backend\models\EntrepreneurSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -69,14 +70,37 @@ class EntrepreneurController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Entrepreneur();
+        $model = new EntrepreneurProfile();
+        $modelUser = new User();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $model->setScenario('insert');
+        $modelUser->setScenario('create');
+        if ($model->load(Yii::$app->request->post()) && $modelUser->load(Yii::$app->request->post())) {
+
+            $modelUser->role = 1;
+            $modelUser->status = 10;
+            $modelUser->username = $modelUser->email;
+
+            if($modelUser->rawPassword){
+                $modelUser->setPassword($modelUser->rawPassword);
+            }
+
+            if($modelUser->save()){
+                $model->user_id = $modelUser->id;
+                if($model->save()){
+                    Yii::$app->session->addFlash('success', "Information Saved");
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }else{
+                    $model->flashError();
+                }
+            }else{
+                $modelUser->flashError();
+            }
         }
 
         return $this->render('create', [
             'model' => $model,
+            'modelUser' => $modelUser,
         ]);
     }
 
@@ -89,29 +113,38 @@ class EntrepreneurController extends Controller
      */
     public function actionUpdate($id)
     {
-        $entrepreneur = $this->findModel($id);
-        $model = User::findOne($entrepreneur->user_id);
-        $model->scenario = 'update';
-        // $model->updated_at = new Expression('NOW()');
-        if ($model->load(Yii::$app->request->post())) {
-            
-            if($model->rawPassword){
-                $model->setPassword($model->rawPassword);
+        // $model = $this->findModel($id);
+        $model = $this->findEntrepreneurProfile($id);
+        $modelUser = User::findOne($model->user_id);
+        
+
+        $modelUser->scenario = 'update';
+        $model->scenario = 'insert';
+
+        if ($modelUser->load(Yii::$app->request->post()) 
+            && $model->load(Yii::$app->request->post())) {
+
+            $modelUser->username = $modelUser->email;
+            if($modelUser->rawPassword){
+                $modelUser->setPassword($modelUser->rawPassword);
             }            
             
-            if($model->save()){
-                Yii::$app->session->addFlash('success', "Data Updated");
-                return $this->redirect(['view', 'id' => $id]);
+            if($modelUser->save()){
+                if($model->save()){
+                    Yii::$app->session->addFlash('success', "Data Updated");
+                    return $this->redirect(['view', 'id' => $id]);
+                }else{
+                    $model->flashError();
+                }
+            }else{
+                $modelUser->flashError();
             }
-            
-            
-            
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-                'entrepreneur' => $entrepreneur,
-            ]);
         }
+
+        return $this->render('update', [
+            'model' => $model,
+            'modelUser' => $modelUser,
+        ]);
     }
 
     /**
@@ -144,6 +177,15 @@ class EntrepreneurController extends Controller
     protected function findModel($id)
     {
         if (($model = Entrepreneur::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    protected function findEntrepreneurProfile($id)
+    {
+        if (($model = EntrepreneurProfile::findOne($id)) !== null) {
             return $model;
         }
 

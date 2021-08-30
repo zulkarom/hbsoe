@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\Supplier;
+use backend\models\SupplierProfile;
 use backend\models\SupplierSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -69,14 +70,37 @@ class SupplierController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Supplier();
+        $model = new SupplierProfile();
+        $modelUser = new User();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $model->setScenario('insert');
+        $modelUser->setScenario('create');
+        if ($model->load(Yii::$app->request->post()) && $modelUser->load(Yii::$app->request->post())) {
+
+            $modelUser->role = 2;
+            $modelUser->status = 10;
+            $modelUser->username = $modelUser->email;
+
+            if($modelUser->rawPassword){
+                $modelUser->setPassword($modelUser->rawPassword);
+            }
+
+            if($modelUser->save()){
+                $model->user_id = $modelUser->id;
+                if($model->save()){
+                    Yii::$app->session->addFlash('success', "Information Saved");
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }else{
+                    $model->flashError();
+                }
+            }else{
+                $modelUser->flashError();
+            }
         }
 
         return $this->render('create', [
             'model' => $model,
+            'modelUser' => $modelUser,
         ]);
     }
 
@@ -89,29 +113,37 @@ class SupplierController extends Controller
      */
     public function actionUpdate($id)
     {
-        $supplier = $this->findModel($id);
-        $model = User::findOne($supplier->user_id);
-        $model->scenario = 'update';
-        // $model->updated_at = new Expression('NOW()');
-        if ($model->load(Yii::$app->request->post())) {
-            
-            if($model->rawPassword){
-                $model->setPassword($model->rawPassword);
+        // $model = $this->findModel($id);
+        $model = $this->findSupplierProfile($id);
+        $modelUser = User::findOne($model->user_id);
+
+        $modelUser->scenario = 'update';
+        $model->scenario = 'insert';
+
+        if ($modelUser->load(Yii::$app->request->post()) 
+            && $model->load(Yii::$app->request->post())) {
+
+            $modelUser->username = $modelUser->email;
+            if($modelUser->rawPassword){
+                $modelUser->setPassword($modelUser->rawPassword);
             }            
             
-            if($model->save()){
-                Yii::$app->session->addFlash('success', "Data Updated");
-                return $this->redirect(['view', 'id' => $id]);
+            if($modelUser->save()){
+                if($model->save()){
+                    Yii::$app->session->addFlash('success', "Data Updated");
+                    return $this->redirect(['view', 'id' => $id]);
+                }else{
+                    $model->flashError();
+                }
+            }else{
+                $modelUser->flashError();
             }
-            
-            
-            
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-                'supplier' => $supplier,
-            ]);
         }
+
+        return $this->render('update', [
+            'model' => $model,
+            'modelUser' => $modelUser,
+        ]);
     }
 
     /**
@@ -144,6 +176,15 @@ class SupplierController extends Controller
     protected function findModel($id)
     {
         if (($model = Supplier::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    protected function findSupplierProfile($id)
+    {
+        if (($model = SupplierProfile::findOne($id)) !== null) {
             return $model;
         }
 
