@@ -38,6 +38,8 @@ class Supplier extends \yii\db\ActiveRecord
 
             [['age', 'address', 'postcode', 'city', 'state', 'phone', 'biz_name'], 'required', 'on' => 'insert'],
 
+            [['age', 'address', 'postcode', 'city', 'state', 'phone', 'biz_name'], 'required', 'on' => 'admin_insert'],
+
             //Profile image
             ['profile_file', 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
             [['user_id', 'age'], 'integer'],

@@ -70,10 +70,10 @@ class EntrepreneurController extends Controller
      */
     public function actionCreate()
     {
-        $model = new EntrepreneurProfile();
+        $model = new Entrepreneur();
         $modelUser = new User();
 
-        $model->setScenario('insert');
+        $model->setScenario('admin_insert');
         $modelUser->setScenario('create');
         if ($model->load(Yii::$app->request->post()) && $modelUser->load(Yii::$app->request->post())) {
 
@@ -114,12 +114,12 @@ class EntrepreneurController extends Controller
     public function actionUpdate($id)
     {
         // $model = $this->findModel($id);
-        $model = $this->findEntrepreneurProfile($id);
+        $model = $this->findModel($id);
         $modelUser = User::findOne($model->user_id);
         
 
         $modelUser->scenario = 'update';
-        $model->scenario = 'insert';
+        $model->scenario = 'admin_insert';
 
         if ($modelUser->load(Yii::$app->request->post()) 
             && $model->load(Yii::$app->request->post())) {

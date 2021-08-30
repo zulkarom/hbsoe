@@ -79,31 +79,8 @@ $model->u_location = $model->location;
                                <?= $form->field($modelUser, 'rawPassword')->passwordInput(['maxlength' => true])->label('Password') ?> 
                            <?php endif; ?>
                        </div>
-                   </div>
-
-                   <div class="row">
-                            <div class="col-md-8">
-                                <table class="table">
-                                    <tbody><tr>
-                                      <th style="width: 1060px"><?= $form->field($model, 'profile_file')->widget(CropImageUpload::className())?>
-                                          
-                                      </th>
-                                      <th>
-                                        <?php if($model->profile_file): ?>
-                                           <img src="<?=Url::to(['/entrepreneur/profile-image', 'id' => $model->id])?>" width="90" height="90">
-                                        <?php else: ?>
-                                            <img src="<?= $dirAssests?>/img/transfer/user.png" width="90" height="90">
-                                        <?php endif; ?>
-                                        
-                                      </th>
-                                    </tr>
-                                  </tbody></table>
-                            </div>
-                        </div>
-
-                    
+                   </div>                
                         
-          
                 </div>
             </div>
         </div>
