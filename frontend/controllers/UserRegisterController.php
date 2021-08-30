@@ -19,7 +19,7 @@ class UserRegisterController extends \yii\web\Controller
 
         $model->setScenario('register');
         
-        if ($model->load(Yii::$app->request->post())){
+        if ($model->load(Yii::$app->request->post()) && $model->validate()){
        
             $checkUser = User::findOne(['username' => $model->username]);
 
