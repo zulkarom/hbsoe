@@ -69,5 +69,8 @@ return [
     'Search Suppliers' => 'Cari Pembekal',
     'Sector Suppliers' => 'Sektor Pembekal',
     'My Client' => 'Client Saya',
+    'Agency Name' => 'Nama Agensi',
+    'Date Accept' => 'Tarikh Terima',
+
 
 ];

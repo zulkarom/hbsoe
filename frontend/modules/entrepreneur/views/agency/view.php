@@ -32,6 +32,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'entrepreneurName',
+            'nama_agensi',
+            [
+             'label' => \Yii::t('app', 'Date Accept'),
+             'value' => function($model){
+                return date('d F Y', strtotime($model->tarikh_terima));;
+             }
+            ],
             'description',
         ],
     ]) ?>

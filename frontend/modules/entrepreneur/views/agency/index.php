@@ -25,8 +25,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-          //  'id',
-           // 'entrepreneur_id',
+            'entrepreneurName',
+            'nama_agensi',
+            [
+             'label' => \Yii::t('app', 'Date Accept'),
+             'value' => function($model){
+                return date('d F Y', strtotime($model->tarikh_terima));;
+             }
+            ],
             'description',
 
             ['class' => 'yii\grid\ActionColumn'],

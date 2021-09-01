@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use kartik\widgets\ActiveForm;
-
+use kartik\date\DatePicker;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Competency */
 /* @var $form yii\widgets\ActiveForm */
@@ -14,6 +14,17 @@ use kartik\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($model, 'nama_agensi')->textInput() ?>
+
+    <?=$form->field($model, 'tarikh_terima')->widget(DatePicker::classname(), [
+        'removeButton' => false,
+        'pluginOptions' => [
+            'autoclose'=>true,
+            'format' => 'yyyy-mm-dd',
+            'todayHighlight' => true,
+        ],
+    ]);
+    ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 3]) ?>
 

@@ -27,9 +27,11 @@ class Agency extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['entrepreneur_id', 'description'], 'required'],
+            [['entrepreneur_id', 'description', 'nama_agensi', 'tarikh_terima'], 'required'],
             [['entrepreneur_id'], 'integer'],
             [['description'], 'string', 'max' => 255],
+            [['nama_agensi'], 'string', 'max' => 225],
+            [['tarikh_terima'], 'safe'],
         ];
     }
 
@@ -43,6 +45,8 @@ class Agency extends \yii\db\ActiveRecord
             'entrepreneur_id' => \Yii::t('app', 'Entrepreneur'),
             'entrepreneurName' => \Yii::t('app', 'Entrepreneur'),
             'description' => \Yii::t('app', 'Description'),
+            'nama_agensi' => \Yii::t('app', 'Agency Name'),
+            'tarikh_terima' => \Yii::t('app', 'Date Accept'),
         ];
     }
     

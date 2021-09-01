@@ -82,6 +82,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 $count++;
             }
         }
+        //Tunjuk map Kelantan @ Malaysia
         if($count != 0){
             $cen = [4.210484, 101.975769];
             $zm = 7;
