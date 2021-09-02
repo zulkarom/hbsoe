@@ -7,12 +7,12 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\EntrepreneurSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Entrepreneur';
+$this->title = 'Beneficiaries';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <p>
-    <?= Html::a('Add Entrepreneur', ['create'], ['class' => 'btn btn-success']) ?>
+    <?= Html::a('Add Beneficiary', ['create'], ['class' => 'btn btn-success']) ?>
 </p>
 <br/>
 

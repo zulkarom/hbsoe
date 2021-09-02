@@ -3,7 +3,7 @@
 return [
     //Menu Left Side
     'Dashboard' => 'Utama',
-    'Entrepreneur Profile' => 'Maklumat Entrepreneur',
+    'Beneficiary Profile' => 'Maklumat Penerima Manfaat',
     'Profile' => 'Profil',
     'My Profile' => 'Profil Saya',
     'Sector' => 'Sektor',
@@ -42,8 +42,8 @@ return [
     'Setting' => 'Tetapan',
     'Log Out' => 'Log Keluar',
 
-    //Entrepreneur
-    'Entrepreneur' => 'Usahawan',
+    //Beneficiary
+    'Beneficiary' => 'Penerima Manfaat',
     'Description' => 'Keterangan',
     'New Sector' => 'Sektor Baru',
     'Update Sector' => 'Kemaskini Sektor',

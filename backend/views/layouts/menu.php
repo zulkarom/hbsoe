@@ -20,12 +20,12 @@ use common\widgets\Menu_crypto;
             
             ['label' => \Yii::t('app', 'Dashboard'), 'level' => 1, 'url' => ['/site/index'], 'icon' => $dirAssests.'/img/menu-icon/1.svg', 'children' => []],
         
-        ['label' => \Yii::t('app', 'Entrepreneurs'), 'level' => 1, 'url' => ['/entrepreneur/index'], 'icon' => $dirAssests.'/img/menu-icon/4.svg', 'children' => []],
+        ['label' => \Yii::t('app', 'Beneficiaries'), 'level' => 1, 'url' => ['/entrepreneur/index'], 'icon' => $dirAssests.'/img/menu-icon/4.svg', 'children' => []],
         
         ['label' => \Yii::t('app', 'Suppliers'), 'level' => 1, 'url' => ['/supplier/index'], 'icon' => $dirAssests.'/img/menu-icon/4.svg', 'children' => []],
         
         ['label' => \Yii::t('app', 'Sectors'), 'level' => 2 , 'icon' => $dirAssests.'/img/menu-icon/17.svg', 'children' => [
-             ['label' => 'Entrepreneurs', 'url' => ['/sector-entrepreneur/index'], 'icon' => 'fa fa-circle'],
+             ['label' => 'Beneficiaries', 'url' => ['/sector-entrepreneur/index'], 'icon' => 'fa fa-circle'],
              ['label' => 'Suppliers', 'url' => ['/sector-supplier/index'], 'icon' => 'fa fa-circle'],
             ['label' => 'Categories', 'url' => ['/sector/index'], 'icon' => 'fa fa-circle'],
         

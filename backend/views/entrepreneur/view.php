@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model backend\models\Entrepreneur */
 
 $this->title = $model->user->fullname;
-$this->params['breadcrumbs'][] = ['label' => 'Entrepreneur', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Beneficiaries', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             [
-                'label' => 'Nama',
+                'label' => 'Name',
                 'value' => function($model){
                     return $model->user->fullname;
                 }
@@ -42,14 +42,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             [
-                'label' => 'Umur',
+                'label' => 'Age',
                 'value' => function($model){
                     return $model->age;
                 }
             ],
             [
              'format' => 'html',
-             'label' => 'Alamat',
+             'label' => 'Address',
              'value' => function($model){
                 if($model->address){
                     return $model->address.'<br/>'.$model->postcode.', '.$model->city.', '.$model->state;
@@ -57,14 +57,14 @@ $this->params['breadcrumbs'][] = $this->title;
              }
             ],            
             [
-                'label' => 'Lokasi',
+                'label' => 'Location',
                 'value' => function($model){
                     return $model->location;
                 }
             ],
             [
                 'format' => 'raw',
-                'label' => 'Gambar Profile',
+                'label' => 'Profile Picture',
                 'value' => function($model){
                     if($model->profile_file){
                         return Html::a(' Download <span class="glyphicon glyphicon-download-alt"></span>', ['profile-image', 'id' => $model->id], [

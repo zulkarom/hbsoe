@@ -6,15 +6,12 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\SectorEntrepreneur */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Sector Entrepreneurs', 'url' => ['index']];
+$this->title = $model->entrepreneurName;
+$this->params['breadcrumbs'][] = ['label' => 'Sector Beneficiaries', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="sector-entrepreneur-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
@@ -25,12 +22,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
+    <br/>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'entrepreneur_id',
+            'entrepreneurName',
             'description:ntext',
             'sector_id',
         ],

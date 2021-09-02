@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model backend\models\Entrepreneur */
 
 $this->title = \Yii::t('app', 'Add Entrepreneur');
-$this->params['breadcrumbs'][] = ['label' => 'Entrepreneurs', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Beneficiaries', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="entrepreneur-create">

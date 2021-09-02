@@ -40,7 +40,7 @@ class EntrepreneurSupplier extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'entrepreneur_id' => 'Entrepreneur ID',
+            'entrepreneur_id' => 'Beneficiary ID',
             'supplier_id' => 'Supplier ID',
             'created_at' => 'Created At',
         ];

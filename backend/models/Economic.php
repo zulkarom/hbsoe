@@ -40,8 +40,8 @@ class Economic extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'entrepreneur_id' => \Yii::t('app', 'Entrepreneur'),
-            'entrepreneurName' => \Yii::t('app', 'Entrepreneur'),
+            'entrepreneur_id' => \Yii::t('app', 'Beneficiary'),
+            'entrepreneurName' => \Yii::t('app', 'Beneficiary'),
             'description' => \Yii::t('app', 'Description'),
         ];
     }

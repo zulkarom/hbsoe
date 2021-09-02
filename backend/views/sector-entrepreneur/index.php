@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\SectorEntrepreneurSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Sector Entrepreneurs';
+$this->title = 'Sector Beneficiaries';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="sector-entrepreneur-index">

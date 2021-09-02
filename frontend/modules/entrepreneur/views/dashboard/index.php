@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'Entreprenuer Dashboard';
+$this->title = \Yii::t('app', 'Dashboard');
 ?>
 
 
@@ -14,8 +14,8 @@ $this->title = 'Entreprenuer Dashboard';
                 <div class="col-12">
                     <div class="page_title_box d-flex flex-wrap align-items-center justify-content-between">
                         <div class="page_title_left">
-                            <h3 class="mb-0" >Dashboard</h3>
-                            <p>Dashboard/Crypto currenct</p>
+                            <h3 class="mb-0" > <?=\Yii::t('app', 'Dashboard')?></h3>
+                            <p><?=\Yii::t('app', 'Dashboard')?>/Crypto currenct</p>
                         </div>
                         <div class="monitor_list_widget">
                             <div class="simgle_monitor_list">
