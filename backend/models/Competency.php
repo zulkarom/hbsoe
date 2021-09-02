@@ -27,9 +27,11 @@ class Competency extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['entrepreneur_id', 'description'], 'required'],
-            [['entrepreneur_id'], 'integer'],
+            [['entrepreneur_id', 'description', 'category_id'], 'required'],
+            [['entrepreneur_id', 'category_id'], 'integer'],
             [['description'], 'string', 'max' => 255],
+            [['other'], 'string', 'max' => 225],
+            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => CompetencyCategory::className(), 'targetAttribute' => ['category_id' => 'id']],
         ];
     }
 
@@ -41,6 +43,7 @@ class Competency extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'entrepreneur_id' => \Yii::t('app', 'Beneficiary'),
+            'category_id' => \Yii::t('app', 'Category'),
             'entrepreneurName' => \Yii::t('app', 'Beneficiary'),
             'description' => \Yii::t('app', 'Description'),
         ];
@@ -52,5 +55,10 @@ class Competency extends \yii\db\ActiveRecord
     
     public function getEntrepreneurName(){
         return $this->entrepreneur->user->fullname;
+    }
+
+    public function getCategory()
+    {
+        return $this->hasOne(CompetencyCategory::className(), ['id' => 'category_id']);
     }
 }

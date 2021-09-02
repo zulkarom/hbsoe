@@ -27,9 +27,11 @@ class SocialImpact extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['entrepreneur_id', 'description'], 'required'],
-            [['entrepreneur_id'], 'integer'],
+            [['entrepreneur_id', 'category_id', 'other'], 'required'],
+            [['entrepreneur_id', 'category_id'], 'integer'],
             [['description'], 'string', 'max' => 255],
+            [['other'], 'string', 'max' => 225],
+            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => SocialImpactCategory::className(), 'targetAttribute' => ['category_id' => 'id']],
         ];
     }
 
@@ -43,7 +45,13 @@ class SocialImpact extends \yii\db\ActiveRecord
             'entrepreneur_id' => \Yii::t('app', 'Beneficiary'),
             'entrepreneurName' => \Yii::t('app', 'Beneficiary'),
             'description' => \Yii::t('app', 'Description'),
+            'category_id' => \Yii::t('app', 'Category'),
         ];
+    }
+
+    public function getCategory()
+    {
+        return $this->hasOne(SocialImpactCategory::className(), ['id' => 'category_id']);
     }
     
     public function getEntrepreneur(){

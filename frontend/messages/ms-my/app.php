@@ -71,6 +71,6 @@ return [
     'My Client' => 'Client Saya',
     'Agency Name' => 'Nama Agensi',
     'Date Accept' => 'Tarikh Terima',
-
+    'Category' => 'Kategori',
 
 ];

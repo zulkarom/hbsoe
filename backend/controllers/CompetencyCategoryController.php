@@ -1,24 +1,22 @@
 <?php
 
-namespace frontend\modules\entrepreneur\controllers;
+namespace backend\controllers;
 
 use Yii;
-use yii\filters\AccessControl;
-use backend\models\Competency;
-use frontend\modules\entrepreneur\models\CompetencySearch;
+use backend\models\CompetencyCategory;
+use backend\models\CompetencyCategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-
+use yii\filters\AccessControl;
+use yii\db\Expression;
 /**
- * CompetencyController implements the CRUD actions for Competency model.
+ * CompetencyCategoryController implements the CRUD actions for CompetencyCategory model.
  */
-class CompetencyController extends Controller
+class CompetencyCategoryController extends Controller
 {
     /**
      * {@inheritdoc}
      */
-    
-
     public function behaviors()
     {
         return [
@@ -35,12 +33,12 @@ class CompetencyController extends Controller
     }
 
     /**
-     * Lists all Competency models.
+     * Lists all CompetencyCategory models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new CompetencySearch();
+        $searchModel = new CompetencyCategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -50,7 +48,7 @@ class CompetencyController extends Controller
     }
 
     /**
-     * Displays a single Competency model.
+     * Displays a single CompetencyCategory model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -63,23 +61,18 @@ class CompetencyController extends Controller
     }
 
     /**
-     * Creates a new Competency model.
+     * Creates a new CompetencyCategory model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Competency();
+        $model = new CompetencyCategory();
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->entrepreneur_id = Yii::$app->user->identity->entrepreneur->id;
-            if($model->category_id != 1){
-                $model->other = "";
-            }
+            $model->created_at = new Expression('NOW()');
             if($model->save()){
-                Yii::$app->session->addFlash('success', "Data Updated");
-
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index']);
             }
             
         }
@@ -90,7 +83,7 @@ class CompetencyController extends Controller
     }
 
     /**
-     * Updates an existing Competency model.
+     * Updates an existing CompetencyCategory model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -101,13 +94,9 @@ class CompetencyController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
-           if($model->category_id != 1){
-                $model->other = "";
-            }
+            $model->updated_at = new Expression('NOW()');
             if($model->save()){
-                Yii::$app->session->addFlash('success', "Data Updated");
-
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index']);
             }
         }
 
@@ -117,7 +106,7 @@ class CompetencyController extends Controller
     }
 
     /**
-     * Deletes an existing Competency model.
+     * Deletes an existing CompetencyCategory model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -131,15 +120,15 @@ class CompetencyController extends Controller
     }
 
     /**
-     * Finds the Competency model based on its primary key value.
+     * Finds the CompetencyCategory model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Competency the loaded model
+     * @return CompetencyCategory the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Competency::findOne($id)) !== null) {
+        if (($model = CompetencyCategory::findOne($id)) !== null) {
             return $model;
         }
 

@@ -32,20 +32,25 @@ use common\widgets\Menu_crypto;
          ]],
         
         
-      //  ['label' => \Yii::t('app', 'Sectors'), 'level' => 1, 'url' => ['/sector/index'], 'icon' => $dirAssests.'/img/menu-icon/17.svg', 'children' => []],
-        ['label' => \Yii::t('app', 'Competency'), 'level' => 1, 'url' => ['/competency/index'], 'icon' => $dirAssests.'/img/menu-icon/icon.svg', 'children' => []],
+        // ['label' => \Yii::t('app', 'Competencies'), 'level' => 1, 'url' => ['/competency/index'], 'icon' => $dirAssests.'/img/menu-icon/icon.svg', 'children' => []],
+
+        ['label' => \Yii::t('app', 'Competencies'), 'level' => 2 , 'icon' => $dirAssests.'/img/menu-icon/icon.svg', 'children' => [
+            ['label' => 'Beneficiaries', 'url' => ['/competency/index'], 'icon' => 'fa fa-circle'],
+            ['label' => 'Categories', 'url' => ['/competency-category/index'], 'icon' => 'fa fa-circle'],
+        ]],
         
         ['label' => \Yii::t('app', 'Social Impact'), 'level' => 1, 'url' => ['/social-impact/index'], 'icon' => $dirAssests.'/img/menu-icon/14.svg', 'children' => []],
         
         ['label' => \Yii::t('app', 'Economics'), 'level' => 1, 'url' => ['/economic/index'], 'icon' => $dirAssests.'/img/menu-icon/2.svg', 'children' => []],
         ['label' => \Yii::t('app', 'Agency'), 'level' => 1, 'url' => ['/agency/index'], 'icon' => $dirAssests.'/img/menu-icon/10.svg', 'children' => []],
-        // ['label' => \Yii::t('app', 'Module Program'), 'level' => 1, 'url' => ['/module-kategori/index'], 'icon' => $dirAssests.'/img/menu-icon/Pages.svg', 'children' => []],
 
-        ['label' => \Yii::t('app', 'Module Program'), 'level' => 2 , 'icon' => $dirAssests.'/img/menu-icon/10.svg', 'children' => [
-             ['label' => 'Module Category', 'url' => ['/module-kategori/index'], 'icon' => 'fa fa-circle'],
-             ['label' => 'Admin Anjur', 'url' => ['/admin-anjur/index'], 'icon' => 'fa fa-circle'],
+        ['label' => \Yii::t('app', 'Program'), 'level' => 1, 'url' => ['/agency/index'], 'icon' => $dirAssests.'/img/menu-icon/10.svg', 'children' => []],
+
+        // ['label' => \Yii::t('app', 'Module Program'), 'level' => 2 , 'icon' => $dirAssests.'/img/menu-icon/10.svg', 'children' => [
+        //      ['label' => 'Module Category', 'url' => ['/module-kategori/index'], 'icon' => 'fa fa-circle'],
+        //      ['label' => 'Admin Anjur', 'url' => ['/admin-anjur/index'], 'icon' => 'fa fa-circle'],
         
-         ]],
+        //  ]],
             
 
             
