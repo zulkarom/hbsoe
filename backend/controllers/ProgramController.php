@@ -3,16 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\CompetencyCategory;
-use backend\models\CompetencyCategorySearch;
+use backend\models\Program;
+use backend\models\ProgramSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\db\Expression;
 /**
- * CompetencyCategoryController implements the CRUD actions for CompetencyCategory model.
+ * ProgramController implements the CRUD actions for Program model.
  */
-class CompetencyCategoryController extends Controller
+class ProgramController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -20,25 +20,22 @@ class CompetencyCategoryController extends Controller
     public function behaviors()
     {
         return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
                 ],
             ],
         ];
     }
 
     /**
-     * Lists all CompetencyCategory models.
+     * Lists all Program models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new CompetencyCategorySearch();
+        $searchModel = new ProgramSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -48,7 +45,7 @@ class CompetencyCategoryController extends Controller
     }
 
     /**
-     * Displays a single CompetencyCategory model.
+     * Displays a single Program model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -61,21 +58,16 @@ class CompetencyCategoryController extends Controller
     }
 
     /**
-     * Creates a new CompetencyCategory model.
+     * Creates a new Program model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new CompetencyCategory();
+        $model = new Program();
 
-        if ($model->load(Yii::$app->request->post())) {
-            $model->created_at = new Expression('NOW()');
-            if($model->save()){
-                Yii::$app->session->addFlash('success', "Data Saved");
-                return $this->redirect(['index']);
-            }
-            
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
@@ -84,7 +76,7 @@ class CompetencyCategoryController extends Controller
     }
 
     /**
-     * Updates an existing CompetencyCategory model.
+     * Updates an existing Program model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -94,12 +86,8 @@ class CompetencyCategoryController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post())) {
-            $model->updated_at = new Expression('NOW()');
-            if($model->save()){
-                Yii::$app->session->addFlash('success', "Data Updated");
-                return $this->redirect(['index']);
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
@@ -108,7 +96,7 @@ class CompetencyCategoryController extends Controller
     }
 
     /**
-     * Deletes an existing CompetencyCategory model.
+     * Deletes an existing Program model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -122,15 +110,15 @@ class CompetencyCategoryController extends Controller
     }
 
     /**
-     * Finds the CompetencyCategory model based on its primary key value.
+     * Finds the Program model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return CompetencyCategory the loaded model
+     * @return Program the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = CompetencyCategory::findOne($id)) !== null) {
+        if (($model = Program::findOne($id)) !== null) {
             return $model;
         }
 

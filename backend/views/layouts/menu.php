@@ -55,7 +55,12 @@ use common\widgets\Menu_crypto;
 
         ['label' => \Yii::t('app', 'Agency'), 'level' => 1, 'url' => ['/agency/index'], 'icon' => $dirAssests.'/img/menu-icon/10.svg', 'children' => []],
 
-        ['label' => \Yii::t('app', 'Program'), 'level' => 1, 'url' => ['/agency/index'], 'icon' => $dirAssests.'/img/menu-icon/10.svg', 'children' => []],
+        // ['label' => \Yii::t('app', 'Program'), 'level' => 1, 'url' => ['/agency/index'], 'icon' => $dirAssests.'/img/menu-icon/10.svg', 'children' => []],
+
+        ['label' => \Yii::t('app', 'Program'), 'level' => 2 , 'icon' => $dirAssests.'/img/menu-icon/10.svg', 'children' => [
+            ['label' => 'List Of Program', 'url' => ['/program/index'], 'icon' => 'fa fa-circle'],
+            ['label' => 'Categories', 'url' => ['/program-category/index'], 'icon' => 'fa fa-circle'],
+        ]],
 
         // ['label' => \Yii::t('app', 'Module Program'), 'level' => 2 , 'icon' => $dirAssests.'/img/menu-icon/10.svg', 'children' => [
         //      ['label' => 'Module Category', 'url' => ['/module-kategori/index'], 'icon' => 'fa fa-circle'],
