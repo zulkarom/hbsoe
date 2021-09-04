@@ -71,6 +71,9 @@ class SocialImpactController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             $model->entrepreneur_id = Yii::$app->user->identity->entrepreneur->id;
+            if($model->category_id != 1){
+                $model->other = "";
+            }
             if($model->save()){
                 Yii::$app->session->addFlash('success', "Data Updated");
 
@@ -95,8 +98,15 @@ class SocialImpactController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+           if($model->category_id != 1){
+                $model->other = "";
+            }
+            if($model->save()){
+                Yii::$app->session->addFlash('success', "Data Updated");
+
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('update', [

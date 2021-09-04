@@ -1,18 +1,18 @@
 <?php
 
-namespace frontend\modules\entrepreneur\controllers;
+namespace backend\controllers;
 
 use Yii;
-use backend\models\Economic;
-use frontend\modules\entrepreneur\models\EconomicSearch;
+use backend\models\EconomicCategory;
+use backend\models\EconomicCategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
-
+use yii\db\Expression;
 /**
- * EconomicController implements the CRUD actions for Economic model.
+ * EconomicCategoryController implements the CRUD actions for EconomicCategory model.
  */
-class EconomicController extends Controller
+class EconomicCategoryController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -33,12 +33,12 @@ class EconomicController extends Controller
     }
 
     /**
-     * Lists all Economic models.
+     * Lists all EconomicCategory models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new EconomicSearch();
+        $searchModel = new EconomicCategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -48,7 +48,7 @@ class EconomicController extends Controller
     }
 
     /**
-     * Displays a single Economic model.
+     * Displays a single EconomicCategory model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -61,23 +61,19 @@ class EconomicController extends Controller
     }
 
     /**
-     * Creates a new Economic model.
+     * Creates a new EconomicCategory model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Economic();
+        $model = new EconomicCategory();
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->entrepreneur_id = Yii::$app->user->identity->entrepreneur->id;
-            if($model->category_id != 1){
-                $model->other = "";
-            }
+            $model->created_at = new Expression('NOW()');
             if($model->save()){
-                Yii::$app->session->addFlash('success', "Data Updated");
-
-                return $this->redirect(['view', 'id' => $model->id]);
+                Yii::$app->session->addFlash('success', "Data Saved");
+                return $this->redirect(['index']);
             }
             
         }
@@ -88,7 +84,7 @@ class EconomicController extends Controller
     }
 
     /**
-     * Updates an existing Economic model.
+     * Updates an existing EconomicCategory model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -99,13 +95,10 @@ class EconomicController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
-           if($model->category_id != 1){
-                $model->other = "";
-            }
+            $model->updated_at = new Expression('NOW()');
             if($model->save()){
                 Yii::$app->session->addFlash('success', "Data Updated");
-
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index']);
             }
         }
 
@@ -115,7 +108,7 @@ class EconomicController extends Controller
     }
 
     /**
-     * Deletes an existing Economic model.
+     * Deletes an existing EconomicCategory model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -129,15 +122,15 @@ class EconomicController extends Controller
     }
 
     /**
-     * Finds the Economic model based on its primary key value.
+     * Finds the EconomicCategory model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Economic the loaded model
+     * @return EconomicCategory the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Economic::findOne($id)) !== null) {
+        if (($model = EconomicCategory::findOne($id)) !== null) {
             return $model;
         }
 

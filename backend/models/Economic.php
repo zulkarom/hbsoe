@@ -31,7 +31,7 @@ class Economic extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['entrepreneur_id', 'category_id', 'other'], 'required'],
+            [['entrepreneur_id', 'category_id'], 'required'],
             [['entrepreneur_id', 'category_id'], 'integer'],
             [['description'], 'string', 'max' => 255],
             [['other'], 'string', 'max' => 225],

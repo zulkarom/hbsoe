@@ -30,7 +30,7 @@ class EconomicCategory extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_name', 'created_at', 'update_at'], 'required'],
+            [['category_name'], 'required'],
             [['created_at', 'update_at'], 'safe'],
             [['category_name'], 'string', 'max' => 225],
         ];

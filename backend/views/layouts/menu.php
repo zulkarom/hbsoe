@@ -39,9 +39,20 @@ use common\widgets\Menu_crypto;
             ['label' => 'Categories', 'url' => ['/competency-category/index'], 'icon' => 'fa fa-circle'],
         ]],
         
-        ['label' => \Yii::t('app', 'Social Impact'), 'level' => 1, 'url' => ['/social-impact/index'], 'icon' => $dirAssests.'/img/menu-icon/14.svg', 'children' => []],
+        // ['label' => \Yii::t('app', 'Social Impact'), 'level' => 1, 'url' => ['/social-impact/index'], 'icon' => $dirAssests.'/img/menu-icon/14.svg', 'children' => []],
+
+        ['label' => \Yii::t('app', 'Social Impact'), 'level' => 2 , 'icon' => $dirAssests.'/img/menu-icon/14.svg', 'children' => [
+            ['label' => 'Beneficiaries', 'url' => ['/social-impact/index'], 'icon' => 'fa fa-circle'],
+            ['label' => 'Categories', 'url' => ['/social-impact-category/index'], 'icon' => 'fa fa-circle'],
+        ]],
         
-        ['label' => \Yii::t('app', 'Economics'), 'level' => 1, 'url' => ['/economic/index'], 'icon' => $dirAssests.'/img/menu-icon/2.svg', 'children' => []],
+        // ['label' => \Yii::t('app', 'Economics'), 'level' => 1, 'url' => ['/economic/index'], 'icon' => $dirAssests.'/img/menu-icon/2.svg', 'children' => []],
+
+        ['label' => \Yii::t('app', 'Economics'), 'level' => 2 , 'icon' => $dirAssests.'/img/menu-icon/2.svg', 'children' => [
+            ['label' => 'Beneficiaries', 'url' => ['/economic/index'], 'icon' => 'fa fa-circle'],
+            ['label' => 'Categories', 'url' => ['/economic-category/index'], 'icon' => 'fa fa-circle'],
+        ]],
+
         ['label' => \Yii::t('app', 'Agency'), 'level' => 1, 'url' => ['/agency/index'], 'icon' => $dirAssests.'/img/menu-icon/10.svg', 'children' => []],
 
         ['label' => \Yii::t('app', 'Program'), 'level' => 1, 'url' => ['/agency/index'], 'icon' => $dirAssests.'/img/menu-icon/10.svg', 'children' => []],
