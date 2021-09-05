@@ -1,13 +1,13 @@
 <?php
 
-namespace backend\controllers;
+namespace frontend\modules\entrepreneur\controllers;
 
 use Yii;
 use backend\models\Program;
-use backend\models\ProgramSearch;
+use frontend\modules\entrepreneur\models\ProgramSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 use yii\db\Expression;
 /**
  * ProgramController implements the CRUD actions for Program model.
@@ -20,10 +20,13 @@ class ProgramController extends Controller
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
                 ],
             ],
         ];
@@ -66,8 +69,21 @@ class ProgramController extends Controller
     {
         $model = new Program();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->entrepreneur_id = Yii::$app->user->identity->entrepreneur->id;
+            if($model->prog_category != 1){
+                $model->prog_other = "";
+            }
+            if($model->prog_anjuran != 2){
+                $model->anjuran_other = "";
+            }
+            $model->created_at = new Expression('NOW()');
+            if($model->save()){
+                Yii::$app->session->addFlash('success', "Data Saved");
+
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+            
         }
 
         return $this->render('create', [
@@ -86,8 +102,23 @@ class ProgramController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if($model->prog_category != 1){
+                $model->prog_other = "";
+            }
+            if($model->prog_anjuran != 2){
+                $model->anjuran_other = "";
+            }
+            $model->updated_at = new Expression('NOW()');
+            if($model->save()){
+                Yii::$app->session->addFlash('success', "Data Updated");
+
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+            else{
+                $model->flashError();
+            }
+            
         }
 
         return $this->render('update', [

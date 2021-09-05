@@ -61,4 +61,9 @@ class SocialImpact extends \yii\db\ActiveRecord
     public function getEntrepreneurName(){
         return $this->entrepreneur->user->fullname;
     }
+
+    public static function countSocialImpact(){
+        return self::find()
+        ->count();
+    }
 }

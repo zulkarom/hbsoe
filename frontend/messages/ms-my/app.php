@@ -71,6 +71,12 @@ return [
     'My Client' => 'Client Saya',
     'Agency Name' => 'Nama Agensi',
     'Date Accept' => 'Tarikh Terima',
+    'Program Name' => 'Nama Program',
     'Category' => 'Kategori',
+    'Other Category' => 'Kategori Lain',
+    'Program Date' => 'Tarikh Program',
+    'Organize' => 'Anjuran',
+    'Other Organize' => 'Anjuran Lain',
+    'Please State' => 'Sila Nyatakan',
 
 ];

@@ -69,4 +69,9 @@ class Economic extends \yii\db\ActiveRecord
     {
         return $this->hasOne(EconomicCategory::className(), ['id' => 'category_id']);
     }
+
+    public static function countEconomic(){
+        return self::find()
+        ->count();
+    }
 }

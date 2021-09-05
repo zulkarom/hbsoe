@@ -150,4 +150,8 @@ class Common {
 	public static function statusModule(){
 	    return [10 => 'Submit', 20 => 'Paid', 30 => 'Complete', 40 => 'Reject'];
 	}
+
+	public static function anjuran(){
+        return [1 => 'UMK', 2 => 'Bukan UMK'];
+    }
 }

@@ -57,4 +57,9 @@ class Agency extends \yii\db\ActiveRecord
     public function getEntrepreneurName(){
         return $this->entrepreneur->user->fullname;
     }
+
+    public static function countAgency(){
+        return self::find()
+        ->count();
+    }
 }

@@ -2,7 +2,10 @@
 
 use yii\helpers\Html;
 use kartik\widgets\ActiveForm;
-
+use kartik\date\DatePicker;
+use common\models\Common;
+use yii\helpers\ArrayHelper;
+use backend\models\ProgramCategory;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Program */
 /* @var $form yii\widgets\ActiveForm */
@@ -16,6 +19,22 @@ use kartik\widgets\ActiveForm;
     <div class="row">
         <div class="col-8">
             <?= $form->field($model, 'prog_name')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
+
+    <?php
+    if($model->prog_category == 1){
+            $show = '';
+        }else{
+            $show = 'style="display:none"';
+        }
+    ?> 
+
+    <div class="row">
+        <div class="col-6">
+            <?= $form->field($model, 'prog_category')->dropDownList(
+            ArrayHelper::map(ProgramCategory::find()->orderBy("id DESC")->all(),'id', 'category_name'), ['class'=>'form-control category', 'prompt' => 'Select' ]
+        )?>
         </div>
         <div class="col-2">
             <?=$form->field($model, 'prog_date')->widget(DatePicker::classname(), [
@@ -32,38 +51,20 @@ use kartik\widgets\ActiveForm;
             ?>
         </div>
     </div>
-    <?php
-    if($model->prog_category == 1){
-            $show = '';
-        }else{
-            $show = 'style="display:none"';
-        }
-    ?> 
+
     <div class="row">
-        <div class="col-5">
-            <?= $form->field($model, 'prog_category')->textInput() ?>
-        </div>
-        <div class="col-5">
+        <div class="col-8">
             <div id="group-medium" <?=$show?>>
                 <?= $form->field($model, 'prog_other')->textInput(['maxlength' => true])->label(\Yii::t('app', 'Please State'))?>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-10">
+        <div class="col-8">
             <?= $form->field($model, 'prog_description')->textarea(['rows' => 2]) ?>
         </div>
     </div>
-    <div class="row">
-        <div class="col-5">
-            <?= $form->field($model, 'prog_category')->textInput() ?>
-        </div>
-        <div class="col-5">
-            <div id="group-medium" <?=$show?>>
-                <?= $form->field($model, 'prog_other')->textInput(['maxlength' => true])->label(\Yii::t('app', 'Please State'))?>
-            </div>
-        </div>
-    </div>
+
     <?php
     if($model->prog_anjuran == 2){
             $show = '';
@@ -72,12 +73,16 @@ use kartik\widgets\ActiveForm;
         }
     ?> 
     <div class="row">
-        <div class="col-5">
-            <?= $form->field($model, 'prog_anjuran')->textInput() ?>
+        <div class="col-8">
+            <?= $form->field($model, 'prog_anjuran')->dropDownList(
+                    Common::anjuran(), ['prompt' => 'Pilih Anjuran',  'class' => 'form-control anjuran']) ?>
         </div>
-        <div class="col-5">
+    </div>
+
+    <div class="row">
+        <div class="col-8">
             <div id="group-medium2" <?=$show?>>
-                <?= $form->field($model, 'anjuran_other')->textInput(['maxlength' => true])->label(\Yii::t('app', 'Please State'))?>
+                <?= $form->field($model, 'anjuran_other')->textInput()->label(\Yii::t('app', 'Please State')) ?>
             </div>
         </div>
     </div>
@@ -105,7 +110,7 @@ $(".category").change(function(){
 
 $(".anjuran").change(function(){
     var val = $(this).val();
-    if(val == 1){
+    if(val == 2){
         $("#group-medium2").slideDown();
     }else{
         $("#group-medium2").slideUp();

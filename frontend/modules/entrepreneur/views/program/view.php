@@ -6,15 +6,13 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Program */
 
-$this->title = $model->id;
+$this->title = $model->prog_name;
 $this->params['breadcrumbs'][] = ['label' => 'Programs', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
+
 ?>
 <div class="program-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
@@ -26,18 +24,33 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
+    <br/>
+
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'prog_name',
-            'prog_category',
+            [
+             'label' => \Yii::t('app', 'Category'),
+             'value' => function($model){
+                return $model->progCategory->category_name;
+             }
+            ],
             'prog_other',
-            'prog_date',
+            [
+             'label' => \Yii::t('app', 'Program Date'),
+             'value' => function($model){
+                return date('d M Y', strtotime($model->prog_date));
+             }
+            ],
             'prog_description:ntext',
-            'prog_anjuran',
-            'created_at',
-            'updated_at',
+            [
+             'label' => \Yii::t('app', 'Organize'),
+             'value' => function($model){
+                return $model->anjuranText;
+             }
+            ],
+            'anjuran_other',
         ],
     ]) ?>
 

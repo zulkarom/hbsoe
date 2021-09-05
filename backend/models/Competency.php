@@ -61,4 +61,9 @@ class Competency extends \yii\db\ActiveRecord
     {
         return $this->hasOne(CompetencyCategory::className(), ['id' => 'category_id']);
     }
+
+    public static function countCompetency(){
+        return self::find()
+        ->count();
+    }
 }

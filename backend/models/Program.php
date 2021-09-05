@@ -3,7 +3,7 @@
 namespace backend\models;
 
 use Yii;
-
+use common\models\Common;
 /**
  * This is the model class for table "program".
  *
@@ -35,12 +35,13 @@ class Program extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['prog_name', 'prog_category', 'prog_date', 'prog_description', 'prog_anjuran'], 'required'],
+            [['entrepreneur_id', 'prog_name', 'prog_category', 'prog_date', 'prog_description', 'prog_anjuran'], 'required'],
             [['prog_category', 'prog_anjuran'], 'integer'],
             [['prog_date', 'created_at', 'updated_at'], 'safe'],
             [['prog_description'], 'string'],
             [['prog_name', 'prog_other', 'anjuran_other'], 'string', 'max' => 225],
             [['prog_category'], 'exist', 'skipOnError' => true, 'targetClass' => ProgramCategory::className(), 'targetAttribute' => ['prog_category' => 'id']],
+            [['entrepreneur_id'], 'exist', 'skipOnError' => true, 'targetClass' => Entrepreneur::className(), 'targetAttribute' => ['entrepreneur_id' => 'id']],
         ];
     }
 
@@ -51,13 +52,14 @@ class Program extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'prog_name' => 'Program Name',
-            'prog_category' => 'Program Category',
-            'prog_other' => 'Program Other',
-            'prog_date' => 'Program Date',
-            'prog_description' => 'Program Description',
-            'prog_anjuran' => 'Program Anjuran',
-            'anjuran_other' => 'Anjuran Other',
+            'entrepreneur_id' => \Yii::t('app', 'Beneficiary'),
+            'prog_name' => \Yii::t('app', 'Program Name'),
+            'prog_category' => \Yii::t('app', 'Category'),
+            'prog_other' => \Yii::t('app', 'Other Category'),
+            'prog_date' => \Yii::t('app', 'Program Date'),
+            'prog_description' => \Yii::t('app', 'Description'),
+            'prog_anjuran' => \Yii::t('app', 'Organize'),
+            'anjuran_other' => \Yii::t('app', 'Other Organize'),
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
@@ -72,4 +74,44 @@ class Program extends \yii\db\ActiveRecord
     {
         return $this->hasOne(ProgramCategory::className(), ['id' => 'prog_category']);
     }
+
+    /**
+     * Gets query for [[Entrepreneur]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEntrepreneur()
+    {
+        return $this->hasOne(Entrepreneur::className(), ['id' => 'entrepreneur_id']);
+    }
+
+    public function anjuran(){
+        return Common::anjuran();
+    }
+
+    public function getAnjuranText(){
+        $arr = $this->anjuran();
+        if(array_key_exists($this->prog_anjuran, $this->anjuran())){
+             return $arr[$this->prog_anjuran];
+        } 
+    }
+
+    public static function countProgram(){
+        return self::find()
+        ->count();
+    }
+
+    public function flashError(){
+        if($this->getErrors()){
+            foreach($this->getErrors() as $error){
+                if($error){
+                    foreach($error as $e){
+                        Yii::$app->session->addFlash('error', $e);
+                    }
+                }
+            }
+        }
+        
+    }
+
 }

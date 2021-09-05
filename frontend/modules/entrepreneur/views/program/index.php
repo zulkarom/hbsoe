@@ -25,13 +25,16 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'prog_name',
-            'prog_anjuran',
+            [
+             'label' => 'Program Anjuran',
+             'value' => function($model){
+                return $model->anjuranText;
+             }
+            ],
             [
              'label' => 'Date Program',
              'value' => function($model){
-                if($model->user){
-                    return date('d M Y', $model->prog_date);
-                }
+                return date('d M Y', strtotime($model->prog_date));
              }
             ],
 

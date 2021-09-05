@@ -72,6 +72,11 @@ class Entrepreneur extends \yii\db\ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
+    public static function countEntrepreneur(){
+        return self::find()
+        ->count();
+    }
+
     public function flashError(){
         if($this->getErrors()){
             foreach($this->getErrors() as $error){

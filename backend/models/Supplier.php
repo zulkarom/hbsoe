@@ -80,6 +80,10 @@ class Supplier extends \yii\db\ActiveRecord
          return $this->hasMany(SectorSupplier::className(), ['supplier_id' => 'id']);
     }
 
+    public static function countSupplier(){
+        return self::find()
+        ->count();
+    }
 
     public function flashError(){
         if($this->getErrors()){
