@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 06, 2021 at 05:52 AM
+-- Generation Time: Aug 12, 2021 at 05:38 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -34,7 +34,6 @@ CREATE TABLE `admin_anjur` (
   `date_end` date NOT NULL,
   `capacity` int(11) NOT NULL,
   `location` varchar(225) NOT NULL,
-  `description` text NOT NULL,
   `module_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -42,8 +41,8 @@ CREATE TABLE `admin_anjur` (
 -- Dumping data for table `admin_anjur`
 --
 
-INSERT INTO `admin_anjur` (`id`, `module_siri`, `date_start`, `date_end`, `capacity`, `location`, `description`, `module_id`) VALUES
-(1, 'Example of Module Siri', '2021-08-10', '2021-09-10', 10, 'test  location', '', 20);
+INSERT INTO `admin_anjur` (`id`, `module_siri`, `date_start`, `date_end`, `capacity`, `location`, `module_id`) VALUES
+(1, 'Example of Module Siri', '2021-08-10', '2021-09-10', 10, 'test  location', 20);
 
 -- --------------------------------------------------------
 
@@ -54,8 +53,6 @@ INSERT INTO `admin_anjur` (`id`, `module_siri`, `date_start`, `date_end`, `capac
 CREATE TABLE `agency` (
   `id` int(11) NOT NULL,
   `entrepreneur_id` int(11) NOT NULL,
-  `nama_agensi` varchar(225) NOT NULL,
-  `tarikh_terima` date NOT NULL,
   `description` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -63,9 +60,8 @@ CREATE TABLE `agency` (
 -- Dumping data for table `agency`
 --
 
-INSERT INTO `agency` (`id`, `entrepreneur_id`, `nama_agensi`, `tarikh_terima`, `description`) VALUES
-(1, 1, 'test 123dsfsdf', '2021-09-01', 'test'),
-(2, 1, 'test 123', '2021-11-23', 'safsdfsdfsdf');
+INSERT INTO `agency` (`id`, `entrepreneur_id`, `description`) VALUES
+(1, 1, 'test');
 
 -- --------------------------------------------------------
 
@@ -128,41 +124,15 @@ CREATE TABLE `auth_rule` (
 CREATE TABLE `competency` (
   `id` int(11) NOT NULL,
   `entrepreneur_id` int(11) NOT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `category_id` int(11) NOT NULL,
-  `other` varchar(225) NOT NULL
+  `description` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `competency`
 --
 
-INSERT INTO `competency` (`id`, `entrepreneur_id`, `description`, `category_id`, `other`) VALUES
-(2, 5, 'dfgdfgdfgddfg', 2, ''),
-(3, 5, 'hjghjhgjg', 1, ''),
-(4, 5, 'fghgfh', 1, 'sdfsdfs'),
-(5, 1, 'dfgdf', 1, 'Kelantan');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `competency_category`
---
-
-CREATE TABLE `competency_category` (
-  `id` int(11) NOT NULL,
-  `category_name` varchar(225) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `update_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `competency_category`
---
-
-INSERT INTO `competency_category` (`id`, `category_name`, `created_at`, `update_at`) VALUES
-(1, 'Other', '2021-09-02 12:59:39', '0000-00-00 00:00:00'),
-(2, 'Contoh Competency Category', '2021-09-02 12:59:39', '0000-00-00 00:00:00');
+INSERT INTO `competency` (`id`, `entrepreneur_id`, `description`) VALUES
+(1, 1, 'Programming skills');
 
 -- --------------------------------------------------------
 
@@ -370,37 +340,15 @@ INSERT INTO `daerah` (`id`, `daerah_name`, `negeri`) VALUES
 CREATE TABLE `economic` (
   `id` int(11) NOT NULL,
   `entrepreneur_id` int(11) NOT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `category_id` int(11) NOT NULL,
-  `other` varchar(225) NOT NULL
+  `description` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `economic`
 --
 
-INSERT INTO `economic` (`id`, `entrepreneur_id`, `description`, `category_id`, `other`) VALUES
-(2, 1, '1233', 1, 'test');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `economic_category`
---
-
-CREATE TABLE `economic_category` (
-  `id` int(11) NOT NULL,
-  `category_name` varchar(225) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `update_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `economic_category`
---
-
-INSERT INTO `economic_category` (`id`, `category_name`, `created_at`, `update_at`) VALUES
-(1, 'Other', '2021-09-02 12:59:39', '0000-00-00 00:00:00');
+INSERT INTO `economic` (`id`, `entrepreneur_id`, `description`) VALUES
+(1, 1, 'test 123');
 
 -- --------------------------------------------------------
 
@@ -429,10 +377,7 @@ CREATE TABLE `entrepreneur` (
 --
 
 INSERT INTO `entrepreneur` (`id`, `user_id`, `biz_name`, `phone`, `age`, `address`, `postcode`, `city`, `state`, `location`, `longitude`, `latitude`, `profile_file`) VALUES
-(1, 11, 'Skyhint Design Enterprise sd', '+6013367153120', 28, 'Skyhint Enterprise Tingkat 2', '16020', 1, '1', 'Pasir Gudang, Johor, Malaysia', '103.9029689', '1.470288', '612c9f5d1f854.jpg'),
-(4, 15, NULL, NULL, 0, '', '', 0, '', '', '', '', ''),
-(5, 12, NULL, NULL, 0, '', '', 0, '', '', '', '', ''),
-(22, 31, 'Pisang Cheese', '0176209666', 27, 'Jalan Pasir Hor', '16500', 4, '1', '', '', '', '');
+(1, 11, 'Skyhint Design Enterprise', '+60133671531', 26, 'Skyhint Enterprise Tingkat 1', '16020', 1, '1', 'Pasir Gudang, Johor, Malaysia', '103.9029689', '1.470288', '610b6e991cd7b.jpg');
 
 -- --------------------------------------------------------
 
@@ -474,7 +419,6 @@ CREATE TABLE `migration` (
 CREATE TABLE `module` (
   `id` int(11) NOT NULL,
   `module_name` varchar(225) NOT NULL,
-  `description` text NOT NULL,
   `kategori_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -482,9 +426,9 @@ CREATE TABLE `module` (
 -- Dumping data for table `module`
 --
 
-INSERT INTO `module` (`id`, `module_name`, `description`, `kategori_id`) VALUES
-(20, 'Module 1', '', 2),
-(21, 'Module 2', '', 2);
+INSERT INTO `module` (`id`, `module_name`, `kategori_id`) VALUES
+(20, 'Module 1', 2),
+(21, 'Module 2', 2);
 
 -- --------------------------------------------------------
 
@@ -495,7 +439,6 @@ INSERT INTO `module` (`id`, `module_name`, `description`, `kategori_id`) VALUES
 CREATE TABLE `module_kategori` (
   `id` int(11) NOT NULL,
   `kategori_name` varchar(250) NOT NULL,
-  `description` text NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -504,8 +447,8 @@ CREATE TABLE `module_kategori` (
 -- Dumping data for table `module_kategori`
 --
 
-INSERT INTO `module_kategori` (`id`, `kategori_name`, `description`, `created_at`, `updated_at`) VALUES
-(2, 'Example of category 1', '', '2021-08-12 13:38:32', '0000-00-00 00:00:00');
+INSERT INTO `module_kategori` (`id`, `kategori_name`, `created_at`, `updated_at`) VALUES
+(2, 'Example of category 1', '2021-08-12 13:38:32', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -530,8 +473,7 @@ CREATE TABLE `module_peserta` (
 --
 
 INSERT INTO `module_peserta` (`id`, `user_id`, `anjur_id`, `status`, `submitted_at`, `paid_at`, `is_paid`, `payment_method`, `user_type`) VALUES
-(18, 11, 1, 10, '2021-08-12 18:12:58', '0000-00-00 00:00:00', 0, 0, 1),
-(19, 15, 1, 10, '2021-08-30 00:38:20', '0000-00-00 00:00:00', 0, 0, 1);
+(18, 11, 1, 10, '2021-08-12 18:12:58', '0000-00-00 00:00:00', 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -588,57 +530,7 @@ CREATE TABLE `profile` (
 
 INSERT INTO `profile` (`user_id`, `name`, `public_email`, `gravatar_email`, `gravatar_id`, `location`, `website`, `bio`, `timezone`) VALUES
 (11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(12, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(14, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(15, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `program`
---
-
-CREATE TABLE `program` (
-  `id` int(11) NOT NULL,
-  `entrepreneur_id` int(11) NOT NULL,
-  `prog_name` varchar(225) NOT NULL,
-  `prog_category` int(11) NOT NULL,
-  `prog_other` varchar(225) NOT NULL,
-  `prog_date` date NOT NULL,
-  `prog_description` text NOT NULL,
-  `prog_anjuran` tinyint(1) NOT NULL,
-  `anjuran_other` varchar(225) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `program`
---
-
-INSERT INTO `program` (`id`, `entrepreneur_id`, `prog_name`, `prog_category`, `prog_other`, `prog_date`, `prog_description`, `prog_anjuran`, `anjuran_other`, `created_at`, `updated_at`) VALUES
-(2, 1, 'Contoh Program 1', 1, 'test', '2021-10-05', '12s4d4', 2, 'Uitm', '2021-09-05 10:59:44', '2021-09-05 11:06:53');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `program_category`
---
-
-CREATE TABLE `program_category` (
-  `id` int(11) NOT NULL,
-  `category_name` varchar(225) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `program_category`
---
-
-INSERT INTO `program_category` (`id`, `category_name`, `created_at`, `updated_at`) VALUES
-(1, 'Other', '2021-09-02 12:59:39', '2021-09-02 12:59:39'),
-(2, 'Program Category 1', '2021-09-04 17:40:43', '0000-00-00 00:00:00');
+(12, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -711,8 +603,7 @@ CREATE TABLE `sector_supplier` (
 
 INSERT INTO `sector_supplier` (`id`, `supplier_id`, `description`, `sector_id`) VALUES
 (1, 1, 'Penyediaan talian internet', 2),
-(2, 1, 'Menyediakan cctv', 3),
-(3, 3, 'Keterangan', 3);
+(2, 1, 'Menyediakan cctv', 3);
 
 -- --------------------------------------------------------
 
@@ -723,31 +614,15 @@ INSERT INTO `sector_supplier` (`id`, `supplier_id`, `description`, `sector_id`) 
 CREATE TABLE `social_impact` (
   `id` int(11) NOT NULL,
   `entrepreneur_id` int(11) NOT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `category_id` int(11) NOT NULL,
-  `other` varchar(225) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `social_impact_category`
---
-
-CREATE TABLE `social_impact_category` (
-  `id` int(11) NOT NULL,
-  `category_name` varchar(225) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `update_at` datetime NOT NULL
+  `description` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `social_impact_category`
+-- Dumping data for table `social_impact`
 --
 
-INSERT INTO `social_impact_category` (`id`, `category_name`, `created_at`, `update_at`) VALUES
-(1, 'Other', '2021-09-02 12:59:39', '0000-00-00 00:00:00'),
-(5, 'Social Impact Category Example', '2021-09-04 16:58:06', '0000-00-00 00:00:00');
+INSERT INTO `social_impact` (`id`, `entrepreneur_id`, `description`) VALUES
+(1, 1, 'test 123');
 
 -- --------------------------------------------------------
 
@@ -776,10 +651,7 @@ CREATE TABLE `supplier` (
 --
 
 INSERT INTO `supplier` (`id`, `user_id`, `biz_name`, `phone`, `age`, `address`, `postcode`, `city`, `state`, `location`, `longitude`, `latitude`, `profile_file`) VALUES
-(1, 12, 'Skyhint Design Enterprise', '+60133671531', 22, 'Skyhint Enterprise Tingakat Satu', 16020, 1, '1', 'UMK Kampus Kota, Taman Bendahara, Pengkalan Chepa, Kelantan, Malaysia', '102.2846742', '6.1640081', '6103c9dd22939.jpg'),
-(3, 14, 'Fiqram Cooperation Sdn Bhd', '0179652885', 0, 'No 123 Jalan Meranti Chabang Empat', 16210, 10, '1', 'Edusage Network, Kota Bharu, Kelantan, Malaysia', '102.2764503', '6.1561491', ''),
-(5, 11, NULL, NULL, 0, '', 0, 0, '', '', '', '', ''),
-(7, 32, 'Hakimi Enterprise', '0176209663', 27, 'No 123 Jalan Meranti', 16510, 4, '1', '', '', '', '612cffdf7db21.jpg');
+(1, 12, 'Skyhint Design Enterprise', '+60133671531', 22, 'Skyhint Enterprise Tingakat Satu', 16020, 1, '1', 'UMK Kampus Kota, Taman Bendahara, Pengkalan Chepa, Kelantan, Malaysia', '102.2846742', '6.1640081', '6103c9dd22939.jpg');
 
 -- --------------------------------------------------------
 
@@ -800,9 +672,7 @@ CREATE TABLE `token` (
 
 INSERT INTO `token` (`user_id`, `code`, `created_at`, `type`) VALUES
 (11, 'TvPZDhzQFtU4otZ08vF6avHivHUkLktX', 1624895055, 1),
-(12, 'HfqIMXYN6AZJqc_u7Sqz8scqbgtVw54f', 1625004492, 0),
-(14, '55WYcMQOb3I8Asx85fIimpblW58dXgA1', 1628994790, 0),
-(15, '44NRv_YFsd-19aryA6rLHuZ-Hy1WAcQ0', 1629212638, 0);
+(12, 'HfqIMXYN6AZJqc_u7Sqz8scqbgtVw54f', 1625004492, 0);
 
 -- --------------------------------------------------------
 
@@ -836,12 +706,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `username`, `fullname`, `email`, `role`, `password_hash`, `auth_key`, `confirmed_at`, `unconfirmed_email`, `blocked_at`, `registration_ip`, `created_at`, `updated_at`, `flags`, `last_login_at`, `status`, `password_reset_token`) VALUES
 (10, 'superadmin', 'Super Administrator', '', 0, '$2y$10$G2CqfuUqiTshvYmzFbh/seDgLVXbHRvUrb8fu.8UxCHgyaF9vd3pG', '', 1624467684, NULL, NULL, NULL, 1624467474, 1624467474, 0, NULL, 10, ''),
-(11, 'iqramrafien21@gmail.com', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 2, '$2y$10$u9uqOZjMUbcQleTF0vzOfOIzmfo54rcsMoX0r6WI/WSToQP9EJWqq', 'wAkoWzyn9YtDTWT8M-qTrrHBkpbu88lT', 1624893933, NULL, NULL, '::1', 1624893783, 1630548394, 0, 1630809262, 10, ''),
-(12, 'iqramrafien@gmail.com', 'Fakhrul Iqram', 'iqramrafien@gmail.com', 1, '$2y$10$WBb4.a5zRbEwE/hNuZ9vpu2mynXI3RcFXYx7r0QXDjLDQT7X5t5Uu', 'pd_NFm4flNQHaH1RGF3Mkm0GTYixwdlL', NULL, NULL, NULL, '::1', 1625004492, 1630289017, 0, 1630559017, 10, ''),
-(14, 'iqramrafien29@gmail.com', 'Mohd Iqram Bin Rafien', 'iqramrafien29@gmail.com', 2, '$2y$10$ADzOuZMppP4y27urKX4tTuJDUsPiiPuUVsw.FMa6kYKQbMbhKX.zu', 'p_vqsR1PQ0xVmZeIXmvoXiGr4D-qlSa3', NULL, NULL, NULL, '::1', 1628994790, 1628994790, 0, 1628994799, 10, ''),
-(15, 'iqramrafien23@gmail.com', 'Iqram Bin Rafien', 'iqramrafien23@gmail.com', 1, '$2y$10$HedhKjVLmqTKfI3HpPVZd.6Ny9N/hR70QO7OqsJhm87vU/TTZpZcC', 'B_MKhFbwTv3VZ9zIMNItEFsg8i_op0_7', NULL, NULL, NULL, '::1', 1629212638, 1629212638, 0, 1630254850, 10, ''),
-(31, 'syafiq@gmail.com', 'Syafiq Bin Mohamad', 'syafiq@gmail.com', 1, '$2y$13$PzW3mZcjg0St9Q.jBW1hy.ELoISuJHz/fvQ.3O5K6AZxmYM.PDrJG', '', NULL, NULL, NULL, NULL, 1630338768, 1630338768, 0, NULL, 10, ''),
-(32, 'hakimi@gmail.com', 'Hakimi Bin Ab Rahim', 'hakimi@gmail.com', 2, '$2y$13$uEvCM6AHo77HQlgFZdHmmujImlDX5jCKr70/pfj8mqUBKzi8zjpi6', '', NULL, NULL, NULL, NULL, 1630338953, 1630338953, 0, 1630339027, 10, '');
+(11, 'iqramrafien21@gmail.com', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 1, '$2y$10$u9uqOZjMUbcQleTF0vzOfOIzmfo54rcsMoX0r6WI/WSToQP9EJWqq', 'wAkoWzyn9YtDTWT8M-qTrrHBkpbu88lT', 1624893933, NULL, NULL, '::1', 1624893783, 1624893783, 0, 1628776778, 10, ''),
+(12, 'iqramrafien@gmail.com', 'Fakhrul Iqram', 'iqramrafien@gmail.com', 2, '$2y$10$WBb4.a5zRbEwE/hNuZ9vpu2mynXI3RcFXYx7r0QXDjLDQT7X5t5Uu', 'pd_NFm4flNQHaH1RGF3Mkm0GTYixwdlL', NULL, NULL, NULL, '::1', 1625004492, 1625004492, 0, 1628776816, 10, '');
 
 --
 -- Indexes for dumped tables
@@ -891,13 +757,6 @@ ALTER TABLE `auth_rule`
 -- Indexes for table `competency`
 --
 ALTER TABLE `competency`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `competency_ibfk_1` (`category_id`);
-
---
--- Indexes for table `competency_category`
---
-ALTER TABLE `competency_category`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -910,13 +769,6 @@ ALTER TABLE `daerah`
 -- Indexes for table `economic`
 --
 ALTER TABLE `economic`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `economic_ibfk_1` (`category_id`);
-
---
--- Indexes for table `economic_category`
---
-ALTER TABLE `economic_category`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -968,20 +820,6 @@ ALTER TABLE `profile`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- Indexes for table `program`
---
-ALTER TABLE `program`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `program_ibfk_1` (`prog_category`),
-  ADD KEY `program_ibfk_2` (`entrepreneur_id`);
-
---
--- Indexes for table `program_category`
---
-ALTER TABLE `program_category`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `sector`
 --
 ALTER TABLE `sector`
@@ -1007,13 +845,6 @@ ALTER TABLE `sector_supplier`
 -- Indexes for table `social_impact`
 --
 ALTER TABLE `social_impact`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `social_impact_ibfk_1` (`category_id`);
-
---
--- Indexes for table `social_impact_category`
---
-ALTER TABLE `social_impact_category`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1050,19 +881,13 @@ ALTER TABLE `admin_anjur`
 -- AUTO_INCREMENT for table `agency`
 --
 ALTER TABLE `agency`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `competency`
 --
 ALTER TABLE `competency`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `competency_category`
---
-ALTER TABLE `competency_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `daerah`
@@ -1074,19 +899,13 @@ ALTER TABLE `daerah`
 -- AUTO_INCREMENT for table `economic`
 --
 ALTER TABLE `economic`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `economic_category`
---
-ALTER TABLE `economic_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `entrepreneur`
 --
 ALTER TABLE `entrepreneur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `entre_supplier`
@@ -1110,25 +929,13 @@ ALTER TABLE `module_kategori`
 -- AUTO_INCREMENT for table `module_peserta`
 --
 ALTER TABLE `module_peserta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `negeri`
 --
 ALTER TABLE `negeri`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- AUTO_INCREMENT for table `program`
---
-ALTER TABLE `program`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `program_category`
---
-ALTER TABLE `program_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `sector`
@@ -1146,31 +953,25 @@ ALTER TABLE `sector_entrepreneur`
 -- AUTO_INCREMENT for table `sector_supplier`
 --
 ALTER TABLE `sector_supplier`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `social_impact`
 --
 ALTER TABLE `social_impact`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `social_impact_category`
---
-ALTER TABLE `social_impact_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
@@ -1196,29 +997,10 @@ ALTER TABLE `auth_item_child`
   ADD CONSTRAINT `auth_item_child_ibfk_2` FOREIGN KEY (`child`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `competency`
---
-ALTER TABLE `competency`
-  ADD CONSTRAINT `competency_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `competency_category` (`id`);
-
---
--- Constraints for table `economic`
---
-ALTER TABLE `economic`
-  ADD CONSTRAINT `economic_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `economic_category` (`id`);
-
---
 -- Constraints for table `profile`
 --
 ALTER TABLE `profile`
   ADD CONSTRAINT `fk_user_profile` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `program`
---
-ALTER TABLE `program`
-  ADD CONSTRAINT `program_ibfk_1` FOREIGN KEY (`prog_category`) REFERENCES `program_category` (`id`),
-  ADD CONSTRAINT `program_ibfk_2` FOREIGN KEY (`entrepreneur_id`) REFERENCES `entrepreneur` (`id`);
 
 --
 -- Constraints for table `sector_entrepreneur`
@@ -1233,12 +1015,6 @@ ALTER TABLE `sector_entrepreneur`
 ALTER TABLE `sector_supplier`
   ADD CONSTRAINT `sector_supplier_ibfk_1` FOREIGN KEY (`sector_id`) REFERENCES `sector` (`id`),
   ADD CONSTRAINT `sector_supplier_ibfk_2` FOREIGN KEY (`supplier_id`) REFERENCES `sector_supplier` (`id`);
-
---
--- Constraints for table `social_impact`
---
-ALTER TABLE `social_impact`
-  ADD CONSTRAINT `social_impact_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `social_impact_category` (`id`);
 
 --
 -- Constraints for table `token`
