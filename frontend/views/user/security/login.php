@@ -39,7 +39,9 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/loginAss
                     </span>
 
                     <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
-                    <?= $form->field($model, 'role', ['template' => '
+                    <?php 
+                    $model->role = 1;
+                    echo $form->field($model, 'role', ['template' => '
                            <div class="wrap-input100">
                                 <span class="focus-input100"></span>
                                 <span class="symbol-input100">
