@@ -1,0 +1,26 @@
+kategories - Bagi setiap
+
+Entrepreprenurs --> Beneficiaries - Penerima Manfaat
+
+Agensi - terima dana dari agensi mana - Tarikh terima
+
+Program - Anjuran (UMK - Bukan UMK) - tarikh
+
+
+HUBSOE: PAGE ENTREPRENEUR
+=========================
+
+1) Label Entrepreneur tukar kepada Beneficiary / Penerima Manfaat (table & model xperlu ubah)
+
+2) Competency / Social Impact / Economics 
+  - selain description, perlu buat categories 
+  - admin boleh add category
+  - option utk Others klu takde dlm list categories
+
+3) Agensi - tambah field Nama agensi & Tarikh terima
+  
+4) Module Program kena buat yg baru - hide dulu yg sedia ada - menu tukar kepada Program shj - isi sama mcm lain2
+  - Fields: Nama Program - Category (admin boleh add) - Tarikh Program -  Description - Anjuran : dropdownlist (UMK & Bukan UMK) - klu bukan Nyatakan
+  
+5) Dashboard - show statistik 
+  => number of beneficiaries - Suppliers - Competency - Social Impact - Economics - Agency - Program
