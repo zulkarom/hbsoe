@@ -32,6 +32,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'entrepreneurName',
+            [
+             'label' => \Yii::t('app', 'Competency'),
+             'value' => function($model){
+                return $model->category->category_name;
+             }
+            ],
             'description',
         ],
     ]) ?>

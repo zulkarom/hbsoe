@@ -5,7 +5,7 @@ namespace frontend\modules\entrepreneur\models;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\models\Economic;
-
+use Yii;
 /**
  * EconomicSearch represents the model behind the search form of `backend\models\Economic`.
  */
@@ -40,7 +40,7 @@ class EconomicSearch extends Economic
      */
     public function search($params)
     {
-        $query = Economic::find();
+        $query = Economic::find()->where(['entrepreneur_id' => Yii::$app->user->identity->entrepreneur->id]);
 
         // add conditions that should always apply here
 

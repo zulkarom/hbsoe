@@ -44,6 +44,7 @@ class SocialImpact extends \yii\db\ActiveRecord
             'id' => 'ID',
             'entrepreneur_id' => \Yii::t('app', 'Beneficiary'),
             'entrepreneurName' => \Yii::t('app', 'Beneficiary'),
+            'socialImpactName' => \Yii::t('app', 'Social Impact'),
             'description' => \Yii::t('app', 'Description'),
             'category_id' => \Yii::t('app', 'Category'),
         ];
@@ -60,6 +61,10 @@ class SocialImpact extends \yii\db\ActiveRecord
     
     public function getEntrepreneurName(){
         return $this->entrepreneur->user->fullname;
+    }
+
+    public function getSocialImpactName(){
+        return $this->category->category_name;
     }
 
     public static function countSocialImpact(){

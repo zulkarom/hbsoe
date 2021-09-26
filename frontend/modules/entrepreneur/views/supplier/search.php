@@ -9,8 +9,8 @@ use kartik\widgets\ActiveForm;
 /* @var $searchModel backend\models\EntrepreneurSupplierSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Search Suppliers';
-$this->params['breadcrumbs'][] = ['label' => 'Suppliers', 'url' => ['index']];
+$this->title = \Yii::t('app', 'Search Suppliers');
+$this->params['breadcrumbs'][] = ['label' => \Yii::t('app', 'Suppliers'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="entrepreneur-supplier-index">
@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 <div class="form-group">
         
-<?= Html::submitButton('Search Suppliers', ['class' => 'btn btn-primary btn-sm']) ?>
+<?= Html::submitButton(\Yii::t('app', 'Search Suppliers'), ['class' => 'btn btn-primary btn-sm']) ?>
     </div>
 
 <?php ActiveForm::end(); ?>

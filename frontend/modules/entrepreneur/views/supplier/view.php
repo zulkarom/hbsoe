@@ -80,7 +80,8 @@ if($model->sectorSuppliers){
             'height' => '450px',
             'center' => [$model->s_latitude, $model->s_longitude],
             'markers' => [
-                ['position' => [$model->s_latitude, $model->s_longitude]],
+                ['position' => [$model->s_latitude, $model->s_longitude],
+                'content' => '<strong><b>'.$model->biz_name.'</b></strong>'],
             ]
             
         ]);?>
@@ -102,5 +103,5 @@ if($model->sectorSuppliers){
 <br />
 
     <p>
-        <?= Html::a('Add To My Supplier', ['add-supplier', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(\Yii::t('app', 'Add To My Supplier'), ['add-supplier', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
 </p>

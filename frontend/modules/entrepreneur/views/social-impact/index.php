@@ -28,8 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-          //  'id',
-           // 'entrepreneur_id',
+            'socialImpactName',
             'description',
 
             ['class' => 'yii\grid\ActionColumn'],

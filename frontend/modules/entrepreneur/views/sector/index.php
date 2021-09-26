@@ -31,7 +31,29 @@ $this->params['breadcrumbs'][] = $this->title;
             'descriptionx:ntext',
             
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+            //     'contentOptions' => ['style' => 'width: 13%'],
+                'template' => '{view} {delete}',
+                //'visible' => false,
+                'buttons'=>[
+                    'delete'=>function ($url, $model) {
+                    return Html::a('<span class="fa fa-trash"></span> '.\Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+                        'class' => 'btn btn-danger btn-sm',
+                        'data' => [
+                            'confirm' => 'Are you sure you want to remove this item?',
+                            'method' => 'post',
+                        ],
+                    ]);
+                    },
+                    'view'=>function ($url, $model) {
+                        return Html::a('<span class="fa fa-search"></span> '.\Yii::t('app', 'View'), ['view', 'id' => $model->id], [
+                            'class' => 'btn btn-primary btn-sm',
+  
+                        ]);
+                    }
+                ],
+            
+            ],
         ],
     ]); ?>
   </div>

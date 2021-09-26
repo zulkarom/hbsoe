@@ -7,13 +7,13 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\ProgramSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Programs';
+$this->title = \Yii::t('app', 'Programs');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="program-index">
 
     <p>
-        <?= Html::a('Create Program', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(\Yii::t('app', 'Create Program'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <br/>

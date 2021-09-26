@@ -78,5 +78,9 @@ return [
     'Organize' => 'Anjuran',
     'Other Organize' => 'Anjuran Lain',
     'Please State' => 'Sila Nyatakan',
+    'Add To My Supplier' => 'Tambah Pada Pembekal Saya',
+    'Create Program' => 'Program Baru',
+    'Programs' => 'Program',
+    'Update Program' => 'Kemaskini Program',
 
 ];

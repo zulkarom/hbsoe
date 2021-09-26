@@ -26,8 +26,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-          //  'id',
-           // 'entrepreneur_id',
+            [
+             'label' => \Yii::t('app', 'Competency'),
+             'value' => function($model){
+                return $model->category->category_name;
+             }
+            ],
             'description',
 
             ['class' => 'yii\grid\ActionColumn'],
