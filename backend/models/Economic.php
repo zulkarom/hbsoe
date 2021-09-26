@@ -35,7 +35,17 @@ class Economic extends \yii\db\ActiveRecord
             [['entrepreneur_id', 'category_id'], 'integer'],
             [['description'], 'string', 'max' => 255],
             [['other'], 'string', 'max' => 225],
+
+            ['other', 'required', 'when' => function($model){
+                return $model->category_id == '1';},
+                'whenClient' => "function (attribute, value) {
+                return $('#economic-category_id').val() == '1';
+                                 }",
+            ],
+
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => EconomicCategory::className(), 'targetAttribute' => ['category_id' => 'id']],
+
+
         ];
     }
 

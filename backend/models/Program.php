@@ -40,6 +40,14 @@ class Program extends \yii\db\ActiveRecord
             [['prog_date', 'created_at', 'updated_at'], 'safe'],
             [['prog_description'], 'string'],
             [['prog_name', 'prog_other', 'anjuran_other'], 'string', 'max' => 225],
+
+            ['prog_other', 'required', 'when' => function($model){
+                return $model->prog_category == '1';},
+                'whenClient' => "function (attribute, value) {
+                return $('#program-prog_category').val() == '1';
+                                 }",
+            ],
+
             [['prog_category'], 'exist', 'skipOnError' => true, 'targetClass' => ProgramCategory::className(), 'targetAttribute' => ['prog_category' => 'id']],
             [['entrepreneur_id'], 'exist', 'skipOnError' => true, 'targetClass' => Entrepreneur::className(), 'targetAttribute' => ['entrepreneur_id' => 'id']],
         ];
