@@ -72,9 +72,25 @@ class Entrepreneur extends \yii\db\ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
+    public function getCityModel(){
+        return $this->hasOne(Daerah::className(), ['id' => 'city']);
+    }
+
+    public function getStateModel(){
+        return $this->hasOne(Negeri::className(), ['id' => 'state']);
+    }
+
+    public function getSectorEntrepreneurs(){
+         return $this->hasMany(SectorEntrepreneur::className(), ['entrepreneur_id' => 'id']);
+    }
+
     public static function countEntrepreneur(){
         return self::find()
         ->count();
+    }
+
+    public function getFullAddress(){
+        return $this->address.'<br/>'.$this->postcode.', '.$this->cityName->daerah_name.'<br/>'.$this->stateName->negeri_name;
     }
 
     public function flashError(){

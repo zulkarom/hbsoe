@@ -5,6 +5,7 @@ namespace frontend\modules\supplier\controllers;
 use Yii;
 use backend\models\Supplier;
 use backend\models\SupplierProfile;
+use backend\models\Entrepreneur;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -101,6 +102,12 @@ class ProfileController extends Controller
         UploadFile::profileImage(2,$model);
     }
 
+    public function actionEntrepreneurImage($id){
+        $model = $this->findEntrepreneur($id);
+        
+        UploadFile::profileImage(1, $model);
+    }
+
     /**
      * Finds the Supplier model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -120,6 +127,15 @@ class ProfileController extends Controller
     protected function findSupplier($id)
     {
         if (($model = Supplier::findOne(['user_id' => $id])) !== null) {
+            return $model;
+        }
+        
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    protected function findEntrepreneur($id)
+    {
+        if (($model = Entrepreneur::findOne($id)) !== null) {
             return $model;
         }
         

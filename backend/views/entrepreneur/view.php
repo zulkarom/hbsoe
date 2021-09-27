@@ -6,15 +6,12 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Entrepreneur */
 
-$this->title = $model->user->fullname;
+$this->title = 'View Beneficiary';
 $this->params['breadcrumbs'][] = ['label' => 'Beneficiaries', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="white_card card_height_100 mb_30">
-<div class="white_card_header">
-<div class="entrepreneur-view">
-    <p>
+<p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
@@ -25,6 +22,9 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
     <br/>
+<div class="white_card card_height_100 mb_30">
+<div class="white_card_header">
+<div class="entrepreneur-view">
 
     <?= DetailView::widget([
         'model' => $model,

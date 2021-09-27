@@ -2,6 +2,7 @@
 
 namespace frontend\modules\supplier\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\models\EntrepreneurSupplier;
@@ -39,7 +40,7 @@ class EntrepreneurSupplierSearch extends EntrepreneurSupplier
      */
     public function search($params)
     {
-        $query = EntrepreneurSupplier::find();
+        $query = EntrepreneurSupplier::find()->where(['supplier_id' => Yii::$app->user->identity->supplier->id]);
 
         // add conditions that should always apply here
 

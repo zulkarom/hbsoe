@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\SectorSupplier */
 
-$this->title = $model->id;
+$this->title = 'View Sector Supplier';
 $this->params['breadcrumbs'][] = ['label' => 'Sector Suppliers', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -31,10 +31,9 @@ $this->params['breadcrumbs'][] = $this->title;
  <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'supplier_id',
+            'supplierName',
             'description:ntext',
-            'sector_id',
+            'sectorName',
         ],
     ]) ?>
 

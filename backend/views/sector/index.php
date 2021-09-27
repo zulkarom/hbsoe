@@ -32,7 +32,22 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'sector_name',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {delete}',
+                //'visible' => false,
+                'buttons'=>[
+                'view'=>function ($url, $model) {
+                    return Html::a('<span class="fa fa-search"></span> View',['view', 'id' => $model->id],['class'=>'btn btn-primary btn-sm']);
+                },
+                'delete'=>function ($url, $model) {
+                    return Html::a('<span class="fa fa-trash"></span>',['delete', 'id' => $model->id],['class'=>'btn btn-danger btn-sm', 'data' => [
+                    'confirm' => 'Are you sure to delete this data?'
+                    ],
+                    ]);
+                }
+                ],
+        
+            ],
         ],
     ]); ?>
 

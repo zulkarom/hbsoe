@@ -76,7 +76,7 @@ if($model->sectorSuppliers){
         <br/>
         <?php echo Map::widget([
             'apiKey'=> 'AIzaSyCdaIFmGh8LWEfbXln7BkPnMfB1RDd9Rj4',
-            'width' => '760px',
+            'width' => '860px',
             'height' => '450px',
             'center' => [$model->s_latitude, $model->s_longitude],
             'markers' => [

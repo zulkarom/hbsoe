@@ -40,7 +40,7 @@ class EntrepreneurSupplier extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'entrepreneur_id' => 'Beneficiary ID',
+            'entrepreneurName' => \Yii::t('app', 'Client'),
             'supplier_id' => 'Supplier ID',
             'created_at' => 'Created At',
         ];
@@ -48,6 +48,14 @@ class EntrepreneurSupplier extends \yii\db\ActiveRecord
     
     public function getSupplier(){
          return $this->hasOne(Supplier::className(), ['id' => 'supplier_id']);
+    }
+
+    public function getEntrepreneur(){
+        return $this->hasOne(Entrepreneur::className(), ['id' => 'entrepreneur_id']);
+    }
+
+    public function getEntrepreneurName(){
+        return $this->entrepreneur->user->fullname;
     }
 
 }
