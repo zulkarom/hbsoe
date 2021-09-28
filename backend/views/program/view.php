@@ -11,6 +11,10 @@ $this->params['breadcrumbs'][] = ['label' => 'Programs', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 
+if($model->prog_category == 1){
+    $progOther;
+}
+
 ?>
 <div class="program-view">
     <p>
@@ -31,18 +35,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'prog_name',
             [
+             'label' => \Yii::t('app', 'Program Date'),
+             'value' => function($model){
+                return date('d M Y', strtotime($model->prog_date));
+             }
+            ],
+            [
              'label' => \Yii::t('app', 'Category'),
              'value' => function($model){
                 return $model->progCategory->category_name;
              }
             ],
             'prog_other',
-            [
-             'label' => \Yii::t('app', 'Program Date'),
-             'value' => function($model){
-                return date('d M Y', strtotime($model->prog_date));
-             }
-            ],
             'prog_description:ntext',
             [
              'label' => \Yii::t('app', 'Organize'),

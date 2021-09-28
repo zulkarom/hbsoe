@@ -36,7 +36,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/loginAss
 
                 <div class="login100-form validate-form">
                     <span class="login100-form-title">
-                        Member Login
+                        Admin Login
                     </span>
 
                     <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>

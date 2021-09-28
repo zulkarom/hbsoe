@@ -6,14 +6,12 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\ProgramCategory */
 
-$this->title = $model->id;
+$this->title = $model->category_name;
 $this->params['breadcrumbs'][] = ['label' => 'Program Categories', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="program-category-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -26,14 +24,19 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
+    <br />
+
+    <div class="card">
+    <div class="card-body">
+
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',
             'category_name',
-            'created_at',
-            'updated_at',
         ],
     ]) ?>
+</div>
+</div>
 
 </div>

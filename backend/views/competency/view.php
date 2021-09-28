@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Competency */
 
-$this->title = $model->id;
+$this->title = \Yii::t('app', 'View Competency');;
 $this->params['breadcrumbs'][] = ['label' => 'Competencies', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -33,6 +33,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'entrepreneurName',
+            [
+             'label' => \Yii::t('app', 'Competency'),
+             'value' => function($model){
+                return $model->category->category_name;
+             }
+            ],
             'description',
         ],
     ]) ?>

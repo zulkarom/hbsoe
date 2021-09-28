@@ -95,7 +95,7 @@ class CompetencyCategoryController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->updated_at = new Expression('NOW()');
+            $model->update_at = new Expression('NOW()');
             if($model->save()){
                 Yii::$app->session->addFlash('success', "Data Updated");
                 return $this->redirect(['index']);

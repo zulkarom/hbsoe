@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\CompetencySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Competencies';
+$this->title = 'Competency Beneficiaries';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="competency-index">
@@ -26,13 +26,42 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="card-body">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        //'filterModel' => $searchModel,
+       // 'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'entrepreneurName',
-            'description',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            'entrepreneurName',
+            [
+             'label' => \Yii::t('app', 'Competency'),
+             'value' => function($model){
+                return $model->category->category_name;
+             }
+            ],
+            // 'description',
+
+            ['class' => 'yii\grid\ActionColumn',
+            //     'contentOptions' => ['style' => 'width: 13%'],
+                'template' => '{view} {delete}',
+                //'visible' => false,
+                'buttons'=>[
+                    'delete'=>function ($url, $model) {
+                    return Html::a('<span class="fa fa-trash"></span> '.\Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+                        'class' => 'btn btn-danger btn-sm',
+                        'data' => [
+                            'confirm' => 'Are you sure you want to remove this item?',
+                            'method' => 'post',
+                        ],
+                    ]);
+                    },
+                    'view'=>function ($url, $model) {
+                        return Html::a('<span class="fa fa-search"></span> '.\Yii::t('app', 'View'), ['view', 'id' => $model->id], [
+                            'class' => 'btn btn-primary btn-sm',
+  
+                        ]);
+                    }
+                ],
+            
+            ],
         ],
     ]); ?>
 

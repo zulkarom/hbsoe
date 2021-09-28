@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\SocialImpactCategory */
 
-$this->title = 'Update Social Impact Category: ' . $model->id;
+$this->title = 'Update Social Impact Category';
 $this->params['breadcrumbs'][] = ['label' => 'Social Impact Categories', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
