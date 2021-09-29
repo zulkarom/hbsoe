@@ -32,6 +32,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             [
+                'label' => 'Business Name',
+                'attribute' => 'biz_name',
+                'value' => function($model){
+                    return $model->biz_name;
+                }
+            ],
+            [
                 'label' => 'Email',
                 'attribute' => 'email',
                 'value' => function($model){

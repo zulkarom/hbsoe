@@ -20,7 +20,7 @@ class EntrepreneurSearch extends Entrepreneur
     {
         return [
             [['id', 'user_id', 'age', 'city'], 'integer'],
-            [['name', 'email'], 'string'],
+            [['name', 'email', 'biz_name'], 'string'],
             [['address', 'postcode', 'state', 'location', 'longitude', 'latitude', 'profile_file'], 'safe'],
         ];
     }
@@ -70,6 +70,7 @@ class EntrepreneurSearch extends Entrepreneur
 
         $query->andFilterWhere(['like', 'user.fullname', $this->name]);
         $query->andFilterWhere(['like', 'user.email', $this->email]);
+        $query->andFilterWhere(['like', 'biz_name', $this->biz_name]);
 
         return $dataProvider;
     }

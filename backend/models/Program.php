@@ -61,6 +61,7 @@ class Program extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'entrepreneur_id' => \Yii::t('app', 'Beneficiary'),
+            'entrepreneurName' => \Yii::t('app', 'Beneficiary'),
             'prog_name' => \Yii::t('app', 'Program Name'),
             'prog_category' => \Yii::t('app', 'Category'),
             'prog_other' => \Yii::t('app', 'Other Category'),
@@ -91,6 +92,10 @@ class Program extends \yii\db\ActiveRecord
     public function getEntrepreneur()
     {
         return $this->hasOne(Entrepreneur::className(), ['id' => 'entrepreneur_id']);
+    }
+
+    public function getEntrepreneurName(){
+        return $this->entrepreneur->user->fullname;
     }
 
     public function anjuran(){

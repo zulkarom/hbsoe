@@ -2,7 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
+use yii\helpers\Url;
+use voime\GoogleMaps\Map;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Entrepreneur */
 
@@ -10,6 +11,10 @@ $this->title = $model->user->fullname;
 $this->params['breadcrumbs'][] = ['label' => 'Supplier', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
+
+$model->s_latitude = $model->latitude;
+$model->s_longitude = $model->longitude;
+
 ?>
 <div class="white_card card_height_100 mb_30">
 <div class="white_card_header">
@@ -30,10 +35,28 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             [
-                'label' => 'Nama',
+                'format' => 'raw',
+                'label' => 'Profile Picture',
+                'value' => function($model){
+                    if($model->profile_file){
+                        return '<img src="'.Url::to(['/supplier/profile-image', 'id' => $model->id]).'" width="90" height="90">';
+                    }
+                }
+            ],
+            [
+                'label' => 'Name',
                 'value' => function($model){
                     return $model->user->fullname;
                 }
+            ],
+            'biz_name',
+            [
+             'label' => 'Date Register',
+             'value' => function($model){
+                if($model->user){
+                    return date('d M Y', $model->user->created_at);
+                }
+             }
             ],
             [
                 'label' => 'Email',
@@ -42,34 +65,36 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             [
-                'label' => 'Umur',
+                'label' => 'Age',
                 'value' => function($model){
                     return $model->age;
                 }
             ],
             [
              'format' => 'html',
-             'label' => 'Alamat',
+             'label' => 'Address',
              'value' => function($model){
                 if($model->address){
-                    return $model->address.'<br/>'.$model->postcode.', '.$model->city.', '.$model->state;
+                    return $model->fullAddress;
                 }
              }
             ],            
             [
-                'label' => 'Lokasi',
-                'value' => function($model){
-                    return $model->location;
-                }
-            ],
-            [
+                'label' => 'Location',
                 'format' => 'raw',
-                'label' => 'Gambar Profile',
                 'value' => function($model){
-                    if($model->profile_file){
-                        return Html::a(' Download <span class="glyphicon glyphicon-download-alt"></span>', ['profile-image', 'id' => $model->id], [
-                                   'target' => '_blank']);
-                    }
+                    return $model->location.
+                    '<br/>'.Map::widget([
+                        'apiKey'=> 'AIzaSyCdaIFmGh8LWEfbXln7BkPnMfB1RDd9Rj4',
+                        'width' => '860px',
+                        'height' => '450px',
+                        'center' => [$model->s_latitude, $model->s_longitude],
+                        'markers' => [
+                            ['position' => [$model->s_latitude, $model->s_longitude],
+                            'content' => '<strong><b>'.$model->biz_name.'<br/>'.$model->location.'</b></strong>'],
+                        ]
+                        
+                    ]);
                 }
             ],
         ],

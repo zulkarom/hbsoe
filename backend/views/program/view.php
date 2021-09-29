@@ -33,6 +33,7 @@ if($model->prog_category == 1){
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
+            'entrepreneurName',
             'prog_name',
             [
              'label' => \Yii::t('app', 'Program Date'),

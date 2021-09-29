@@ -20,7 +20,7 @@ class SupplierSearch extends Supplier
     {
         return [
             [['id', 'user_id', 'age', 'postcode', 'city'], 'integer'],
-            [['name', 'email'], 'string'],
+            [['name', 'email', 'biz_name'], 'string'],
             [['address', 'state', 'location', 'longitude', 'latitude', 'profile_file'], 'safe'],
         ];
     }
@@ -70,6 +70,7 @@ class SupplierSearch extends Supplier
 
         $query->andFilterWhere(['like', 'user.fullname', $this->name]);
         $query->andFilterWhere(['like', 'user.email', $this->email]);
+        $query->andFilterWhere(['like', 'biz_name', $this->biz_name]);
 
         return $dataProvider;
     }

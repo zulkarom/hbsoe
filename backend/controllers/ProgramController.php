@@ -70,7 +70,6 @@ class ProgramController extends Controller
         $model = new Program();
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->entrepreneur_id = Yii::$app->user->identity->entrepreneur->id;
             if($model->prog_category != 1){
                 $model->prog_other = "";
             }

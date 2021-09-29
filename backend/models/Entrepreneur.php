@@ -90,7 +90,7 @@ class Entrepreneur extends \yii\db\ActiveRecord
     }
 
     public function getFullAddress(){
-        return $this->address.'<br/>'.$this->postcode.', '.$this->cityName->daerah_name.'<br/>'.$this->stateName->negeri_name;
+        return $this->address.'<br/>'.$this->postcode.', '.$this->cityModel->daerah_name.'<br/>'.$this->stateModel->negeri_name;
     }
 
     public function flashError(){

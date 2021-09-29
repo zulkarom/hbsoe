@@ -26,10 +26,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             [
-                'label' => 'Nama',
+                'label' => 'Name',
                 'attribute' => 'name',
                 'value' => function($model){
                     return $model->user->fullname;
+                }
+            ],
+            [
+                'label' => 'Business Name',
+                'attribute' => 'biz_name',
+                'value' => function($model){
+                    return $model->biz_name;
                 }
             ],
             [
@@ -40,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             [
-             'label' => 'Daftar Pada',
+             'label' => 'Date Register',
              'value' => function($model){
                 if($model->user){
                     return date('d M Y', $model->user->created_at);

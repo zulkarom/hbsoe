@@ -80,6 +80,10 @@ class Supplier extends \yii\db\ActiveRecord
          return $this->hasMany(SectorSupplier::className(), ['supplier_id' => 'id']);
     }
 
+    public function getFullAddress(){
+        return $this->address.'<br/>'.$this->postcode.', '.$this->cityModel->daerah_name.'<br/>'.$this->stateModel->negeri_name;
+    }
+
     public static function countSupplier(){
         return self::find()
         ->count();

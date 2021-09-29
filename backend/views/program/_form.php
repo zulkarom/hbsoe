@@ -4,7 +4,9 @@ use yii\helpers\Html;
 use kartik\widgets\ActiveForm;
 use kartik\date\DatePicker;
 use common\models\Common;
+use backend\models\Entrepreneur;
 use yii\helpers\ArrayHelper;
+use kartik\select2\Select2;
 use backend\models\ProgramCategory;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Program */
@@ -15,6 +17,19 @@ use backend\models\ProgramCategory;
 <div class="program-form">
 
     <?php $form = ActiveForm::begin(); ?>
+
+    <div class="row">
+        <div class="col-md-8">
+        <?= $form->field($model, 'entrepreneur_id')->widget(Select2::classname(), [
+            'data' =>  ArrayHelper::map(Entrepreneur::find()->joinWith('user')->all(),'id', 'user.fullname'),
+            'options' => ['placeholder' => 'Select Beneficiary'],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+            ]);
+        ?>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-8">
