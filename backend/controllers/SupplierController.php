@@ -77,24 +77,43 @@ class SupplierController extends Controller
         $modelUser->setScenario('create');
         if ($model->load(Yii::$app->request->post()) && $modelUser->load(Yii::$app->request->post())) {
 
-            $modelUser->role = 2;
-            $modelUser->status = 10;
-            $modelUser->username = $modelUser->email;
-
-            if($modelUser->rawPassword){
-                $modelUser->setPassword($modelUser->rawPassword);
+            //kena find dah ada user ke belum
+            $user = User::findOne(['email' => $modelUser->email]);
+            if($user){
+                $modelUser = $user;
+                $modelUser->updated_at = time();
+            }else{
+                $modelUser->role = 2;
+                $modelUser->status = 10;
+                $modelUser->username = $modelUser->email;
+                if($modelUser->rawPassword){
+                    $modelUser->setPassword($modelUser->rawPassword);
+                }else{
+                    $modelUser->setPassword(Yii::$app->security->generateRandomString(5));
+                }
             }
 
-            if($modelUser->save()){
-                $model->user_id = $modelUser->id;
-                if($model->save()){
-                    Yii::$app->session->addFlash('success', "Information Saved");
-                    return $this->redirect(['view', 'id' => $model->id]);
+            $transaction = Yii::$app->db->beginTransaction();
+            try {
+                
+                if($modelUser->save()){
+                    $model->user_id = $modelUser->id;
+                    if($model->save()){
+                        $transaction->commit();
+                        Yii::$app->session->addFlash('success', "A new supplier added");
+                        return $this->redirect(['view', 'id' => $model->id]);
+                    }else{
+                        $model->flashError();
+                    }
                 }else{
-                    $model->flashError();
+                    $modelUser->flashError();
                 }
-            }else{
-                $modelUser->flashError();
+            
+            }
+            catch (\Exception $e)
+            {
+                $transaction->rollBack();
+                Yii::$app->session->addFlash('error', $e->getMessage());
             }
         }
 

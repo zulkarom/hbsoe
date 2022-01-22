@@ -61,8 +61,13 @@ class User extends ActiveRecord implements IdentityInterface
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
 
             //Admin Update
+            [['username','email'], 'unique'],
+            
             [['username', 'fullname', 'email'], 'required', 'on' => 'update'],
-            [['username', 'fullname', 'email', 'role'], 'required', 'on' => 'create'],
+            
+            [['username', 'fullname', 'email'], 'required', 'on' => 'create'],
+            
+            [['role'], 'integer'],
 
             [['rawPassword'], 'string', 'min' => 6],
         ];
@@ -235,6 +240,17 @@ class User extends ActiveRecord implements IdentityInterface
         $this->password_reset_token = null;
     }
     
-    
+    public function flashError(){
+        if($this->getErrors()){
+            foreach($this->getErrors() as $error){
+                if($error){
+                    foreach($error as $e){
+                        Yii::$app->session->addFlash('error', $e);
+                    }
+                }
+            }
+        }
+        
+    }
 
 }

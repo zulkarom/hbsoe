@@ -34,14 +34,17 @@ class Entrepreneur extends \yii\db\ActiveRecord
     {
         return [
             [['user_id'], 'required', 'on' => 'signup'],
+            
+            ['user_id', 'unique', 'message' => 'A beneficiary with this email has already exist'],
 
-            [['age', 'address', 'postcode', 'city', 'state', 'phone', 'biz_name'], 'required', 'on' => 'insert'],
+            [['age', 'address', 'postcode', 'city', 'state', 'phone'], 'required', 'on' => 'insert'],
 
-            [['age', 'address', 'postcode', 'city', 'state', 'phone', 'biz_name'], 'required', 'on' => 'admin_insert'],
+            [['age', 'address', 'postcode', 'city', 'state', 'phone'], 'required', 'on' => 'admin_insert'],
             //Profile image
             ['profile_file', 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
 
             [['user_id', 'age'], 'integer'],
+            
             [['address', 'u_location', 'u_longitude', 'u_latitude', 'longitude', 'latitude', 'location', 'biz_name', 'phone'], 'string', 'max' => 225],
         ];
     }

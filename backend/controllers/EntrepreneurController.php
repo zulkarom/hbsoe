@@ -76,26 +76,49 @@ class EntrepreneurController extends Controller
         $model->setScenario('admin_insert');
         $modelUser->setScenario('create');
         if ($model->load(Yii::$app->request->post()) && $modelUser->load(Yii::$app->request->post())) {
-
-            $modelUser->role = 1;
-            $modelUser->status = 10;
-            $modelUser->username = $modelUser->email;
-
-            if($modelUser->rawPassword){
-                $modelUser->setPassword($modelUser->rawPassword);
-            }
-
-            if($modelUser->save()){
-                $model->user_id = $modelUser->id;
-                if($model->save()){
-                    Yii::$app->session->addFlash('success', "Information Saved");
-                    return $this->redirect(['view', 'id' => $model->id]);
-                }else{
-                    $model->flashError();
-                }
+            
+            //kena find dah ada user ke belum 
+            $user = User::findOne(['email' => $modelUser->email]);
+            if($user){
+                $modelUser = $user;
+                $modelUser->updated_at = time();
             }else{
-                $modelUser->flashError();
+                $modelUser->role = 1;
+                $modelUser->status = 10;
+                $modelUser->username = $modelUser->email;
+                if($modelUser->rawPassword){
+                    $modelUser->setPassword($modelUser->rawPassword);
+                }else{
+                    $modelUser->setPassword(Yii::$app->security->generateRandomString(5));
+                }
             }
+            
+            $transaction = Yii::$app->db->beginTransaction();
+            try {
+                if($modelUser->save()){
+                    //$bene = Entrepreneur::findOne(['user_id' => $modelUser->id]);
+                    $model->user_id = $modelUser->id;
+                    if($model->save()){
+                        $transaction->commit();
+                        Yii::$app->session->addFlash('success', "A new beneficiary created");
+                        return $this->redirect(['view', 'id' => $model->id]);
+                    }else{
+                        $model->flashError();
+                    }
+                }else{
+                    $modelUser->flashError();
+                }
+                
+                
+                
+            }
+            catch (\Exception $e)
+            {
+                $transaction->rollBack();
+                Yii::$app->session->addFlash('error', $e->getMessage());
+            }
+            
+            
         }
 
         return $this->render('create', [
