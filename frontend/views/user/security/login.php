@@ -30,7 +30,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/loginAss
 
                 <div class="login100-pic js-tilt" data-tilt>
                     <br/>
-                   <a href="<?php echo Url::to('../../')?>"><img src="<?= $dirAssests?>/images/logo.png" alt="IMG"></a> 
+                   <a href="<?php echo Url::to('../../')?>"><img src="<?= $dirAssests?>/images/logo-hubsoe.png" alt="IMG"></a> 
                 </div>
 
                 <div class="login100-form validate-form">

@@ -7,313 +7,221 @@ AppAsset::register($this);
 $dirAssests=Yii::$app->assetManager->getPublishedUrl('@website/views/myassets');
 //hai
 
+$web = Yii::getAlias('@web');
+
+
 ?>
 <?php $this->beginPage() ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en-gb" class="no-js">
   <head>
-    <meta charset="utf-8">
-    <title>HubSoe</title>
-    <meta name="author" content="">
-    <meta name="keywords" content="">
-    <meta name="description" content="">        
-        
-    <!-- Mobile Specific Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-        <?php $this->head() ?>
+
         <?php $this->registerCsrfMetaTags() ?>
- 
+ <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>HubSoE</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Google fonts-->
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,600;1,600&amp;display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500;1,600;1,700&amp;display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="<?=$web?>/css/styles.css" rel="stylesheet" />
+		<style>
+		
+		.device[data-device=iPhoneX][data-orientation=portrait][data-color=black]::after {
+		  content: "";
+		  background-image: url("images/img/portrait_black.png");
+		}
+		
+		</style>
    </head>
 
    <body  data-spy="scroll" data-target="#main-menu">
     <?php $this->beginBody() ?>
 
    
-      
-   <!--Start Navigation-->
-        <header id="header">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="fa fa-bars"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <!--Start Logo -->
-                            <div class="logo-nav">
-                                <a href="">
-                                    <img src="<?= $dirAssests?>/images/logo.png" alt="Company logo" />
-                                </a>
+     <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
+            <div class="container px-5">
+                <a class="navbar-brand fw-bold" href="#page-top">HubSoE</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="bi-list"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
+                        <li class="nav-item"><a class="nav-link me-lg-3" href="<?=Url::to(['/member/'])?>">Log Masuk</a></li>
+                    </ul>
+                    <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#feedbackModal">
+                        <span class="d-flex align-items-center">
+                     
+                            <span class="small">Pendaftaran</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <!-- Mashead header-->
+        <header class="masthead">
+            <div class="container px-5">
+                <div class="row gx-5 align-items-center">
+                    <div class="col-lg-6">
+                        <!-- Mashead text and app badges-->
+                        <div class="mb-5 mb-lg-0 text-center text-lg-start">
+                            <h1 class="display-1 lh-1 mb-3">Hub for Social Entrepreneur</h1>
+                            <p class="lead fw-normal text-muted mb-5">Sistem Pengurusan Usahawan Sosial</p>
+                            <div class="d-flex flex-column flex-lg-row align-items-center">
+                              
+                               
                             </div>
-                            <!--End Logo -->
-                            <div class="clear-toggle"></div>
-                            <div id="main-menu" class="collapse scroll navbar-right">
-                                <ul class="nav">
-                                
-                                    <li class="active"> <a href="#home">Home</a> </li>
-                      
-                            
-                                    <li> <a href="#services">Services</a> </li>
-                                    
-                                    <li> <a href="<?php echo Url::to(['member/user/login'])?>">Login</a> </li>
-                                    
-                                     <li> <a href="<?php echo Url::to(['member/user-register/register'])?>">Register</a> </li>
-                                  
-             
-                                        
-                                </ul>
-                            </div><!-- end main-menu -->
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                       <div class="masthead-device-mockup">
+                            <svg class="circle" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <lineargradient id="circleGradient" gradientTransform="rotate(45)">
+                                        <stop class="gradient-start-color" offset="0%"></stop>
+                                        <stop class="gradient-end-color" offset="100%"></stop>
+                                    </lineargradient>
+                                </defs>
+                                <circle cx="50" cy="50" r="50"></circle></svg><svg class="shape-1 d-none d-sm-block" viewBox="0 0 240.83 240.83" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="-32.54" y="78.39" width="305.92" height="84.05" rx="42.03" transform="translate(120.42 -49.88) rotate(45)"></rect>
+                                <rect x="-32.54" y="78.39" width="305.92" height="84.05" rx="42.03" transform="translate(-49.88 120.42) rotate(-45)"></rect></svg><svg class="shape-2 d-none d-sm-block" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50"></circle></svg>
+                            <div class="device-wrapper">
+                                <div class="device" data-device="iPhoneX" data-orientation="portrait" data-color="black">
+                                    <div class="screen bg-black">
+                                        <!-- PUT CONTENTS HERE:-->
+                                        <!-- * * This can be a video, image, or just about anything else.-->
+                                        <!-- * * Set the max width of your media to 100% and the height to-->
+                                        <!-- * * 100% like the demo example below.-->
+                                        <img src="<?=$web?>/images/img/bgx.png" style="max-width: 100%; height: 100%">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </header>
-    <!--End Navigation-->
-
-      
-        <!-- Start Slider  -->
-        <section id="home" class="home">
-             <div class="slider-overlay"></div>
-            <div class="flexslider">
-                <ul class="slides scroll">
-                    <li class="first">
-                        <div class="slider-text-wrapper">  
-                            <div class="container">
-                                <div class="big">HubSoE </div>          
-                                <div class="small">Hub for Social Entrepreneur</div>
-                                 <a href="<?php echo Url::to(['member/user/login'])?>" class="middle btn btn-white">JOIN US NOW!</a> 
-                            </div>       
-                        </div>
-                        <img src="<?= $dirAssests?>/images/slider/1.jpg" alt="">
-                    </li>
-                    
-                    <li class="secondary">
-                        <div class="slider-text-wrapper"> 
-                            <div class="container">                       
-                                <div class="big">HubSoE </div>          
-                                <div class="small">Hub for Social Entrepreneur</div>
-                                <a href="<?php echo Url::to(['member/user/login'])?>" class="middle btn btn-white">JOIN US NOW!</a> 
+            </div>
+        </header>
+        <!-- Quote/testimonial aside-->
+        <aside class="text-center bg-gradient-primary-to-secondary">
+            <div class="container px-5">
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-xl-8">
+                        <div class="h2 fs-1 text-white mb-4">"Entrepreneurship is our thrust"</div>
+             
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <!-- App features section-->
+        <section id="features">
+            <div class="container px-5">
+                <div class="row gx-5 align-items-center">
+                    <div class="col-lg-8 order-lg-1 mb-5 mb-lg-0">
+                        <div class="container-fluid px-5">
+                            <div class="row gx-5">
+                                <div class="col-md-6 mb-5">
+                                    <!-- Feature item-->
+                                    <div class="text-center">
+                                        <i class="bi-phone icon-feature text-gradient d-block mb-3"></i>
+                                        <h3 class="font-alt">ENTREPRENEURSHIP</h3>
+                                        <p class="text-muted mb-0">Membangun perniagaan usahawan.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-5">
+                                    <!-- Feature item-->
+                                    <div class="text-center">
+                                        <i class="bi-currency-dollar icon-feature text-gradient d-block mb-3"></i>
+                                        <h3 class="font-alt">SOCIAL</h3>
+                                        <p class="text-muted mb-0">Keusahawanan sosial dalam khidmat komuniti.</p>
+                                    </div>
+                                </div>
                             </div>
-                         </div>
-                        <img src="<?= $dirAssests?>/images/slider/2.jpg" alt="">
-                    </li>
-                    
-   
-                </ul>
+                            <div class="row">
+                                <div class="col-md-6 mb-5 mb-md-0">
+                                    <!-- Feature item-->
+                                    <div class="text-center">
+                                        <i class="bi-gift icon-feature text-gradient d-block mb-3"></i>
+                                        <h3 class="font-alt">COLLABORATION</h3>
+                                        <p class="text-muted mb-0">Kolaborasi pihak universiti dan industri.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- Feature item-->
+                                    <div class="text-center">
+                                        <i class="bi-patch-check icon-feature text-gradient d-block mb-3"></i>
+                                        <h3 class="font-alt">NETWORKING</h3>
+                                        <p class="text-muted mb-0">Membuka jaringan perniagaan keusahawanan sosial.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 order-lg-0">
+                        <!-- Features section device mockup-->
+                        <div class="features-device-mockup">
+                            <svg class="circle" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="circleGradient" gradientTransform="rotate(45)">
+                                        <stop class="gradient-start-color" offset="0%"></stop>
+                                        <stop class="gradient-end-color" offset="100%"></stop>
+                                    </linearGradient>
+                                </defs>
+                                <circle cx="50" cy="50" r="50"></circle></svg
+                            ><svg class="shape-1 d-none d-sm-block" viewBox="0 0 240.83 240.83" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="-32.54" y="78.39" width="305.92" height="84.05" rx="42.03" transform="translate(120.42 -49.88) rotate(45)"></rect>
+                                <rect x="-32.54" y="78.39" width="305.92" height="84.05" rx="42.03" transform="translate(-49.88 120.42) rotate(-45)"></rect></svg
+                            ><svg class="shape-2 d-none d-sm-block" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50"></circle></svg>
+                            <div class="device-wrapper">
+                                <div class="device" data-device="iPhoneX" data-orientation="portrait" data-color="black">
+                                    <div class="screen bg-black">
+    
+                                        <img src="<?=$web?>/images/img/bgx.png" style="max-width: 100%; height: 100%" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
-          <!-- End Slider  -->
 
-
- 
-  <!--Start Services-->
-   <section id="services" class="section">
-        <div class="container">
-            <div class="row">
-            
-                 <div class="title-box text-center">
-                    <h2 class="title">Services</h2>
-                 </div>
-              
-               <!--Services Item-->
-               <div class="col-md-4">
-                   <div class="services-box">
-                       <div class="services-icon"> <i class="icon-basket"></i> </div> 
-                       <div class="services-desc">
-                          <h4>Social Entrepreneurship</h4>
-                          <p>Lorem ipsum dolor consectetur dolor consectetur adipisicing incididunt eiusmod tempor incididunt laboredolore adipisicing. </p>
-                       </div>
-                   </div>
-               </div>
-                <!--End services Item-->
-                
-                <!--Services Item-->
-               <div class="col-md-4">
-                   <div class="services-box">
-                       <div class="services-icon"> <i class="icon-shield"></i> </div> 
-                       <div class="services-desc">
-                          <h4>Collaboration</h4>
-                          <p>Lorem ipsum dolor consectetur dolor consectetur adipisicing incididunt eiusmod tempor incididunt laboredolore adipisicing. </p>
-                       </div>
-                   </div>
-               </div>
-               <!--End services Item-->
-               
-               <!--Services Item-->
-               <div class="col-md-4">
-                   <div class="services-box">
-                       <div class="services-icon"> <i class="icon-hotairballoon"></i> </div> 
-                       <div class="services-desc">
-                          <h4>Networking</h4>
-                          <p>Lorem ipsum dolor consectetur dolor consectetur adipisicing incididunt eiusmod tempor incididunt laboredolore adipisicing. </p>
-                       </div>
-                   </div>
-               </div>
-                <!--End services Item-->
-                
-              
-              
-            </div> <!--/.row-->
-        </div> <!--/.container-->
-   </section> 
-  <!--End Services-->
-
- <?php 
- 
- /* 
-  * 
-  *    <!--Start clients-->
-    <section id="clients" class="section">
-           <div class="container">
-               <div class="row">
-               
-            <div class="title-box text-center">
-                <h2 class="title">Our Partners</h2>
-             </div>
-                
-                   <div class="clients-carousel">
-                   
-                       <!-- Clients Logo Item-->
-                        <div class="item">
-                            <a href="#">
-                                <figure>
-                                    <img src="<?= $dirAssests?>/images/clients-logo/client1.png" alt="" />
-                                </figure>
-                            </a>
-                        </div>
-                        
-                       <!-- Clients Logo Item-->
-                        <div class="item">
-                            <a href="#">
-                                <figure>
-                                      <img src="<?= $dirAssests?>/images/clients-logo/client2.png" alt="" />
-                                </figure>
-                            </a>
-                        </div>
-                        
-                        <!-- Clients Logo Item-->
-                        <div class="item">
-                            <a href="#">
-                                <figure>
-                                      <img src="<?= $dirAssests?>/images/clients-logo/client3.png" alt="" />
-                                </figure>
-                            </a>
-                        </div>
-                        
-                        <!-- Clients Logo Item-->
-                        <div class="item">
-                            <a href="#">
-                                <figure>
-                                     <img src="<?= $dirAssests?>/images/clients-logo/client4.png" alt="" />
-                                </figure>
-                            </a>
-                        </div>
-                        
-                       <!-- Clients Logo Item-->
-                        <div class="item">
-                            <a href="#">
-                                <figure>
-                                      <img src="<?= $dirAssests?>/images/clients-logo/client2.png" alt="" />
-                                </figure>
-                            </a>
-                        </div>
-                        
-                       <!-- Clients Logo Item-->
-                        <div class="item">
-                            <a href="#">
-                                <figure>
-                                      <img src="<?= $dirAssests?>/images/clients-logo/client5.png" alt="" />
-                                </figure>
-                            </a>
-                        </div>
-                        
-                        <!-- Clients Logo Item-->
-                        <div class="item">
-                            <a href="#">
-                                <figure>
-                                     <img src="<?= $dirAssests?>/images/clients-logo/client4.png" alt="" />
-                                </figure>
-                            </a>
-                        </div>
-                        
-                        <!-- Clients Logo Item-->
-                        <div class="item">
-                            <a href="#">
-                                <figure>
-                                     <img src="<?= $dirAssests?>/images/clients-logo/client1.png" alt="" />
-                                </figure>
-                            </a>
-                        </div>
-                 </div>
-               </div> <!--/.row-->
-         </div> <!--/.container-->
-    </section>
-   <!--End clients-->
-  *  
-  *  
-  *  */
- 
- 
- ?>
-  
- 
-  
-   
-
-   
-   
-   <!--Start Footer-->
-   <footer>
-       <div class="container">
-           <div class="row">
-               <!--Start copyright-->
-               <div class="col-md-6 col-sm-6 col-xs-6">
-                   <div class="copyright"><p>Copyright © HubSoE 2021 All Rights reserved </a>
-                 </p></div>
-               </div>
-               <!--End copyright-->
-               
-               <!--start social icons-->
-               <div class="col-md-6 col-sm-6 col-xs-6">
-                   <div class="social-icons">
-                       <ul>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li> <a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                       </ul>
-                    </div>
-               </div>
-               <!--End social icons-->
-           </div> <!-- /.row-->
-       </div> <!-- /.container-->
-   </footer>
-   <!--End Footer-->
-
-   <a href="#" class="scrollup"> <i class="fa fa-chevron-up"> </i> </a>
-
-    <!--Plugins-->
-    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script> 
-    <script type="text/javascript" src="js/owl-carousel/owl.carousel.js"></script>
-    <script type="text/javascript" src="js/jquery.flexslider-min.js"></script>
-    <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
-    <script type="text/javascript" src="js/easing.js"></script>
-    <script type="text/javascript" src="js/jquery.easypiechart.js"></script>
-    <script type="text/javascript" src="js/jquery.appear.js"></script>
-    <script type="text/javascript" src="js/jquery.parallax-1.1.3.js"></script>
-    <script type="text/javascript" src="js/jquery.mixitup.min.js"></script>
-    <script type="text/javascript" src="js/custom.js"></script>
-    
- </body>
-</html>
+        <!-- Footer-->
+        <footer class="bg-black text-center py-5">
+            <div class="container px-5">
+                <div class="text-white-50 small">
+                    <div class="mb-2">&copy; HubSoE 2022. All Rights Reserved.</div>
+                    <a href="#!">Privacy</a>
+                    <span class="mx-1">&middot;</span>
+                    <a href="#!">Terms</a>
+                    <span class="mx-1">&middot;</span>
+                    <a href="#!">FAQ</a>
+                </div>
+            </div>
+        </footer>
+        <!-- Feedback Modal-->
+        
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="<?=$web?>/js/scripts.js"></script>
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 
 
 
-    <?php $this->endBody() ?>
+
    </body>
 </html>
 
