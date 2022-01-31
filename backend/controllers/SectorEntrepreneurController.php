@@ -7,23 +7,27 @@ use backend\models\SectorEntrepreneur;
 use backend\models\SectorEntrepreneurSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * SectorEntrepreneurController implements the CRUD actions for SectorEntrepreneur model.
  */
 class SectorEntrepreneurController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
+
+    
+   
+
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
                 ],
             ],
         ];
