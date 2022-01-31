@@ -29,7 +29,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/crypto')
     <!-- <title>BitCrypto</title> -->
     <title><?= Html::encode($this->title) ?></title>
 
-    <link rel="icon" href="<?= $dirAssests?>/img/mini_logo.png" type="image/png">
+    <link rel="icon" href="<?= $dirAssests?>/img/favicon-hs.png" type="image/png">
 
     <?= Html::csrfMetaTags() ?>
     <?php $this->head() ?>

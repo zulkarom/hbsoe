@@ -39,7 +39,12 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/loginAss
                         Admin Login
                     </span>
 
-                    <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
+                    <?php $form = ActiveForm::begin([
+                        'id' => 'login-form', 
+                       // 'enableClientValidation' => false,
+                        //'enableAjaxValidation' => true,
+                        
+                    ]); ?>
                     <!-- <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
                         <input class="input100" type="text" name="email" placeholder="Email">
                         <span class="focus-input100"></span>
@@ -78,7 +83,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/loginAss
                            '])->passwordInput(['placeholder' => 'Password', 'class' => 'input100'])
                         ?>
                     <div class="container-login100-form-btn">
-                        <?= Html::submitButton('Login', ['class' => 'login100-form-btn', 'name' => 'submit']) ?>
+                        <?= Html::submitButton('Login', ['class' => 'login100-form-btn']) ?>
                     </div>
                     <?php ActiveForm::end(); ?>
                     

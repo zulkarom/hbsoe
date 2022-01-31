@@ -25,7 +25,7 @@ $web = Yii::getAlias('@web');
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>HubSoE</title>
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="icon" href="<?=$web?>/images/favicon-hs.png" type="image/png">
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Google fonts-->

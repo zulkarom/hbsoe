@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel frontend\modules\entrepreneur\models\EconomicSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = \Yii::t('app', 'Economic Beneficiaries');
+$this->title = \Yii::t('app', 'Economics');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="economic-index">

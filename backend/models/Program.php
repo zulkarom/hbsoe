@@ -113,6 +113,12 @@ class Program extends \yii\db\ActiveRecord
         return self::find()
         ->count();
     }
+    
+    public static function countProgramUser(){
+        return self::find()
+        ->where(['entrepreneur_id' => Yii::$app->user->identity->entrepreneur->id])
+        ->count();
+    }
 
     public function flashError(){
         if($this->getErrors()){

@@ -21,4 +21,3 @@ return [
     'Categories' => 'Kategori',
     'Entrepreneurs' => 'Usahawan',
 ];
-];

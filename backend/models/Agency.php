@@ -62,4 +62,10 @@ class Agency extends \yii\db\ActiveRecord
         return self::find()
         ->count();
     }
+    
+    public static function countAgencyUser(){
+        return self::find()
+        ->where(['entrepreneur_id' => Yii::$app->user->identity->entrepreneur->id])
+        ->count();
+    }
 }
