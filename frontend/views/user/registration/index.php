@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="container-login100">
             <div class="wrap-login100">
                 <div class="login100-pic js-tilt" data-tilt>
-                   <a href="<?php echo Url::to('../../')?>"> <img src="<?= $dirAssests?>/images/logo.png" alt="IMG"></a>
+                   <a href="<?php echo Url::to('../../')?>"><img src="<?= $dirAssests?>/images/logo-hubsoe.png" alt="IMG"></a> 
 
                 </div>
 
