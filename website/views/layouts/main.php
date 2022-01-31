@@ -62,12 +62,12 @@ $web = Yii::getAlias('@web');
                     <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
                         <li class="nav-item"><a class="nav-link me-lg-3" href="<?=Url::to(['/member/'])?>">Log Masuk</a></li>
                     </ul>
-                    <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#feedbackModal">
+                    <a href="<?=Url::to(['/member/user-register/register'])?>" class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0">
                         <span class="d-flex align-items-center">
                      
                             <span class="small">Pendaftaran</span>
                         </span>
-                    </button>
+                    </a>
                 </div>
             </div>
         </nav>
