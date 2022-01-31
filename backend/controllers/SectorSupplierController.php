@@ -8,22 +8,27 @@ use backend\models\SectorSupplierSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * SectorSupplierController implements the CRUD actions for SectorSupplier model.
  */
 class SectorSupplierController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
+
+    
+    
+
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
                 ],
             ],
         ];
