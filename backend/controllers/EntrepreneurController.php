@@ -179,8 +179,13 @@ class EntrepreneurController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
+        $model = $this->findModel($id);
+        try {
+            $model->delete();
+        } catch(\yii\db\IntegrityException $e) {
+            throw new \yii\web\ForbiddenHttpException('Could not delete this record (Integrity constraint violation)');
+        }
+        
         return $this->redirect(['index']);
     }
 
