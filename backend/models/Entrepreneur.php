@@ -58,7 +58,7 @@ class Entrepreneur extends \yii\db\ActiveRecord
 
             [['user_id', 'age', 'state', 'postcode'], 'integer'],
             
-            [['biz_info'], 'string'],
+            [['biz_info', 'note'], 'string'],
             
             [['address', 'u_location', 'u_longitude', 'u_latitude', 'longitude', 'latitude', 'location', 'biz_name', 'phone', 'city'], 'string', 'max' => 225],
         ];
@@ -128,7 +128,8 @@ class Entrepreneur extends \yii\db\ActiveRecord
             'postcode' => \Yii::t('app', 'Postcode'),
             'city' => \Yii::t('app', 'City'),
             'state' => \Yii::t('app', 'State'),
-            'nric' => 'NRIC'
+            'nric' => 'NRIC',
+            'biz_info' => \Yii::t('app', 'Business Information'),
         ];
     }
 

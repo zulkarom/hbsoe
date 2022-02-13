@@ -86,6 +86,11 @@ $model->u_location = $model->location;
                             ]);?>
                         </div>
                     </div>
+                    
+                     <div class="row">
+                        <div class="col-md-9"><?= $form->field($model, 'note')->textarea(['rows' => '3'])?>
+                        </div>
+                    </div>
 
              
                         

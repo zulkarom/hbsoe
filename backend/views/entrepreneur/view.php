@@ -50,6 +50,7 @@ $model->u_longitude = $model->longitude;
                 }
             ],
             'biz_name',
+            'biz_info',
             [
              'label' => 'Date Register',
              'value' => function($model){
@@ -71,14 +72,14 @@ $model->u_longitude = $model->longitude;
                 }
             ],
             [
-             'format' => 'html',
              'label' => 'Address',
              'value' => function($model){
                 if($model->address){
                     return $model->fullAddress;
                 }
              }
-            ],            
+            ],  
+           'note',   
             [
                 'label' => 'Location',
                 'format' => 'raw',
