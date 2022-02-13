@@ -6,6 +6,9 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use backend\models\Data;
+use common\models\User;
+use backend\models\Entrepreneur;
 
 /**
  * Site controller
@@ -26,7 +29,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'error'],
+                        'actions' => ['logout', 'index', 'error', 'import-data'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -71,6 +74,77 @@ class SiteController extends Controller
         
         return $this->render('index');
     }
+    
+    public function actionImportData()
+    {
+        
+       
+            
+            $list = Data::find()
+            ->where(['>', 'id', 92])
+            
+            ->all()
+            
+            ;
+            foreach($list as $b){
+                $transaction = Yii::$app->db->beginTransaction();
+                try {
+                $user = new User();
+                //mula2 creaate user
+                if($b->nric){
+                    $user->username = $b->nric;
+                    $pass =  $b->nric;
+                }else if($b->phone){
+                    $user->username = $b->phone;
+                    $pass = $b->phone;
+                }
+                if($user->username){
+                    $user->fullname = $b->fullname;
+                    $user->email = null;
+                    $user->nric = $b->nric;
+                    $user->role = 1;
+                    $user->status = 10;
+                    $user->setPassword($pass);
+                    if($user->save()){
+                        $bene = new Entrepreneur();
+                        $bene->user_id = $user->id;
+                        $bene->phone = $b->phone;
+                        $bene->state = $b->state;
+                        $bene->address = $b->address;
+                        $bene->biz_info = $b->biz_info;
+                        $bene->postcode = $b->postcode;
+                        $bene->city = $b->city;
+                        $bene->note = $b->note;
+                        if($bene->save()){
+                            echo '<br /> Creating Benecifiary ' . $b->fullname . ' successful';
+                        }
+                        
+                    }else{
+                        echo '<br /> Error creating user ' . $b->fullname;
+                    }
+                    
+                    
+                    
+                }
+                
+                $transaction->commit();
+                
+                }
+                catch (\Exception $e)
+                {
+                    $transaction->rollBack();
+                    echo  $e->getMessage();
+                }
+                    
+                }
+                
+           
+        
+        
+        
+    }
+    
+    
 
      public function actionLanguage()
     {

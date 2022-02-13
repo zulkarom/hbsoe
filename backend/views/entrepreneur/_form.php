@@ -58,6 +58,11 @@ $model->u_location = $model->location;
                         <div class="col-md-6"><?= $form->field($model, 'biz_name')->textInput() ?></div>
                         <div class="col-md-3"><?= $form->field($model, 'phone') ?></div>
                     </div>
+                    
+                     <div class="row">
+                        <div class="col-md-9"><?= $form->field($model, 'biz_info')->textarea(['rows' => '2'])?>
+                        </div>
+                    </div>
 
 
                     <div class="row">
@@ -97,7 +102,7 @@ $model->u_location = $model->location;
 
                     <div class="row">
                         <div class="col-md-5"><?= $form->field($model, 'username')->textInput() ?>
-                        * Preferable i.c number without "-", if N/A put email or else put phone     
+                        * Preferable i.c number without "-"<br />if N/A put email or phone     
                         </div>
                     </div>
                     

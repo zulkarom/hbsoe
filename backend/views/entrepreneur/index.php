@@ -22,29 +22,31 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        'pager' => [
+            'class' => 'yii\bootstrap4\LinkPager',
+        ],
+        
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             [
                 'label' => 'Name',
-                'attribute' => 'name',
+                'attribute' => 'fullname',
                 'value' => function($model){
                     return $model->user->fullname;
                 }
             ],
             [
-                'label' => 'Business Name',
-                'attribute' => 'biz_name',
+                'label' => 'NRIC',
+                'attribute' => 'nric',
                 'value' => function($model){
-                    return $model->biz_name;
+                    return $model->user->nric;
                 }
             ],
             [
-                'label' => 'Email',
-                'attribute' => 'email',
-                'value' => function($model){
-                    return $model->user->email;
-                }
+                'label' => 'Phone',
+                'attribute' => 'phone',
+ 
             ],
             [
              'label' => 'Date Register',

@@ -40,9 +40,9 @@ class Entrepreneur extends \yii\db\ActiveRecord
         return [
             [['user_id'], 'required', 'on' => 'signup'],
             
-            ['username', 'unique', 'targetClass' => 'common\models\User'],
+            ['username', 'validUsername'],
             
-            ['nric', 'unique', 'targetClass' => 'common\models\User'],
+            ['nric', 'validNric'],
             
             ['email', 'validEmail',],
             
@@ -56,7 +56,9 @@ class Entrepreneur extends \yii\db\ActiveRecord
             //Profile image
             ['profile_file', 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
 
-            [['user_id', 'age'], 'integer'],
+            [['user_id', 'age', 'state', 'postcode'], 'integer'],
+            
+            [['biz_info'], 'string'],
             
             [['address', 'u_location', 'u_longitude', 'u_latitude', 'longitude', 'latitude', 'location', 'biz_name', 'phone', 'city'], 'string', 'max' => 225],
         ];
@@ -68,7 +70,37 @@ class Entrepreneur extends \yii\db\ActiveRecord
         $label = 'Email';
         $user = User::find()->where([$attr => $this->$attr]);
         if($this->user_id){
-            $user->andWhere(['<>', 'user_id' , $this->user_id]);
+            $user->andWhere(['<>', 'id' , $this->user_id]);
+        }
+        $user = $user->one();
+        if($user){
+            $this->addError($attr, $label . ' "'. $user->$attr .'" has already been taken.');
+        }
+        
+    }
+    
+    public function validUsername()
+    {
+        $attr = 'username';
+        $label = 'Username';
+        $user = User::find()->where([$attr => $this->$attr]);
+        if($this->user_id){
+            $user->andWhere(['<>', 'id' , $this->user_id]);
+        }
+        $user = $user->one();
+        if($user){
+            $this->addError($attr, $label . ' "'. $user->$attr .'" has already been taken.');
+        }
+        
+    }
+    
+    public function validNric()
+    {
+        $attr = 'nric';
+        $label = 'NRIC';
+        $user = User::find()->where([$attr => $this->$attr]);
+        if($this->user_id){
+            $user->andWhere(['<>', 'id' , $this->user_id]);
         }
         $user = $user->one();
         if($user){

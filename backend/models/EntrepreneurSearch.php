@@ -11,7 +11,8 @@ use backend\models\Entrepreneur;
  */
 class EntrepreneurSearch extends Entrepreneur
 {
-    public $name;
+    public $fullname;
+    public $nric;
     public $email;
     /**
      * {@inheritdoc}
@@ -19,9 +20,7 @@ class EntrepreneurSearch extends Entrepreneur
     public function rules()
     {
         return [
-            [['id', 'user_id', 'age', 'city'], 'integer'],
-            [['name', 'email', 'biz_name'], 'string'],
-            [['address', 'postcode', 'state', 'location', 'longitude', 'latitude', 'profile_file'], 'safe'],
+            [['fullname', 'email', 'biz_name', 'phone', 'nric'], 'string'],
         ];
     }
 
@@ -50,6 +49,10 @@ class EntrepreneurSearch extends Entrepreneur
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 100,
+            ],
+            
         ]);
 
         $this->load($params);
@@ -60,17 +63,21 @@ class EntrepreneurSearch extends Entrepreneur
             return $dataProvider;
         }
 
-        // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'user_id' => $this->user_id,
-            'age' => $this->age,
-            'city' => $this->city,
-        ]);
 
-        $query->andFilterWhere(['like', 'user.fullname', $this->name]);
-        $query->andFilterWhere(['like', 'user.email', $this->email]);
-        $query->andFilterWhere(['like', 'biz_name', $this->biz_name]);
+
+        $query->andFilterWhere(['like', 'user.fullname', $this->fullname]);
+        $query->andFilterWhere(['like', 'user.nric', $this->nric]);
+        
+        $dataProvider->sort->attributes['fullname'] = [
+            'asc' => ['user.fullname' => SORT_ASC],
+            'desc' => ['user.fullname' => SORT_DESC],
+        ];
+        
+        $dataProvider->sort->attributes['nric'] = [
+            'asc' => ['user.nric' => SORT_ASC],
+            'desc' => ['user.nric' => SORT_DESC],
+        ];
+        
 
         return $dataProvider;
     }

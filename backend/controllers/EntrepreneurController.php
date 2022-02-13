@@ -153,7 +153,11 @@ class EntrepreneurController extends Controller
     {
         // $model = $this->findModel($id);
         $model = $this->findModel($id);
-        $modelUser = User::findOne($model->user_id);
+        $modelUser = $model->user;
+        $model->fullname = $modelUser->fullname;
+        $model->username = $modelUser->username;
+        $model->email = $modelUser->email;
+        $model->nric = $modelUser->nric;
         
 
         $modelUser->scenario = 'update';
@@ -164,8 +168,7 @@ class EntrepreneurController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
             
-        }else if ($modelUser->load(Yii::$app->request->post()) 
-            && $model->load(Yii::$app->request->post())) {
+        }else if ($model->load(Yii::$app->request->post())) {
 
             $modelUser->username = $modelUser->email;
             if($modelUser->rawPassword){
