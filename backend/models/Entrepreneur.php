@@ -19,6 +19,11 @@ class Entrepreneur extends \yii\db\ActiveRecord
     public $u_longitude;
     public $u_latitude;
     public $u_location;
+    public $username;
+    public $password;
+    public $nric;
+    public $fullname;
+    public $email;
     /**
      * {@inheritdoc}
      */
@@ -35,18 +40,41 @@ class Entrepreneur extends \yii\db\ActiveRecord
         return [
             [['user_id'], 'required', 'on' => 'signup'],
             
-            ['user_id', 'unique', 'message' => 'A beneficiary with this email has already exist'],
+            ['username', 'unique', 'targetClass' => 'common\models\User'],
+            
+            ['nric', 'unique', 'targetClass' => 'common\models\User'],
+            
+            ['email', 'validEmail',],
+            
+            ['user_id', 'unique', 'message' => 'A beneficiary with this user has already exist'],
+			
+			['phone', 'unique', 'message' => 'A beneficiary with this phone has already exist'],
 
             [['age', 'address', 'postcode', 'city', 'state', 'phone'], 'required', 'on' => 'insert'],
 
-            [['age', 'address', 'postcode', 'city', 'state', 'phone'], 'required', 'on' => 'admin_insert'],
+            [['user_id', 'fullname'], 'required', 'on' => 'admin_insert'],
             //Profile image
             ['profile_file', 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
 
             [['user_id', 'age'], 'integer'],
             
-            [['address', 'u_location', 'u_longitude', 'u_latitude', 'longitude', 'latitude', 'location', 'biz_name', 'phone'], 'string', 'max' => 225],
+            [['address', 'u_location', 'u_longitude', 'u_latitude', 'longitude', 'latitude', 'location', 'biz_name', 'phone', 'city'], 'string', 'max' => 225],
         ];
+    }
+    
+    public function validEmail()
+    {
+        $attr = 'email';
+        $label = 'Email';
+        $user = User::find()->where([$attr => $this->$attr]);
+        if($this->user_id){
+            $user->andWhere(['<>', 'user_id' , $this->user_id]);
+        }
+        $user = $user->one();
+        if($user){
+            $this->addError($attr, $label . ' "'. $user->$attr .'" has already been taken.');
+        }
+        
     }
 
     /**
@@ -68,6 +96,7 @@ class Entrepreneur extends \yii\db\ActiveRecord
             'postcode' => \Yii::t('app', 'Postcode'),
             'city' => \Yii::t('app', 'City'),
             'state' => \Yii::t('app', 'State'),
+            'nric' => 'NRIC'
         ];
     }
 
@@ -93,7 +122,12 @@ class Entrepreneur extends \yii\db\ActiveRecord
     }
 
     public function getFullAddress(){
-        return $this->address.'<br/>'.$this->postcode.', '.$this->cityModel->daerah_name.'<br/>'.$this->stateModel->negeri_name;
+        $state = '';
+        if($this->stateModel){
+            $state = ' '.$this->stateModel->negeri_name;
+        }
+        
+        return $this->address.' '.$this->postcode.' '.$this->city . $state;
     }
 
     public function flashError(){

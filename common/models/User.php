@@ -61,11 +61,12 @@ class User extends ActiveRecord implements IdentityInterface
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
 
             //Admin Update
-            [['username','email'], 'unique'],
+            [['username','email', 'nric'], 'unique'],
             
-            [['username', 'fullname', 'email'], 'required', 'on' => 'update'],
             
-            [['username', 'fullname', 'email'], 'required', 'on' => 'create'],
+            [['username', 'fullname'], 'required', 'on' => 'update'],
+            
+            [['username', 'fullname'], 'required', 'on' => 'create'],
             
             [['role'], 'integer'],
 
@@ -77,6 +78,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             'fullname' => 'Full Name',
+            'nric' => 'NRIC'
         ];
     }
 

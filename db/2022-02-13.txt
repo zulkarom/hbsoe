@@ -1,0 +1,5 @@
+ALTER TABLE `user` ADD `nric` VARCHAR(50) NULL DEFAULT NULL AFTER `email`, ADD UNIQUE (`nric`);
+ALTER TABLE `entrepreneur` ADD UNIQUE(`user_id`);
+ALTER TABLE `entrepreneur` ADD UNIQUE(`phone`);
+
+ALTER TABLE `entrepreneur` CHANGE `city` `city` VARCHAR(50) NULL DEFAULT NULL;

@@ -71,7 +71,9 @@ $web = Yii::getAlias('@web');
                 </div>
             </div>
         </nav>
+        
         <!-- Mashead header-->
+        
         <header class="masthead">
             <div class="container px-5">
                 <div class="row gx-5 align-items-center">

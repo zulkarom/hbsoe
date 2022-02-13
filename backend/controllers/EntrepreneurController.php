@@ -8,6 +8,8 @@ use backend\models\EntrepreneurProfile;
 use backend\models\EntrepreneurSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use backend\models\UploadFile;
@@ -75,19 +77,28 @@ class EntrepreneurController extends Controller
 
         $model->setScenario('admin_insert');
         $modelUser->setScenario('create');
-        if ($model->load(Yii::$app->request->post()) && $modelUser->load(Yii::$app->request->post())) {
+        
+        if (Yii::$app->request->isAjax) {
+            $model->load($_POST);
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+            
+        }else if ($model->load(Yii::$app->request->post())) {
             
             //kena find dah ada user ke belum 
-            $user = User::findOne(['email' => $modelUser->email]);
+            $user = User::findOne(['username' => $model->username]);
             if($user){
                 $modelUser = $user;
                 $modelUser->updated_at = time();
             }else{
+                $modelUser->fullname = $model->fullname;
+                $modelUser->username = $model->username;
+                $modelUser->email = $model->email;
+                $modelUser->nric = $model->nric;
                 $modelUser->role = 1;
                 $modelUser->status = 10;
-                $modelUser->username = $modelUser->email;
-                if($modelUser->rawPassword){
-                    $modelUser->setPassword($modelUser->rawPassword);
+                if($model->password){
+                    $modelUser->setPassword($model->password);
                 }else{
                     $modelUser->setPassword(Yii::$app->security->generateRandomString(5));
                 }
@@ -95,10 +106,13 @@ class EntrepreneurController extends Controller
             
             $transaction = Yii::$app->db->beginTransaction();
             try {
+               
                 if($modelUser->save()){
+            
                     //$bene = Entrepreneur::findOne(['user_id' => $modelUser->id]);
                     $model->user_id = $modelUser->id;
                     if($model->save()){
+                       
                         $transaction->commit();
                         Yii::$app->session->addFlash('success', "A new beneficiary created");
                         return $this->redirect(['view', 'id' => $model->id]);
@@ -106,6 +120,7 @@ class EntrepreneurController extends Controller
                         $model->flashError();
                     }
                 }else{
+                   
                     $modelUser->flashError();
                 }
                 
@@ -143,8 +158,13 @@ class EntrepreneurController extends Controller
 
         $modelUser->scenario = 'update';
         $model->scenario = 'admin_insert';
-
-        if ($modelUser->load(Yii::$app->request->post()) 
+        
+        if (Yii::$app->request->isAjax) {
+            $model->load($_POST);
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+            
+        }else if ($modelUser->load(Yii::$app->request->post()) 
             && $model->load(Yii::$app->request->post())) {
 
             $modelUser->username = $modelUser->email;
