@@ -81,7 +81,7 @@ class SiteController extends Controller
        
             
             $list = Data::find()
-            ->where(['>', 'id', 92])
+            ->where(['<=', 'id', 92])
             
             ->all()
             
