@@ -55,6 +55,7 @@ $model->u_longitude = $model->longitude;
                 return $model->user->nric;
                 }
                 ],
+            'phone',
             'biz_name',
             'biz_info',
             [
