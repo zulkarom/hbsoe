@@ -49,6 +49,12 @@ $model->u_longitude = $model->longitude;
                     return $model->user->fullname;
                 }
             ],
+            [
+                'label' => 'NRIC',
+                'value' => function($model){
+                return $model->user->nric;
+                }
+                ],
             'biz_name',
             'biz_info',
             [
