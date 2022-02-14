@@ -30,10 +30,6 @@ class RegistrationController extends BaseRegistrationController
 		$role = $request->get('param2');
 		
 
-		if (!$this->module->enableRegistration) {
-            throw new NotFoundHttpException();
-        }
-
         /** @var RegistrationForm $model */
         $model = \Yii::createObject(RegistrationForm::className());
         $event = $this->getFormEvent($model);
@@ -53,6 +49,8 @@ class RegistrationController extends BaseRegistrationController
                 'title'  => \Yii::t('user', 'Your account has been created'),
                 'module' => $this->module,
             ]);
+        }else{
+           // print_r($model->getErrors());die();
         }
 
         return $this->render('register', [

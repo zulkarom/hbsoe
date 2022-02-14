@@ -1,17 +1,3 @@
-<style type="text/css">
-  
-.center {
-  padding: 200px 0;
-  text-align: center;
-}
-.p-t-136 {
-    padding-top: 10px !important;
-}
-/*.wrap-login100 {
-    padding: 120px 130px 120px 95px !important;
-}*/
-</style>
-
 <?php
 use yii\helpers\Html;
 use kartik\widgets\ActiveForm;
@@ -19,81 +5,74 @@ use yii\helpers\Url;
 use common\models\Common;
 use dektrium\user\widgets\Connect;
 
-$this->title = 'Sign In';
-
-$dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/loginAsset');
+$this->title = 'HubSoE | Log Masuk';
+$web = Yii::getAlias('@web');
 
 ?>
-<div class="limiter">
-        <div class="container-login100">
-            <div class="wrap-login100">
+  <style>
 
-                <div class="login100-pic js-tilt" data-tilt>
-                    <br/>
-                   <a href="<?php echo Url::to('../../')?>"><img src="<?= $dirAssests?>/images/logo-hubsoe.png" alt="IMG"></a> 
-                </div>
+.form-group{
+margin-bottom:14px;
 
-                <div class="login100-form validate-form">
-                    <span class="login100-form-title">
-                        Member Login
-                    </span>
+}
 
-                    <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
+</style>
+ <header class="masthead">
+            <div class="container px-5">
+                <div class="row gx-5 align-items-center">
+                  <div class="col-lg-4"></div>
+                    <div class="col-lg-4">
+                        <!-- Mashead text and app badges-->
+                         
+                        
+                        <div class="mb-5 mb-lg-0 text-center text-lg-start">
+                        
+                        <img src="<?=$web?>/images/logo_umk_hubsoe.png" style="max-width: 100%"/>
+                        <br /> <br /> 
+                       
+                            <h2 class="lh-1 mb-3">Log Masuk</h2>
+                        
+                            
+                            
+                            
+                                               <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
                     <?php 
-                    $model->role = 1;
-                    echo $form->field($model, 'role', ['template' => '
-                           <div class="wrap-input100">
-                                <span class="focus-input100"></span>
-                                <span class="symbol-input100">
-                                    <i class="fa fa-user" aria-hidden="true"></i>
-                                </span>
-                              {input}
-                           </div>
-                           {error}{hint}
-                           '])->dropDownList(Common::role(), ['prompt' => 'Select User Category', 'class' => 'input100', 'style' => 'height:50px !important'])
-                        ?>
-                    <?= $form->field($model, 'login', ['template' => '
-                           <div class="wrap-input100">
-                                <span class="focus-input100"></span>
-                                <span class="symbol-input100">
-                                    <i class="fa fa-envelope" aria-hidden="true"></i>
-                                </span>
-                              {input}
-                           </div>
-                           {error}{hint}
-                           '])->textInput(['placeholder' => $model->getAttributeLabel('login'), 'class' => 'input100'])
-                    ?>
-                    <?= $form->field($model, 'password', ['template' => '
-                           <div class="wrap-input100">
-                                <span class="focus-input100"></span>
-                                <span class="symbol-input100">
-                                    <i class="fa fa-lock" aria-hidden="true"></i>
-                                </span>
-                              {input}
-                           </div>
-                           {error}{hint}
-                           '])->passwordInput(['placeholder' => 'Password', 'class' => 'input100'])
-                        ?>
-                    <div class="container-login100-form-btn">
-                        <?= Html::submitButton('Login', ['class' => 'login100-form-btn', 'name' => 'submit']) ?>
-                    </div>
-
-                    <div class="text-center p-t-12">
-                        <?= Html::a('Forgot Password?', ['/user/forgot'], ['class' => 'txt1']) ?>
-                    </div>
-
                     
-                    <div class="text-center p-t-136">
-                        <?= Html::a('Create your Account', ['/user-register/register'], ['class' => 'txt2']) ?>
-                        <!-- <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i> -->
+                    $model->role = 1;
+                    
+                    echo $form->field($model, 'role')->dropDownList(Common::role(), ['prompt' => 'Select User Category'])->label(false)
+                    
+                        ?>
+                        
+                        
+                        
+                        
+                    <?= $form->field($model, 'login')->textInput(['placeholder' => $model->getAttributeLabel('login')])->label(false)
+                    ?>
+                    <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Password'])->label(false)
+                        ?>
+                        
+                        
+                        
+                    <div class="form-group">
+                        <?= Html::submitButton('Login', ['class' => 'btn btn-primary btn-block', 'name' => 'submit']) ?>
                     </div>
+
+             
+
+             
                     <?php ActiveForm::end(); ?>
+                            
+                            
+                            
+                            
+                            
+                              
+                               
+                  
+                        </div>
+                    </div>
+           
                 </div>
             </div>
-        </div>
-    </div>
-		
-		
-        <?= Connect::widget([
-            'baseAuthUrl' => ['/user/security/auth'],
-        ]) ?>
+        </header>

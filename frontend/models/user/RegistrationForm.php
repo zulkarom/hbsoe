@@ -20,9 +20,13 @@ class RegistrationForm extends BaseRegistrationForm
     {
         $rules = parent::rules();
 		
-		$rules['usernameLength']  = ['username', 'email'];
+		$rules['usernameLength']  = ['username', 'string'];
+		
+		$rules['emailLength']  = ['email', 'email'];
 		
         $rules['fullnameRequired'] = ['fullname', 'required'];
+        
+        $rules['emailRequired'] = ['email', 'required'];
 
         $rules['roleRequired'] = ['role', 'required'];
 
@@ -39,8 +43,8 @@ class RegistrationForm extends BaseRegistrationForm
 	public function attributeLabels()
     {
 		$label = parent::attributeLabels();
-		$label['role'] = 'Pilih Kategori Pengguna';
-		$label['username'] = 'Email';
+		$label['role'] = 'Kategori Pengguna';
+		$label['username'] = 'Username';
 		$label['fullname'] = 'Nama Penuh';
 		$label['password'] = 'Kata Laluan';
 		$label['password_repeat'] = 'Ulang Kata Laluan';
@@ -51,7 +55,7 @@ class RegistrationForm extends BaseRegistrationForm
     {
     	// echo $this->password_repeat;
     	// die();
-    	$this->email = $this->username;
+
         if (!$this->validate()) {
             return false;
         }
@@ -60,7 +64,6 @@ class RegistrationForm extends BaseRegistrationForm
         $user = Yii::createObject(User::className());
         $user->setScenario('register');
         $this->loadAttributes($user);
-        $this->email = $this->username;
 
         if (!$user->register()) {
             return false;

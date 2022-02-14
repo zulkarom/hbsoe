@@ -9,14 +9,13 @@
  * file that was distributed with this source code.
  */
 
-use yii\bootstrap\Alert;
+use yii\bootstrap4\Alert;
 
 /**
  * @var dektrium\user\Module $module
  */
 ?>
 
-<?php if ($module->enableFlashMessages): ?>
     <div class="row">
         <div class="col-xs-12">
             <?php foreach (Yii::$app->session->getAllFlashes() as $type => $message): ?>
@@ -29,4 +28,4 @@ use yii\bootstrap\Alert;
             <?php endforeach ?>
         </div>
     </div>
-<?php endif ?>
+

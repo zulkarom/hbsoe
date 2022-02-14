@@ -12,7 +12,7 @@ class UserRegisterController extends \yii\web\Controller
 
     
     public function actionRegister(){
-
+        
         $this->layout = "//main-login";
         
         $model = new SignupForm();
@@ -38,6 +38,8 @@ class UserRegisterController extends \yii\web\Controller
                 return $this->redirect(array('/user/register', 'param1'=> $model->username, 'param2'=> $model->role));
             }
 
+        }else{
+            
         }
         
         return $this->render('/user/registration/index', [

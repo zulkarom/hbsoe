@@ -1,23 +1,45 @@
 <?php
-
-/*
- * This file is part of the Dektrium project.
- *
- * (c) Dektrium project <http://github.com/dektrium>
- *
- * For the full copyright and license information, please view the LICENSE.md
- * file that was distributed with this source code.
- */
-
-/**
- * @var yii\web\View $this
- * @var dektrium\user\Module $module
- */
 use yii\helpers\Url;
 $this->title = $title;
+$web = Yii::getAlias('@web');
 ?>
 
-<?= $this->render('/_alert', ['module' => $module])?>
 
 
-<div style="background-color:#ffffff;padding:10px;font-weight:bold;font-size:16px; text-align:center"><a href="<?=Url::to(['/user/login'])?>">HALAMAN LOG MASUK<a></div>
+ <style>
+
+.form-group{
+margin-bottom:14px;
+
+}
+
+</style>
+ <header class="masthead">
+            <div class="container px-5">
+                <div class="row gx-5 align-items-center">
+                  <div class="col-lg-4"></div>
+                    <div class="col-lg-4">
+                        <!-- Mashead text and app badges-->
+                         
+                        
+                        <div class="mb-5 mb-lg-0 text-center text-lg-start">
+                 
+                        <br /> <br /> 
+                       
+                          <?= $this->render('/_alert', ['module' => $module])?>
+
+
+    
+                  
+                        </div>
+                    </div>
+           
+                </div>
+            </div>
+        </header>
+
+
+
+
+
+

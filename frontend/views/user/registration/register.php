@@ -1,13 +1,3 @@
-<style type="text/css">
-  
-.center {
-  padding: 200px 0;
-  text-align: center;
-}
-.p-t-136 {
-    padding-top: 30px !important;
-}
-</style>
 
 <?php
 
@@ -17,107 +7,129 @@ use yii\helpers\Url;
 use common\models\Common;
 
 
-$dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/loginAsset');
-
 $this->title = 'Sign Up';
 $this->params['breadcrumbs'][] = $this->title;
 
+
+
+$web = Yii::getAlias('@web');
 ?>
 
-<div class="limiter">
-        <div class="container-login100">
-            <div class="wrap-login100">
-                <div class="login100-pic js-tilt" data-tilt>
-                    <br/><br/><br/><br/>
-                    <a href="<?php echo Url::to('../../')?>"><img src="<?= $dirAssests?>/images/logo-hubsoe.png" alt="IMG"></a> 
 
-                </div>
 
-                <div class="login100-form validate-form">
-                    <span class="login100-form-title">
-                        Register
-                    </span>
+ <style>
 
-                <?php $form = ActiveForm::begin([
+.form-group{
+margin-bottom:14px;
+}
+.form-group.required .has-star:not(.custom-control-label):not(.custom-file-label)::after,
+.is-required::after {
+    content: "*";
+    margin-left: 3px;
+    font-weight: normal;
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    color: tomato;
+}
+label {
+    display: inline-block;
+    font-size:14px;
+}
+.btn-block {
+  display: block;
+  width: 100%;
+  background-color:#2937f0;
+}
+.btn-submit{
+margin-top:20px;
+}
+.btn-kembali{
+margin-top:20px;
+}
+</style>
+ <header class="masthead">
+            <div class="container px-5">
+                <div class="row gx-5 align-items-center">
+                  <div class="col-lg-2"></div>
+                    <div class="col-lg-8">
+                        <!-- Mashead text and app badges-->
+                         
+                        
+                           <div class="mb-5 mb-lg-0 text-lg-start">
+                        
+                        <div class="text-center"> 
+                        
+                        <img src="<?=$web?>/images/logo_umk_hubsoe.png" style="max-width: 100%"/>
+                        <br /> <br /> 
+                       
+                            <h2 class="lh-1 mb-3">Pendaftaran</h2>
+                        
+                        </div>
+                        
+                        
+                       
+                                       <?php $form = ActiveForm::begin([
                     'id' => 'signup-form',
-                    'enableAjaxValidation' => true,
-                    'enableClientValidation' => false,
-                    'validateOnBlur' => false,
-                    'validateOnType' => false,
-                    'validateOnChange' => false,
                 ]); ?>
+                
+               <div class="row">
+                  <div class="col-lg-6"><?= $form->field($model, 'fullname')->textInput()
+                        ?></div>
+                    <div class="col-lg-6">  <?= $form->field($model, 'email')->textInput()
+                        ?>
+                        </div>
+                    </div>
+                
+                
+                <div class="row">
+                  <div class="col-lg-6"> <?= $form->field($model, 'role')->dropDownList(Common::role(), ['disabled' => 'disabled'])
+                        ?></div>
+                    <div class="col-lg-6">  <?= $form->field($model, 'username')->textInput(['disabled' => 'disabled'])
+                        ?>
+                        </div>
+                    </div>
+                 
+                        
+                       
+                        <div class="row">
+                  <div class="col-lg-6">  <?= $form->field($model, 'password')->passwordInput()
+                        ?></div>
+                    <div class="col-lg-6">   <?= $form->field($model, 'password_repeat')->passwordInput()
+                        ?>
+                        </div>
+                    </div>
+                        
+                        
                     
-                       <?= $form->field($model, 'role', ['template' => '
-                           <div class="wrap-input100">
-                                <span class="focus-input100"></span>
-                                <span class="symbol-input100">
-                                    <i class="fa fa-user" aria-hidden="true"></i>
-                                </span>
-                              {input}
-                           </div>
-                           {error}{hint}
-                           '])->dropDownList(Common::role(), ['prompt' => 'Select User Category', 'class' => 'input100', 'style' => 'height:50px !important', 'disabled' => 'disabled'])
-                        ?>
-                        <?= $form->field($model, 'username', ['template' => '
-                           <div class="wrap-input100">
-                                <span class="focus-input100"></span>
-                                <span class="symbol-input100">
-                                    <i class="fa fa-envelope" aria-hidden="true"></i>
-                                </span>
-                              {input}
-                           </div>
-                           {error}{hint}
-                           '])->textInput(['placeholder' => $model->getAttributeLabel('username'), 'class' => 'input100', 'disabled' => 'disabled'])
-                        ?>
-                        <?= $form->field($model, 'fullname', ['template' => '
-                           <div class="wrap-input100">
-                                <span class="focus-input100"></span>
-                                <span class="symbol-input100">
-                                    <i class="fa fa-user" aria-hidden="true"></i>
-                                </span>
-                              {input}
-                           </div>
-                           {error}{hint}
-                           '])->textInput(['placeholder' => $model->getAttributeLabel('fullname'), 'class' => 'input100'])
-                        ?>
-                        <?= $form->field($model, 'password', ['template' => '
-                           <div class="wrap-input100">
-                                <span class="focus-input100"></span>
-                                <span class="symbol-input100">
-                                    <i class="fa fa-lock" aria-hidden="true"></i>
-                                </span>
-                              {input}
-                           </div>
-                           {error}{hint}
-                           '])->passwordInput(['placeholder' => 'Password', 'class' => 'input100'])
-                        ?>
-                        <?= $form->field($model, 'password_repeat', ['template' => '
-                           <div class="wrap-input100">
-                                <span class="focus-input100"></span>
-                                <span class="symbol-input100">
-                                    <i class="fa fa-lock" aria-hidden="true"></i>
-                                </span>
-                              {input}
-                           </div>
-                           {error}{hint}
-                           '])->passwordInput(['placeholder' => 'Repeat your password', 'class' => 'input100'])
-                        ?>
+                      
+                       
+                       
+                      
+                      
                    
                      
                 
-                    <div class="container-login100-form-btn">
-                        <?= Html::submitButton('Sign up', ['class' => 'login100-form-btn', 'name' => 'submit']) ?>
+                    <div class="form-group">
+                    
+                    <?= Html::a('<i class="bi-arrow-left"></i> Kembali', ['register'], ['class' => 'btn btn-warning btn-kembali']) ?>
+                        <?= Html::submitButton('Daftar', ['class' => 'btn btn-primary btn-submit', 'name' => 'submit']) ?>
                     </div>
 
                     
-                    <div class="text-center p-t-136">
-                        <?= Html::a('Go to Login Page <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>', ['/user/security/login'], ['class' => 'txt2']) ?>
-                        <!-- <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i> -->
-                    </div>
+        
 
                     <?php ActiveForm::end(); ?>
+
+
+    
+                  
+                        </div>
+                    </div>
+           
                 </div>
             </div>
-        </div>
-    </div>
+        </header>
+
+
+
+
 

@@ -25,7 +25,7 @@ class SignupForm extends Model
     {
         return [
 			
-            ['username', 'email'],
+            ['username', 'string'],
 
             ['role', 'integer'],
 
@@ -38,7 +38,7 @@ class SignupForm extends Model
     {
         $label = parent::attributeLabels();
         $label['role'] = 'Pilih Kategori Pengguna';
-        $label['username'] = 'Email';
+        $label['username'] = 'Username';
         $label['fullname'] = 'Nama Penuh';
         $label['password'] = 'Kata Laluan';
         $label['password_repeat'] = 'Ulang Kata Laluan';

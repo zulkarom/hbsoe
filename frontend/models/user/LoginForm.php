@@ -15,7 +15,7 @@ class LoginForm extends BaseLoginForm
         $rules = parent::rules();
         $rules[]  = ['role', 'required'];
        
-		$rules[]  = ['login', 'email'];
+		$rules[]  = ['login', 'string'];
 		$rules[]  = ['role', 'validateRole'];
         return $rules;
     }
@@ -23,7 +23,7 @@ class LoginForm extends BaseLoginForm
 	public function attributeLabels()
     {
 		$labels = parent::attributeLabels();
-		$labels['login'] = 'Email';
+		$labels['login'] = 'Username';
         return $labels;
     }
     

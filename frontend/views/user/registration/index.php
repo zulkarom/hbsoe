@@ -1,14 +1,3 @@
-<style type="text/css">
-  
-.center {
-  padding: 200px 0;
-  text-align: center;
-}
-.p-t-136 {
-    padding-top: 30px !important;
-}
-</style>
-
 <?php
 
 use yii\helpers\Html;
@@ -22,60 +11,87 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/loginAss
 $this->title = 'Sign Up';
 $this->params['breadcrumbs'][] = $this->title;
 
+
+$web = Yii::getAlias('@web');
 ?>
 
-<div class="limiter">
-        <div class="container-login100">
-            <div class="wrap-login100">
-                <div class="login100-pic js-tilt" data-tilt>
-                   <a href="<?php echo Url::to('../../')?>"><img src="<?= $dirAssests?>/images/logo-hubsoe.png" alt="IMG"></a> 
 
-                </div>
 
-                <div class="login100-form validate-form">
-                    <span class="login100-form-title">
-                        Register
-                    </span>
+ <style>
 
-                <?php $form = ActiveForm::begin()?>
+.form-group{
+margin-bottom:14px;
+}
+.form-group.required .has-star:not(.custom-control-label):not(.custom-file-label)::after,
+.is-required::after {
+    content: "*";
+    margin-left: 3px;
+    font-weight: normal;
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    color: tomato;
+}
+label {
+    display: inline-block;
+    font-size:14px;
+}
+.btn-block {
+  display: block;
+  width: 100%;
+  background-color:#2937f0;
+}
+.btn-submit{
+margin-top:20px;
+}
+
+</style>
+ <header class="masthead">
+            <div class="container px-5">
+                <div class="row gx-5 align-items-center">
+                  <div class="col-lg-4"></div>
+                    <div class="col-lg-4">
+                        <!-- Mashead text and app badges-->
+                         <span class="invalid-feedback"></span>
+                        
+                           <div class="mb-5 mb-lg-0 text-lg-start">
+                        <div class="text-center"> <img src="<?=$web?>/images/logo_umk_hubsoe.png" style="max-width: 100%"/>
+                        <br /> <br /> 
+                       
+                            <h2 class="lh-1 mb-3">Pendaftaran</h2></div>
+                       
+                       
+                           <?php $form = ActiveForm::begin([
+                    'id' => 'signup-form1',
+                ])?>
                     
-                       <?= $form->field($model, 'role', ['template' => '
-                           <div class="wrap-input100">
-                                <span class="focus-input100"></span>
-                                <span class="symbol-input100">
-                                    <i class="fa fa-user" aria-hidden="true"></i>
-                                </span>
-                              {input}
-                           </div>
-                           {error}{hint}
-                           '])->dropDownList(Common::role(), ['prompt' => 'Select User Category', 'class' => 'input100', 'style' => 'height:50px !important'])
+                       <?php 
+                
+                       
+                      echo  $form->field($model, 'role')->dropDownList(Common::role())
                         ?>
-                        <?= $form->field($model, 'username', ['template' => '
-                           <div class="wrap-input100">
-                                <span class="focus-input100"></span>
-                                <span class="symbol-input100">
-                                    <i class="fa fa-envelope" aria-hidden="true"></i>
-                                </span>
-                              {input}
-                           </div>
-                           {error}{hint}
-                           '])->textInput(['placeholder' => $model->getAttributeLabel('username'), 'class' => 'input100'])
+                        <?= $form->field($model, 'username')->textInput()
                         ?>                  
                      
                 
-                    <div class="container-login100-form-btn">
-                        <?= Html::submitButton('Next', ['class' => 'login100-form-btn', 'name' => 'submit']) ?>
+                    <div class="form-group btn-submit">
+                        <?= Html::submitButton('Next <i class="bi-arrow-right"></i>', ['class' => 'btn btn-primary btn-block', 'name' => 'submit']) ?>
                     </div>
 
-                    
-                    <div class="text-center p-t-136">
-                        <?= Html::a('Go to Login Page <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>', ['/user/security/login'], ['class' => 'txt2']) ?>
-                        <!-- <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i> -->
-                    </div>
+    
 
                     <?php ActiveForm::end(); ?>
+
+
+    
+                  
+                        </div>
+                    </div>
+           
                 </div>
             </div>
-        </div>
-    </div>
+        </header>
+
+
+
+
+
 

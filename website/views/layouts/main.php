@@ -1,20 +1,11 @@
 <?php
-use website\assets\AppAsset;
-use yii\helpers\Html;
 use yii\helpers\Url;
-
-AppAsset::register($this);
-$dirAssests=Yii::$app->assetManager->getPublishedUrl('@website/views/myassets');
-//hai
-
 $web = Yii::getAlias('@web');
-
-
 ?>
+
+
+
 <?php $this->beginPage() ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en-gb" class="no-js">
   <head>
@@ -24,8 +15,8 @@ $web = Yii::getAlias('@web');
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>HubSoE</title>
-        <link rel="icon" href="<?=$web?>/images/favicon-hs.png" type="image/png">
+        <title>HubSoE | Hub for Social Entrepreneur</title>
+        <link rel="icon" href="<?=$web?>/images/favhs.png" type="image/png">
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Google fonts-->
@@ -60,6 +51,9 @@ $web = Yii::getAlias('@web');
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
+                    
+                    <li class="nav-item"><a class="nav-link me-lg-3" href="<?=Url::to(['/'])?>">Utama</a></li>
+                    
                         <li class="nav-item"><a class="nav-link me-lg-3" href="<?=Url::to(['/member/'])?>">Log Masuk</a></li>
                     </ul>
                     <a href="<?=Url::to(['/member/user-register/register'])?>" class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0">
@@ -79,7 +73,13 @@ $web = Yii::getAlias('@web');
                 <div class="row gx-5 align-items-center">
                     <div class="col-lg-6">
                         <!-- Mashead text and app badges-->
+                         
+                        
                         <div class="mb-5 mb-lg-0 text-center text-lg-start">
+                        
+                        <img src="<?=$web?>/images/logo_umk_hubsoe.png" style="max-width: 100%"/>
+                        <br /> <br /> <br /> <br />
+                       
                             <h1 class="display-1 lh-1 mb-3">Hub for Social Entrepreneur</h1>
                             <p class="lead fw-normal text-muted mb-5">Sistem Pengurusan Usahawan Sosial</p>
                             <div class="d-flex flex-column flex-lg-row align-items-center">
@@ -107,7 +107,7 @@ $web = Yii::getAlias('@web');
                                         <!-- * * This can be a video, image, or just about anything else.-->
                                         <!-- * * Set the max width of your media to 100% and the height to-->
                                         <!-- * * 100% like the demo example below.-->
-                                        <img src="<?=$web?>/images/img/bgx.png" style="max-width: 100%; height: 100%">
+                                        <img src="<?=$web?>/images/img/bg-phone.png" style="max-width: 100%; height: 100%">
                                     </div>
                                 </div>
                             </div>
@@ -190,7 +190,7 @@ $web = Yii::getAlias('@web');
                                 <div class="device" data-device="iPhoneX" data-orientation="portrait" data-color="black">
                                     <div class="screen bg-black">
     
-                                        <img src="<?=$web?>/images/img/bgx.png" style="max-width: 100%; height: 100%" />
+                                        <img src="<?=$web?>/images/img/bg-phone.png" style="max-width: 100%; height: 100%" />
                                     </div>
                                 </div>
                             </div>
