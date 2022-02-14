@@ -22,6 +22,7 @@ use yii\bootstrap4\Alert;
                 <?php if (in_array($type, ['success', 'danger', 'warning', 'info'])): ?>
                     <?= Alert::widget([
                         'options' => ['class' => 'alert-dismissible alert-' . $type],
+                        'closeButton' => false,
                         'body' => ' ' . $message
                     ]) ?>
                 <?php endif ?>

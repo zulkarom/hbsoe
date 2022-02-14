@@ -34,5 +34,16 @@ class LoginForm extends BaseLoginForm
         }
     }
     
+    public function beforeValidate()
+    {
+        if (parent::beforeValidate()) {
+            $this->user = $this->finder->findUserByUsername(trim($this->login));
+            
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     
 }

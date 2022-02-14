@@ -58,15 +58,19 @@ class User extends \dektrium\user\models\User
 
 	public static function checkRoleExistByUsername($username, $role_id){
 	    $role_table = self::getRoleTable($role_id);
+	    $user = self::find()->alias('u')
+	    ->where(['u.username' => $username])
+	    ->one();
+
 	    $check = self::find()->alias('u')
 	    ->innerJoin($role_table. ' r', 'u.id = r.user_id')
-	    ->where('u.username = \'' . $username . '\'')
+	    ->where(['u.username' => $username])
 	    ->one();
-	    if($check){
-	        return true;
+	    if($user && !$check){
+	        return false;
 	    }
 	    
-	    return false;
+	    return true;
 	}
 	
 	private static function getRoleTable($role_id){

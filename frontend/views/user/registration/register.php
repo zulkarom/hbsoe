@@ -3,16 +3,15 @@
 
 use yii\helpers\Html;
 use kartik\widgets\ActiveForm;
-use yii\helpers\Url;
 use common\models\Common;
+use frontend\models\Alert;
 
 
 $this->title = 'Sign Up';
 $this->params['breadcrumbs'][] = $this->title;
 
 
-
-$web = Yii::getAlias('@web');
+$web = Yii::$app->assetManager->getPublishedUrl('@backend/assets/web');
 ?>
 
 
@@ -65,7 +64,7 @@ margin-top:20px;
                         
                         </div>
                         
-                        
+                         <?= Alert::widget() ?>
                        
                                        <?php $form = ActiveForm::begin([
                     'id' => 'signup-form',
@@ -97,20 +96,11 @@ margin-top:20px;
                         ?>
                         </div>
                     </div>
-                        
-                        
-                    
-                      
-                       
-                       
-                      
-                      
-                   
                      
                 
                     <div class="form-group">
                     
-                    <?= Html::a('<i class="bi-arrow-left"></i> Kembali', ['register'], ['class' => 'btn btn-warning btn-kembali']) ?>
+                    <?= Html::a('<i class="bi-arrow-left"></i> Kembali', ['/user-register/register'], ['class' => 'btn btn-warning btn-kembali']) ?>
                         <?= Html::submitButton('Daftar', ['class' => 'btn btn-primary btn-submit', 'name' => 'submit']) ?>
                     </div>
 

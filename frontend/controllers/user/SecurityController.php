@@ -5,8 +5,6 @@ namespace frontend\controllers\user;
 use Yii;
 use dektrium\user\controllers\SecurityController as BaseSecurityController;
 use frontend\models\user\LoginForm;
-use frontend\models\KadetLevel;
-use common\models\User;
 
 class SecurityController extends BaseSecurityController
 {
@@ -26,17 +24,23 @@ class SecurityController extends BaseSecurityController
 
         $this->trigger(self::EVENT_BEFORE_LOGIN, $event);
 
-        if ($model->load(\Yii::$app->getRequest()->post()) && $model->login()) {
-
-            if($model->role == 1){
-                if(\Yii::$app->user && \Yii::$app->user->identity->entrepreneur) {
-                    return $this->redirect(['/entrepreneur/dashboard/index']);
+        if ($model->load(\Yii::$app->getRequest()->post())) {
+            
+            if($model->login()){
+                if($model->role == 1){
+                    if(\Yii::$app->user && \Yii::$app->user->identity->entrepreneur) {
+                        return $this->redirect(['/entrepreneur/dashboard/index']);
+                    }
+                }else if($model->role == 2){
+                    if(\Yii::$app->user && \Yii::$app->user->identity->supplier) {
+                        return $this->redirect(['/supplier/dashboard/index']);
+                    }
                 }
-            }else if($model->role == 2){
-                if(\Yii::$app->user && \Yii::$app->user->identity->supplier) {
-                    return $this->redirect(['/supplier/dashboard/index']);
-                }
+            }else{
+                //print_r($model->getErrors());die();
             }
+
+            
 
             
             

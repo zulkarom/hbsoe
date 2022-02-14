@@ -19,35 +19,47 @@ use yii\helpers\Html;
 use kartik\widgets\ActiveForm;
 use yii\helpers\Url;
 use common\models\Common;
+use frontend\models\Alert;
 
 
-$dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/loginAsset');
+$web = Yii::$app->assetManager->getPublishedUrl('@backend/assets/web');
 
 $this->title = 'Sign Up';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
-<div class="limiter">
-        <div class="container-login100">
-            <div class="wrap-login100">
-                <div class="login100-pic js-tilt" data-tilt>
-                   <a href="<?php echo Url::to('../../')?>"><img src="<?= $dirAssests?>/images/logo-hubsoe.png" alt="IMG"></a> 
-                </div>
 
-                <div class="login100-form validate-form">
-                    <span class="login100-form-title">
-                        <br/><br/>
-                        <b>REGISTRATION</b>
-                    </span>
-                    <center><b>Thank You. Your account successfully registered.</b></center>
- 
-                    <div class="text-center p-t-136">
-                        <?= Html::a('Go to Login Page <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>', ['/user/security/login'], ['class' => 'txt2']) ?>
-                        <!-- <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i> -->
+<header class="masthead">
+            <div class="container px-5">
+                <div class="row gx-5 align-items-center">
+                  <div class="col-lg-2"></div>
+                    <div class="col-lg-8">
+                        <!-- Mashead text and app badges-->
+                         
+                        
+                           <div class="mb-5 mb-lg-0 text-lg-start">
+                        
+                        <div class="text-center"> 
+                        
+                        <img src="<?=$web?>/images/logo_umk_hubsoe.png" style="max-width: 100%"/>
+                        <br /> <br /> 
+                       
+                            <h2 class="lh-1 mb-3">Pendaftaran</h2>
+                        
+                        </div>
+                        
+                         <?= Alert::widget() ?>
+                       
+
+
+    
+                  
+                        </div>
                     </div>
+           
                 </div>
             </div>
-        </div>
-    </div>
+        </header>
+
 

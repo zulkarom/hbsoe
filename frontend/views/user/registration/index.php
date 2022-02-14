@@ -2,17 +2,14 @@
 
 use yii\helpers\Html;
 use kartik\widgets\ActiveForm;
-use yii\helpers\Url;
 use common\models\Common;
-
-
-$dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/loginAsset');
+use frontend\models\Alert;
 
 $this->title = 'Sign Up';
 $this->params['breadcrumbs'][] = $this->title;
 
 
-$web = Yii::getAlias('@web');
+$web = Yii::$app->assetManager->getPublishedUrl('@backend/assets/web');
 ?>
 
 
@@ -58,7 +55,7 @@ margin-top:20px;
                        
                             <h2 class="lh-1 mb-3">Pendaftaran</h2></div>
                        
-                       
+                        <?= Alert::widget() ?>
                            <?php $form = ActiveForm::begin([
                     'id' => 'signup-form1',
                 ])?>

@@ -6,8 +6,8 @@ use common\widgets\Menu_crypto;
 ?> 
 <nav class="sidebar dark_sidebar">
     <div class="logo d-flex justify-content-between">
-        <a class="large_logo" href="<?php echo Url::to(['/'])?>"><img src="<?= $dirAssests?>/img/logo_whitex.png" alt=""></a>
-        <a class="small_logo" href="<?php echo Url::to(['/'])?>"><img src="<?= $dirAssests?>/img/mini_logox.png" alt=""></a>
+        <a class="large_logo" href="<?php echo Url::to(['/'])?>"><img src="<?= $dirAssests?>/img/logo_white3.png" alt=""></a>
+        <a class="small_logo" href="<?php echo Url::to(['/'])?>"><img src="<?= $dirAssests?>/img/mini_logo3.png" alt=""></a>
         <div class="sidebar_close_icon d-lg-none">
             <i class="ti-close"></i>
         </div>

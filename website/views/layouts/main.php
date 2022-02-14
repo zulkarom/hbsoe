@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Url;
-$web = Yii::getAlias('@web');
+\backend\assets\WebAsset::register($this);
+$web = Yii::$app->assetManager->getPublishedUrl('@backend/assets/web');
 ?>
 
 
@@ -30,7 +31,7 @@ $web = Yii::getAlias('@web');
 		
 		.device[data-device=iPhoneX][data-orientation=portrait][data-color=black]::after {
 		  content: "";
-		  background-image: url("images/img/portrait_black.png");
+		  background-image: url("<?=$web?>/images/img/portrait_black.png");
 		}
 		
 		</style>
@@ -44,7 +45,7 @@ $web = Yii::getAlias('@web');
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
             <div class="container px-5">
-                <a class="navbar-brand fw-bold" href="#page-top">HubSoE</a>
+                <a class="navbar-brand fw-bold" href="<?php echo Url::to(['/'])?>">HubSoE</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="bi-list"></i>

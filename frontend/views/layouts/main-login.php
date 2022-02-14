@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Url;
-$web = Yii::getAlias('@web');
+\backend\assets\WebAsset::register($this);
+$web = Yii::$app->assetManager->getPublishedUrl('@backend/assets/web');
 ?>
 
 
@@ -44,7 +45,7 @@ $web = Yii::getAlias('@web');
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
             <div class="container px-5">
-                <a class="navbar-brand fw-bold" href="<?php Url::to(['../../'])?>">HubSoE</a>
+                <a class="navbar-brand fw-bold" href="<?php echo Url::to(['../../'])?>">HubSoE</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="bi-list"></i>
@@ -52,7 +53,7 @@ $web = Yii::getAlias('@web');
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
                     
-                    <li class="nav-item"><a class="nav-link me-lg-3" href="<?=Url::to(['../'])?>">Utama</a></li>
+                    <li class="nav-item"><a class="nav-link me-lg-3" href="<?=Url::to(['../../'])?>">Utama</a></li>
                     
                         <li class="nav-item"><a class="nav-link me-lg-3" href="<?=Url::to(['/'])?>">Log Masuk</a></li>
                     </ul>

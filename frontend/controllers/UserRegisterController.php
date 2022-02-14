@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use Yii;
 use frontend\models\user\User;
 use frontend\models\SignupForm;
+use common\models\Common;
 
 
 class UserRegisterController extends \yii\web\Controller
@@ -25,10 +26,12 @@ class UserRegisterController extends \yii\web\Controller
 
             if($checkUser){
                 if(User::checkRoleExistByUsername($model->username, $model->role)){
+                    
                     Yii::$app->session->addFlash('danger', "Akaun anda telah berdaftar dengan sistem ini.");
                 }else{
                     if ($model->signup()) {
-                        Yii::$app->session->addFlash('success', "Pendaftaran Berjaya");
+                        $role_name = Common::role()[$model->role];
+                        Yii::$app->session->addFlash('success', "Pendaftaran sebagai ". $role_name . " telah berjaya. Sila login untuk melengkanpkan maklumat seterusnya.");
                         return $this->redirect(['register2']);
                     }else{
                         Yii::$app->session->addFlash('danger', "Pendaftaran Gagal.");

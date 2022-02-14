@@ -75,13 +75,11 @@ class SiteController extends Controller
         return $this->render('index');
     }
     
-    public function actionImportData()
+    /* public function actionImportData()
     {
-        
-       
-            
+
             $list = Data::find()
-            ->where(['<=', 'id', 92])
+         //   ->where(['<=', 'id', 92])
             
             ->all()
             
@@ -142,7 +140,7 @@ class SiteController extends Controller
         
         
         
-    }
+    } */
     
     
 

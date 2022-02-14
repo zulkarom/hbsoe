@@ -1,12 +1,11 @@
 <?php
 use yii\helpers\Html;
 use kartik\widgets\ActiveForm;
-use yii\helpers\Url;
 use common\models\Common;
-use dektrium\user\widgets\Connect;
+use frontend\models\Alert;
 
 $this->title = 'HubSoE | Log Masuk';
-$web = Yii::getAlias('@web');
+$web = Yii::$app->assetManager->getPublishedUrl('@backend/assets/web');
 
 ?>
   <style>
@@ -14,6 +13,20 @@ $web = Yii::getAlias('@web');
 .form-group{
 margin-bottom:14px;
 
+}
+.btn-block {
+  display: block;
+  width: 100%;
+  background-color:#2937f0;
+}
+
+.form-group.required .has-star:not(.custom-control-label):not(.custom-file-label)::after,
+.is-required::after {
+    content: "*";
+    margin-left: 3px;
+    font-weight: normal;
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    color: tomato;
 }
 
 </style>
@@ -25,20 +38,23 @@ margin-bottom:14px;
                         <!-- Mashead text and app badges-->
                          
                         
-                        <div class="mb-5 mb-lg-0 text-center text-lg-start">
+                        <div class="mb-5 mb-lg-0 text-lg-start">
                         
-                        <img src="<?=$web?>/images/logo_umk_hubsoe.png" style="max-width: 100%"/>
+                         <div class="text-center">  <img src="<?=$web?>/images/logo_umk_hubsoe.png" style="max-width: 100%"/>
                         <br /> <br /> 
                        
                             <h2 class="lh-1 mb-3">Log Masuk</h2>
-                        
+                        </div>
+                       
                             
+                              <?= Alert::widget() ?>
                             
-                            
-                                               <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
+       <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
                     <?php 
+                    if(!Yii::$app->getRequest()->post()){
+                        $model->role = 1;
+                    }
                     
-                    $model->role = 1;
                     
                     echo $form->field($model, 'role')->dropDownList(Common::role(), ['prompt' => 'Select User Category'])->label(false)
                     
