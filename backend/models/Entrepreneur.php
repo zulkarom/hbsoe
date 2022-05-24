@@ -50,7 +50,7 @@ class Entrepreneur extends \yii\db\ActiveRecord
 			
 			['phone', 'unique', 'message' => 'A beneficiary with this phone has already exist'],
 
-            [['age', 'address', 'postcode', 'city', 'state', 'phone'], 'required', 'on' => 'insert'],
+            /*[['age', 'address', 'postcode', 'city', 'state', 'phone'], 'required', 'on' => 'insert'],*/
 
             [['user_id', 'fullname'], 'required', 'on' => 'admin_insert'],
             //Profile image

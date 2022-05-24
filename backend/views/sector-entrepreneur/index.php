@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="sector-entrepreneur-index">
 
     <p>
-        <?php // Html::a('Create Sector Entrepreneur', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Sector Beneficiary', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
       <br />
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

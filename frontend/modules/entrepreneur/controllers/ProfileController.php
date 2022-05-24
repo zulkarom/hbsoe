@@ -46,7 +46,7 @@ class ProfileController extends Controller
         // die();
         $model = $this->findEntrepreneurProfile($id);
 
-        $model->setScenario('insert');
+        // $model->setScenario('insert');
         if ($model->load(Yii::$app->request->post())) {
 
                 if($model->save()){
@@ -72,7 +72,7 @@ class ProfileController extends Controller
         // die();
         $model = $this->findEntrepreneur($id);
         
-        $model->setScenario('insert');
+        
         if ($model->load(Yii::$app->request->post())) {
             
             $model->longitude = $model->u_longitude;

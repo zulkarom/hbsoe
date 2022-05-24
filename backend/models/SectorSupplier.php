@@ -27,7 +27,7 @@ class SectorSupplier extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['supplier_id', 'sector_id', 'description'], 'required'],
+            [['supplier_id', 'sector_id'], 'required'],
             [['supplier_id' , 'sector_id'], 'integer'],
             [['description'], 'string'],
         ];

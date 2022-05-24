@@ -27,7 +27,7 @@ class SectorEntrepreneur extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['entrepreneur_id', 'sector_id', 'description'], 'required'],
+            [['entrepreneur_id', 'sector_id'], 'required'],
             [['entrepreneur_id',  'sector_id'], 'integer'],
             [['description'], 'string'],
         ];

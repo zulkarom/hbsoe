@@ -38,7 +38,7 @@ class Supplier extends \yii\db\ActiveRecord
             
             ['user_id', 'unique', 'message' => 'A supplier with this email has already exist'],
 
-            [['address', 'postcode', 'city', 'state', 'phone', 'biz_name'], 'required', 'on' => 'insert'],
+            // [['address', 'postcode', 'city', 'state', 'phone', 'biz_name'], 'required', 'on' => 'insert'],
 
             [['address', 'postcode', 'city', 'state', 'phone', 'biz_name'], 'required', 'on' => 'admin_insert'],
 

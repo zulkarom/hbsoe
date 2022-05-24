@@ -29,8 +29,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'entrepreneurName',
-            'description:ntext',
             'sectorName',
+            'description:ntext',
+            
         ],
     ]) ?>
 </div>

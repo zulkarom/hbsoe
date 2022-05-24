@@ -12,13 +12,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="competency-index">
 
-<?php 
-
-/*<p>
+    <p>
         <?= Html::a('Create Competency', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>  */
+    </p>  
 
-?>
     
 <br />
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

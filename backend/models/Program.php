@@ -35,7 +35,7 @@ class Program extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['entrepreneur_id', 'prog_name', 'prog_category', 'prog_date', 'prog_description', 'prog_anjuran'], 'required'],
+            [['entrepreneur_id', 'prog_name', 'prog_category', 'prog_date', 'prog_anjuran'], 'required'],
             [['prog_category', 'prog_anjuran'], 'integer'],
             [['prog_date', 'created_at', 'updated_at'], 'safe'],
             [['prog_description'], 'string'],

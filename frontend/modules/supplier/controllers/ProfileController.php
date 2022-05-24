@@ -46,7 +46,7 @@ class ProfileController extends Controller
         // die();
         $model = $this->findSupplierProfile($id);
 
-        $model->setScenario('insert');
+        // $model->setScenario('insert');
         if ($model->load(Yii::$app->request->post())) {
 
 
@@ -73,7 +73,6 @@ class ProfileController extends Controller
         // die();
         $model = $this->findSupplier($id);
         
-        $model->setScenario('insert');
         if ($model->load(Yii::$app->request->post())) {
             
             $model->longitude = $model->s_longitude;

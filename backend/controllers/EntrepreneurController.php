@@ -14,6 +14,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use backend\models\UploadFile;
 use common\models\User;
+use yii\db\Query;
 /**
  * EntrepreneurController implements the CRUD actions for Entrepreneur model.
  */
@@ -35,6 +36,28 @@ class EntrepreneurController extends Controller
                 ],
             ],
         ];
+    }
+
+    public function actionEntrepreneurListJson($q = null, $id = null) {
+        
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        
+        $out = ['results' => ['id' => '', 'text' => '']];
+        if (!is_null($q)) {
+            $query = new Query;
+            $query->select('entrepreneur.id, user.fullname AS text')
+            ->from('entrepreneur')
+            ->leftJoin('user', 'entrepreneur.user_id = user.id')
+            ->where(['like', 'user.fullname', $q])
+            ->limit(20);
+            $command = $query->createCommand();
+            $data = $command->queryAll();
+            $out['results'] = array_values($data);
+        }
+        elseif ($id > 0) {
+            $out['results'] = ['id' => $id, 'text' => Entrepreneur::findOne($id)->user->username];
+        }
+        return $out;
     }
 
     /**

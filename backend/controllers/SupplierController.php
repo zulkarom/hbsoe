@@ -11,7 +11,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 use backend\models\UploadFile;
 use common\models\User;
-
+use yii\db\Query;
 /**
  * SupplierController implements the CRUD actions for Supplier model.
  */
@@ -33,6 +33,28 @@ class SupplierController extends Controller
                 ],
             ],
         ];
+    }
+
+    public function actionSupplierListJson($q = null, $id = null) {
+        
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        
+        $out = ['results' => ['id' => '', 'text' => '']];
+        if (!is_null($q)) {
+            $query = new Query;
+            $query->select('supplier.id, user.fullname AS text')
+            ->from('supplier')
+            ->leftJoin('user', 'supplier.user_id = user.id')
+            ->where(['like', 'user.fullname', $q])
+            ->limit(20);
+            $command = $query->createCommand();
+            $data = $command->queryAll();
+            $out['results'] = array_values($data);
+        }
+        elseif ($id > 0) {
+            $out['results'] = ['id' => $id, 'text' => Supplier::findOne($id)->user->username];
+        }
+        return $out;
     }
 
     /**

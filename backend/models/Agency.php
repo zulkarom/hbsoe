@@ -27,7 +27,7 @@ class Agency extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['entrepreneur_id', 'description', 'nama_agensi', 'tarikh_terima'], 'required'],
+            [['entrepreneur_id', 'nama_agensi', 'tarikh_terima'], 'required'],
             [['entrepreneur_id'], 'integer'],
             [['description'], 'string', 'max' => 255],
             [['nama_agensi'], 'string', 'max' => 225],

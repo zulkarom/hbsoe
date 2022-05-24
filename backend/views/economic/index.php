@@ -12,7 +12,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="economic-index">
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <p>
+        <?= Html::a('Create Economic Beneficiary', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+      <br />
 
      <div class="card">
     <div class="card-body">

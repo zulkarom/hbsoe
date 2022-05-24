@@ -12,8 +12,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="social-impact-index">
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+     <p>
+        <?= Html::a('Create Social Impact Beneficiary', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+    <br />
      <div class="card">
     <div class="card-body">
     <?= GridView::widget([
