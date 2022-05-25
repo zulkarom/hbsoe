@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\helpers\Url;
 use voime\GoogleMaps\Map;
+use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Entrepreneur */
 
@@ -27,88 +28,112 @@ $model->u_longitude = $model->longitude;
         ]) ?>
     </p>
     <br/>
-<div class="white_card card_height_100 mb_30">
-<div class="white_card_header">
-<div class="entrepreneur-view">
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            [
-                'format' => 'raw',
-                'label' => 'Profile Picture',
-                'value' => function($model){
-                    if($model->profile_file){
+<div class="row">
+    <div class="col-md-6">
+        <div class="entrepreneur-view">
+        <div class="table-responsive">
+        <div class="card">
+        <div class="card-body">
+        
+            <?= DetailView::widget([
+                'model' => $model,
+                'attributes' => [
+                    [
+                        'format' => 'raw',
+                        'label' => 'Profile Picture',
+                        'value' => function($model){
+                            if($model->profile_file){
 
-                        return '<img src="'.Url::to(['/entrepreneur/profile-image', 'id' => $model->id]).'" width="90" height="90">';
-                    }
-                }
-            ],
-            [
-                'label' => 'Name',
-                'value' => function($model){
-                    return $model->user->fullname;
-                }
-            ],
-            [
-                'label' => 'NRIC',
-                'value' => function($model){
-                return $model->user->nric;
-                }
+                                return '<img src="'.Url::to(['/entrepreneur/profile-image', 'id' => $model->id]).'" width="90" height="90">';
+                            }
+                        }
+                    ],
+                    [
+                        'label' => 'Name',
+                        'value' => function($model){
+                            return $model->user->fullname;
+                        }
+                    ],
+                    [
+                        'label' => 'NRIC',
+                        'value' => function($model){
+                        return $model->user->nric;
+                        }
+                        ],
+                    'phone',
+                    'biz_name',
+                    'biz_info',
+                    [
+                     'label' => 'Date Register',
+                     'value' => function($model){
+                        if($model->user){
+                            return date('d M Y', $model->user->created_at);
+                        }
+                     }
+                    ],
+                    [
+                        'label' => 'Email',
+                        'value' => function($model){
+                            return $model->user->email;
+                        }
+                    ],
+                    [
+                        'label' => 'Age',
+                        'value' => function($model){
+                            return $model->age;
+                        }
+                    ],
+                    [
+                     'label' => 'Address',
+                     'value' => function($model){
+                        if($model->address){
+                            return $model->fullAddress;
+                        }
+                     }
+                    ],  
+                   'note',   
+                    [
+                        'label' => 'Location',
+                        'format' => 'raw',
+                        'value' => function($model){
+                            return $model->location.
+                            '<br/>'.Map::widget([
+                                'apiKey'=> 'AIzaSyCdaIFmGh8LWEfbXln7BkPnMfB1RDd9Rj4',
+                                'width' => '860px',
+                                'height' => '450px',
+                                'center' => [$model->u_latitude, $model->u_longitude],
+                                'markers' => [
+                                    ['position' => [$model->u_latitude, $model->u_longitude],
+                                    'content' => '<strong><b>'.$model->biz_name.'<br/>'.$model->location.'</b></strong>'],
+                                ]
+                                
+                            ]);
+                        }
+                    ],
+                    
                 ],
-            'phone',
-            'biz_name',
-            'biz_info',
-            [
-             'label' => 'Date Register',
-             'value' => function($model){
-                if($model->user){
-                    return date('d M Y', $model->user->created_at);
-                }
-             }
-            ],
-            [
-                'label' => 'Email',
-                'value' => function($model){
-                    return $model->user->email;
-                }
-            ],
-            [
-                'label' => 'Age',
-                'value' => function($model){
-                    return $model->age;
-                }
-            ],
-            [
-             'label' => 'Address',
-             'value' => function($model){
-                if($model->address){
-                    return $model->fullAddress;
-                }
-             }
-            ],  
-           'note',   
-            [
-                'label' => 'Location',
-                'format' => 'raw',
-                'value' => function($model){
-                    return $model->location.
-                    '<br/>'.Map::widget([
-                        'apiKey'=> 'AIzaSyCdaIFmGh8LWEfbXln7BkPnMfB1RDd9Rj4',
-                        'width' => '860px',
-                        'height' => '450px',
-                        'center' => [$model->u_latitude, $model->u_longitude],
-                        'markers' => [
-                            ['position' => [$model->u_latitude, $model->u_longitude],
-                            'content' => '<strong><b>'.$model->biz_name.'<br/>'.$model->location.'</b></strong>'],
-                        ]
-                        
-                    ]);
-                }
-            ],
-            
-        ],
-    ]) ?>
- 
-</div>
-</div>
+            ]) ?>
+         
+        </div>
+        </div>
+        </div>
+    </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+        <div class="card-header">Sectors</div>
+        <div class="card-body">
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                //'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
+                    'sectorName',
+                    'descriptionx:ntext',
+                ],
+            ]); ?>
+
+          </div>
+        </div>
+    </div>
 </div>

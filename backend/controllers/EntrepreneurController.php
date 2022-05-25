@@ -6,6 +6,7 @@ use Yii;
 use backend\models\Entrepreneur;
 use backend\models\EntrepreneurProfile;
 use backend\models\EntrepreneurSearch;
+use backend\models\SectorEntrepreneurSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
@@ -83,7 +84,12 @@ class EntrepreneurController extends Controller
      */
     public function actionView($id)
     {
+        $searchModel = new SectorEntrepreneurSearch(['entrepreneur_id' => $id]);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
         return $this->render('view', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
             'model' => $this->findModel($id),
         ]);
     }
