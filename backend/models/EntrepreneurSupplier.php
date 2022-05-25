@@ -58,4 +58,10 @@ class EntrepreneurSupplier extends \yii\db\ActiveRecord
         return $this->entrepreneur->user->fullname;
     }
 
+    public static function countClient(){
+        return self::find()
+        ->where(['supplier_id' => Yii::$app->user->identity->supplier->id])
+        ->count();
+    }
+
 }

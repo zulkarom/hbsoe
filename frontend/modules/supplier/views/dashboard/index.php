@@ -1,12 +1,8 @@
 <?php
 
 /* @var $this yii\web\View */
-use backend\models\Supplier;
-use backend\models\Competency;
-use backend\models\SocialImpact;
-use backend\models\Economic;
-use backend\models\Agency;
-use backend\models\Program;
+use backend\models\SectorSupplier;
+use backend\models\EntrepreneurSupplier;
 
 $this->title = \Yii::t('app', 'Dashboard');
 ?>
@@ -22,12 +18,17 @@ $this->title = \Yii::t('app', 'Dashboard');
       
                         <div class="white_card_body anlite_table p-0">
                             <div class="row">
-                                <div class="col-lg-1">
+                                <div class="col-lg-2">
                                 </div>
                                 <div class="col-lg-2">
                                     <div class="single_analite_content">
-                                        <h4>Number of Competency</h4>
-                                        <h3><span class="counter"><?php echo Competency::countCompetency()?></span> </h3>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="single_analite_content">
+                                        <h4>Number of Sectors</h4>
+                                        <h3><span class="counter"><?php echo SectorSupplier::countSectorSupplier()?></span> </h3>
                                         <!-- <div class="d-flex">
                                             <div>3.78 <i class="fa fa-caret-up"></i></div>
                                             <span>This month</span>
@@ -36,45 +37,21 @@ $this->title = \Yii::t('app', 'Dashboard');
                                 </div>
                                 <div class="col-lg-2">
                                     <div class="single_analite_content">
-                                        <h4>Number of Social Impact</h4>
-                                        <h3><span class="counter"><?php echo SocialImpact::countSocialImpact()?></span> </h3>
+                                        <h4>Number of Clients</h4>
+                                        <h3><span class="counter"><?php echo EntrepreneurSupplier::countClient()?></span> </h3>
                                         <!-- <div class="d-flex">
                                             <div>3.78 <i class="fa fa-caret-up"></i></div>
                                             <span>This month</span>
                                         </div> -->
                                     </div>
                                 </div>
+                                
                                 <div class="col-lg-2">
                                     <div class="single_analite_content">
-                                        <h4>Number of Economics</h4>
-                                        <h3><span class="counter"><?php echo Economic::countEconomic()?></span> </h3>
-                                        <!-- <div class="d-flex">
-                                            <div>3.78 <i class="fa fa-caret-up"></i></div>
-                                            <span>This month</span>
-                                        </div> -->
+                                        
                                     </div>
                                 </div>
                                 <div class="col-lg-2">
-                                    <div class="single_analite_content">
-                                        <h4>Number of Agency</h4>
-                                        <h3><span class="counter"><?php echo Agency::countAgency()?></span> </h3>
-                                        <!-- <div class="d-flex">
-                                            <div>3.78 <i class="fa fa-caret-up"></i></div>
-                                            <span>This month</span>
-                                        </div> -->
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div class="single_analite_content">
-                                        <h4>Number of Program</h4>
-                                        <h3><span class="counter"><?php echo Program::countProgram()?></span> </h3>
-                                        <!-- <div class="d-flex">
-                                            <div>3.78 <i class="fa fa-caret-up"></i></div>
-                                            <span>This year</span>
-                                        </div> -->
-                                    </div>
-                                </div>
-                                <div class="col-lg-1">
                                 </div>
                             </div>  
                         </div>

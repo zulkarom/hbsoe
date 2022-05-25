@@ -68,4 +68,10 @@ class SectorSupplier extends \yii\db\ActiveRecord
     public function getDescriptionx(){
         return $this->description;
     }
+
+    public static function countSectorSupplier(){
+        return self::find()
+        ->where(['supplier_id' => Yii::$app->user->identity->supplier->id])
+        ->count();
+    }
 }
