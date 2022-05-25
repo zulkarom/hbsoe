@@ -27,7 +27,7 @@ $this->title = \Yii::t('app', 'Dashboard');
                                 <div class="col-lg-2">
                                     <div class="single_analite_content">
                                         <h4>Number of Competency</h4>
-                                        <h3><span class="counter"><?php echo Competency::countCompetencyUser()?></span> </h3>
+                                        <h3><span class="counter"><?php echo Competency::countCompetency()?></span> </h3>
                                         <!-- <div class="d-flex">
                                             <div>3.78 <i class="fa fa-caret-up"></i></div>
                                             <span>This month</span>
@@ -37,7 +37,7 @@ $this->title = \Yii::t('app', 'Dashboard');
                                 <div class="col-lg-2">
                                     <div class="single_analite_content">
                                         <h4>Number of Social Impact</h4>
-                                        <h3><span class="counter"><?php echo SocialImpact::countSocialImpactUser()?></span> </h3>
+                                        <h3><span class="counter"><?php echo SocialImpact::countSocialImpact()?></span> </h3>
                                         <!-- <div class="d-flex">
                                             <div>3.78 <i class="fa fa-caret-up"></i></div>
                                             <span>This month</span>
@@ -47,7 +47,7 @@ $this->title = \Yii::t('app', 'Dashboard');
                                 <div class="col-lg-2">
                                     <div class="single_analite_content">
                                         <h4>Number of Economics</h4>
-                                        <h3><span class="counter"><?php echo Economic::countEconomicUser()?></span> </h3>
+                                        <h3><span class="counter"><?php echo Economic::countEconomic()?></span> </h3>
                                         <!-- <div class="d-flex">
                                             <div>3.78 <i class="fa fa-caret-up"></i></div>
                                             <span>This month</span>
@@ -57,7 +57,7 @@ $this->title = \Yii::t('app', 'Dashboard');
                                 <div class="col-lg-2">
                                     <div class="single_analite_content">
                                         <h4>Number of Agency</h4>
-                                        <h3><span class="counter"><?php echo Agency::countAgencyUser()?></span> </h3>
+                                        <h3><span class="counter"><?php echo Agency::countAgency()?></span> </h3>
                                         <!-- <div class="d-flex">
                                             <div>3.78 <i class="fa fa-caret-up"></i></div>
                                             <span>This month</span>
@@ -67,7 +67,7 @@ $this->title = \Yii::t('app', 'Dashboard');
                                 <div class="col-lg-2">
                                     <div class="single_analite_content">
                                         <h4>Number of Program</h4>
-                                        <h3><span class="counter"><?php echo Program::countProgramUser()?></span> </h3>
+                                        <h3><span class="counter"><?php echo Program::countProgram()?></span> </h3>
                                         <!-- <div class="d-flex">
                                             <div>3.78 <i class="fa fa-caret-up"></i></div>
                                             <span>This year</span>
