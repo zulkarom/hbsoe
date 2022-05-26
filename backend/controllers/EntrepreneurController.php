@@ -7,6 +7,11 @@ use backend\models\Entrepreneur;
 use backend\models\EntrepreneurProfile;
 use backend\models\EntrepreneurSearch;
 use backend\models\SectorEntrepreneurSearch;
+use backend\models\CompetencySearch;
+use backend\models\SocialImpactSearch;
+use backend\models\AgencySearch;
+use backend\models\EconomicSearch;
+use backend\models\ProgramSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
@@ -84,12 +89,37 @@ class EntrepreneurController extends Controller
      */
     public function actionView($id)
     {
-        $searchModel = new SectorEntrepreneurSearch(['entrepreneur_id' => $id]);
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $searchModelSector = new SectorEntrepreneurSearch(['entrepreneur_id' => $id]);
+        $dataProviderSector = $searchModelSector->search(Yii::$app->request->queryParams);
+
+        $searchModelCompetency = new CompetencySearch(['entrepreneur_id' => $id]);
+        $dataProviderCompetency = $searchModelCompetency->search(Yii::$app->request->queryParams);
+
+        $searchModelSocial = new SocialImpactSearch(['entrepreneur_id' => $id]);
+        $dataProviderSocial = $searchModelSocial->search(Yii::$app->request->queryParams);
+
+        $searchModelEconomic = new EconomicSearch(['entrepreneur_id' => $id]);
+        $dataProviderEconomic = $searchModelEconomic->search(Yii::$app->request->queryParams);
+
+        $searchModelAgency = new AgencySearch(['entrepreneur_id' => $id]);
+        $dataProviderAgency = $searchModelAgency->search(Yii::$app->request->queryParams);
+
+        $searchModelProgram = new ProgramSearch(['entrepreneur_id' => $id]);
+        $dataProviderProgram = $searchModelProgram->search(Yii::$app->request->queryParams);
 
         return $this->render('view', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'searchModelSector' => $searchModelSector,
+            'dataProviderSector' => $dataProviderSector,
+            'searchModelCompetency' => $searchModelCompetency,
+            'dataProviderCompetency' => $dataProviderCompetency,
+            'searchModelSocial' => $searchModelSocial,
+            'dataProviderSocial' => $dataProviderSocial,
+            'searchModelEconomic' => $searchModelEconomic,
+            'dataProviderEconomic' => $dataProviderEconomic,
+            'searchModelAgency' => $searchModelAgency,
+            'dataProviderAgency' => $dataProviderAgency,
+            'searchModelProgram' => $searchModelProgram,
+            'dataProviderProgram' => $dataProviderProgram,
             'model' => $this->findModel($id),
         ]);
     }

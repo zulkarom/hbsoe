@@ -33,6 +33,7 @@ $model->u_longitude = $model->longitude;
         <div class="entrepreneur-view">
         <div class="table-responsive">
         <div class="card">
+        <div class="card-header">Profile Information</div>
         <div class="card-body">
         
             <?= DetailView::widget([
@@ -124,14 +125,131 @@ $model->u_longitude = $model->longitude;
         <div class="card-header">Sectors</div>
         <div class="card-body">
             <?= GridView::widget([
-                'dataProvider' => $dataProvider,
+                'dataProvider' => $dataProviderSector,
                 //'filterModel' => $searchModel,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
                     'sectorName',
                     'descriptionx:ntext',
                 ],
+            ]); ?>  
+
+            <?= Html::a('Add New', ['/sector-entrepreneur/create', 'b' => 'true', 'ent_id' => $model->id], ['class' => 'btn btn-success btn-sm']) ?>
+
+          </div>
+        </div>
+        <br/>
+        <div class="card">
+        <div class="card-header">Competencies</div>
+        <div class="card-body">
+            <?= GridView::widget([
+                'dataProvider' => $dataProviderCompetency,
+                //'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
+                    [
+                     'label' => \Yii::t('app', 'Competency'),
+                     'value' => function($model){
+                        return $model->category->category_name;
+                     }
+                    ],
+                    'description:ntext',
+                ],
             ]); ?>
+
+            <?= Html::a('Add New', ['/competency/create', 'b' => 'true', 'ent_id' => $model->id], ['class' => 'btn btn-success btn-sm']) ?>
+
+          </div>
+        </div>
+
+        <br/>
+        <div class="card">
+        <div class="card-header">Social Impact</div>
+        <div class="card-body">
+            <?= GridView::widget([
+                'dataProvider' => $dataProviderSocial,
+                //'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
+                    'socialImpactName',
+                    'description:ntext',
+                ],
+            ]); ?>
+
+            <?= Html::a('Add New', ['/social-impact/create', 'b' => 'true', 'ent_id' => $model->id], ['class' => 'btn btn-success btn-sm']) ?>
+
+          </div>
+        </div>
+
+        <br/>
+        <div class="card">
+        <div class="card-header">Economics</div>
+        <div class="card-body">
+            <?= GridView::widget([
+                'dataProvider' => $dataProviderEconomic,
+                //'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
+                    'economicName',
+                    'description:ntext',
+                ],
+            ]); ?>
+
+            <?= Html::a('Add New', ['/economic/create', 'b' => 'true', 'ent_id' => $model->id], ['class' => 'btn btn-success btn-sm']) ?>
+
+          </div>
+        </div>
+
+        <br/>
+        <div class="card">
+        <div class="card-header">Agencies</div>
+        <div class="card-body">
+            <?= GridView::widget([
+                'dataProvider' => $dataProviderAgency,
+                //'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
+                    'nama_agensi',
+                    [
+                     'label' => \Yii::t('app', 'Date Accept'),
+                     'value' => function($model){
+                        return date('d F Y', strtotime($model->tarikh_terima));;
+                     }
+                    ],
+                ],
+            ]); ?>
+
+            <?= Html::a('Add New', ['/agency/create', 'b' => 'true', 'ent_id' => $model->id], ['class' => 'btn btn-success btn-sm']) ?>
+
+          </div>
+        </div>
+
+        <br/>
+        <div class="card">
+        <div class="card-header">Programs</div>
+        <div class="card-body">
+            <?= GridView::widget([
+                'dataProvider' => $dataProviderProgram,
+                //'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
+                    'prog_name',
+                    [
+                     'label' => 'Program Anjuran',
+                     'value' => function($model){
+                        return $model->anjuranText;
+                     }
+                    ],
+                    [
+                     'label' => 'Date Program',
+                     'value' => function($model){
+                        return date('d M Y', strtotime($model->prog_date));
+                     }
+                    ],
+                ],
+            ]); ?>
+
+            <?= Html::a('Add New', ['/program/create', 'b' => 'true', 'ent_id' => $model->id], ['class' => 'btn btn-success btn-sm']) ?>
 
           </div>
         </div>

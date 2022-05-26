@@ -62,12 +62,26 @@ class SocialImpactController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($b=false)
     {
         $model = new SocialImpact();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if($b == true){
+            $request = Yii::$app->request;
+            $model->entrepreneur_id = $request->get('ent_id');
+        }
+
+        if ($model->load(Yii::$app->request->post())) {
+
+            if($model->save()){
+                if($b == true){
+                    return $this->redirect(['/entrepreneur/view', 'id' => $model->entrepreneur_id]);
+                }else{
+                    return $this->redirect(['view', 'id' => $model->id]);   
+                }
+                
+            }
+            
         }
 
         return $this->render('create', [

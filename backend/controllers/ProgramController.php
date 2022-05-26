@@ -65,9 +65,14 @@ class ProgramController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($b=false)
     {
         $model = new Program();
+
+        if($b == true){
+            $request = Yii::$app->request;
+            $model->entrepreneur_id = $request->get('ent_id');
+        }
 
         if ($model->load(Yii::$app->request->post())) {
             if($model->prog_category != 1){
@@ -79,8 +84,12 @@ class ProgramController extends Controller
             $model->created_at = new Expression('NOW()');
             if($model->save()){
                 Yii::$app->session->addFlash('success', "Data Saved");
-
-                return $this->redirect(['view', 'id' => $model->id]);
+                if($b == true){
+                    return $this->redirect(['/entrepreneur/view', 'id' => $model->entrepreneur_id]);
+                }else{
+                    return $this->redirect(['view', 'id' => $model->id]);   
+                }
+                
             }
             
         }
