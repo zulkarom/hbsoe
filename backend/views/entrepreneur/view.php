@@ -100,8 +100,8 @@ $model->u_longitude = $model->longitude;
                             return $model->location.
                             '<br/>'.Map::widget([
                                 'apiKey'=> 'AIzaSyCdaIFmGh8LWEfbXln7BkPnMfB1RDd9Rj4',
-                                'width' => '860px',
-                                'height' => '450px',
+                                'width' => '600px',
+                                'height' => '300px',
                                 'center' => [$model->u_latitude, $model->u_longitude],
                                 'markers' => [
                                     ['position' => [$model->u_latitude, $model->u_longitude],
