@@ -35,7 +35,13 @@ class SocialImpactController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new SocialImpactSearch();
+        $request = Yii::$app->request;
+        if($request->get('ent_id')){
+            $searchModel = new SocialImpactSearch(['entrepreneur_id' => $request->get('ent_id')]);
+        }else{
+            $searchModel = new SocialImpactSearch();
+        }
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

@@ -35,7 +35,13 @@ class AgencyController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new AgencySearch();
+        $request = Yii::$app->request;
+        if($request->get('ent_id')){
+            $searchModel = new AgencySearch(['entrepreneur_id' => $request->get('ent_id')]);
+        }else{
+            $searchModel = new AgencySearch();
+        }
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

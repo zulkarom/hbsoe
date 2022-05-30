@@ -11,13 +11,14 @@ use backend\models\Program;
  */
 class ProgramSearch extends Program
 {
+    public $limit;
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['id', 'prog_category', 'prog_anjuran'], 'integer'],
+            [['entrepreneur_id', 'prog_category', 'prog_anjuran'], 'integer'],
             [['prog_name', 'prog_other', 'prog_date', 'prog_description', 'created_at', 'updated_at'], 'safe'],
         ];
     }
@@ -40,12 +41,22 @@ class ProgramSearch extends Program
      */
     public function search($params)
     {
-        $query = Program::find();
+        if($this->limit > 0){
+           $query = Program::find()->limit($this->limit); 
+           $pagination = false;
+        }
+        else{
+            $query = Program::find();
+            $pagination = ['pageSize' => 50];
+            
+        }
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => $pagination,
+
         ]);
 
         $this->load($params);
@@ -58,7 +69,7 @@ class ProgramSearch extends Program
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
+            'entrepreneur_id' => $this->entrepreneur_id,
             'prog_category' => $this->prog_category,
             'prog_date' => $this->prog_date,
             'prog_anjuran' => $this->prog_anjuran,

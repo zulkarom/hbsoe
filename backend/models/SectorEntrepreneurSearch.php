@@ -10,6 +10,7 @@ use yii\data\ActiveDataProvider;
  */
 class SectorEntrepreneurSearch extends SectorEntrepreneur
 {
+    public $limit;
     /**
      * {@inheritdoc}
      */
@@ -39,12 +40,22 @@ class SectorEntrepreneurSearch extends SectorEntrepreneur
      */
     public function search($params)
     {
-        $query = SectorEntrepreneur::find();
+        if($this->limit > 0){
+           $query = SectorEntrepreneur::find()->limit($this->limit); 
+           $pagination = false;
+        }
+        else{
+            $query = SectorEntrepreneur::find();
+            $pagination = ['pageSize' => 50];
+            
+        }
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => $pagination,
+
         ]);
 
         $this->load($params);

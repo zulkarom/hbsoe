@@ -11,6 +11,7 @@ use backend\models\Competency;
  */
 class CompetencySearch extends Competency
 {
+    public $limit;
     /**
      * {@inheritdoc}
      */
@@ -40,13 +41,24 @@ class CompetencySearch extends Competency
      */
     public function search($params)
     {
-        $query = Competency::find();
+        if($this->limit > 0){
+           $query = Competency::find()->limit($this->limit); 
+           $pagination = false;
+        }
+        else{
+            $query = Competency::find();
+            $pagination = ['pageSize' => 50];
+            
+        }
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => $pagination,
+
         ]);
+
 
         $this->load($params);
 

@@ -41,8 +41,19 @@ class CompetencyController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new CompetencySearch();
+        
+        $request = Yii::$app->request;
+        if($request->get('ent_id')){
+            $searchModel = new CompetencySearch(['entrepreneur_id' => $request->get('ent_id')]);
+        }else{
+            $searchModel = new CompetencySearch();
+        }
+
+        
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+
+        
 
         return $this->render('index', [
             'searchModel' => $searchModel,

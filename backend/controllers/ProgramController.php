@@ -38,7 +38,13 @@ class ProgramController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new ProgramSearch();
+        $request = Yii::$app->request;
+        if($request->get('ent_id')){
+            $searchModel = new ProgramSearch(['entrepreneur_id' => $request->get('ent_id')]);
+        }else{
+            $searchModel = new ProgramSearch();
+        }
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

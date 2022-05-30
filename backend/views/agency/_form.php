@@ -20,15 +20,7 @@ use backend\models\Entrepreneur;
 
     <?= $form->field($model, 'nama_agensi')->textInput() ?>
 
-    <?=$form->field($model, 'tarikh_terima')->widget(DatePicker::classname(), [
-        'removeButton' => false,
-        'pluginOptions' => [
-            'autoclose'=>true,
-            'format' => 'yyyy-mm-dd',
-            'todayHighlight' => true,
-        ],
-    ]);
-    ?>
+    
 
     <?php
             $userDesc = empty($model->entrepreneur_id) ? '' : Entrepreneur::findOne($model->entrepreneur_id)->user->fullname;
@@ -59,6 +51,16 @@ use backend\models\Entrepreneur;
             ],
             ])->label('Beneficiary');
              ?>
+
+             <?=$form->field($model, 'tarikh_terima')->widget(DatePicker::classname(), [
+        'removeButton' => false,
+        'pluginOptions' => [
+            'autoclose'=>true,
+            'format' => 'yyyy-mm-dd',
+            'todayHighlight' => true,
+        ],
+    ]);
+    ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 3]) ?>
 

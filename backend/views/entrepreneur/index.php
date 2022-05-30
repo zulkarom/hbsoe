@@ -67,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return Html::a('<span class="fa fa-search"></span> View',['view', 'id' => $model->id],['class'=>'btn btn-primary btn-sm']);
                 },
                 'edit'=>function ($url, $model) {
-                    return Html::a('<span class="fa fa-pencil"></span> Edit',['update', 'id' => $model->id],['class'=>'btn btn-warning btn-sm']);
+                    return Html::a('<span class="fa fa-pencil"></span> Edit',['update', 'id' => $model->id],['class'=>'btn btn-info btn-sm']);
                 },
                 'delete'=>function ($url, $model) {
                     return Html::a('<span class="fa fa-trash"></span>',['delete', 'id' => $model->id],['class'=>'btn btn-danger btn-sm', 'data' => [

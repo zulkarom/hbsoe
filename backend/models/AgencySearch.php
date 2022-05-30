@@ -11,6 +11,7 @@ use backend\models\Agency;
  */
 class AgencySearch extends Agency
 {
+    public $limit;
     /**
      * {@inheritdoc}
      */
@@ -40,12 +41,24 @@ class AgencySearch extends Agency
      */
     public function search($params)
     {
-        $query = Agency::find();
+        
+
+        if($this->limit > 0){
+           $query = Agency::find()->limit($this->limit); 
+           $pagination = false;
+        }
+        else{
+            $query = Agency::find();
+            $pagination = ['pageSize' => 50];
+            
+        }
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => $pagination,
+
         ]);
 
         $this->load($params);

@@ -20,7 +20,6 @@ class CryptoAsset extends AssetBundle
         'vendors/gijgo/gijgo.min.css',
         'vendors/font_awesome/css/all.min.css',
         'vendors/tagsinput/tagsinput.css',
-        'vendors/datepicker/date-picker.css',
         'vendors/vectormap-home/vectormap-2.0.2.css',
         'vendors/scroll/scrollable.css',
         'vendors/datatable/css/jquery.dataTables.min.css',
@@ -68,10 +67,7 @@ class CryptoAsset extends AssetBundle
         'vendors/datatable/js/buttons.html5.min.js',
         'vendors/datatable/js/buttons.print.min.js',
 
-        //datepicker//
-        'vendors/datepicker/datepicker.js',
-        'vendors/datepicker/datepicker.en.js',
-        'vendors/datepicker/datepicker.custom.js',
+        
 
         'js/chart.min.js',
         'vendors/chartjs/roundedBar.min.js',

@@ -17,17 +17,7 @@ $model->u_latitude = $model->latitude;
 $model->u_longitude = $model->longitude;
 
 ?>
-<p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-    <br/>
+
 <div class="row">
     <div class="col-md-6">
         <div class="entrepreneur-view">
@@ -114,6 +104,17 @@ $model->u_longitude = $model->longitude;
                     
                 ],
             ]) ?>
+
+            <p>
+                <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+                    'class' => 'btn btn-danger',
+                    'data' => [
+                        'confirm' => 'Are you sure you want to delete this item?',
+                        'method' => 'post',
+                    ],
+                ]) ?>
+            </p>
          
         </div>
         </div>
@@ -135,6 +136,7 @@ $model->u_longitude = $model->longitude;
             ]); ?>  
 
             <?= Html::a('Add New', ['/sector-entrepreneur/create', 'b' => 'true', 'ent_id' => $model->id], ['class' => 'btn btn-success btn-sm']) ?>
+            <?= Html::a('View All', ['/sector-entrepreneur/index', 'ent_id' => $model->id], ['class' => 'btn btn-info btn-sm']) ?>
 
           </div>
         </div>
@@ -158,6 +160,7 @@ $model->u_longitude = $model->longitude;
             ]); ?>
 
             <?= Html::a('Add New', ['/competency/create', 'b' => 'true', 'ent_id' => $model->id], ['class' => 'btn btn-success btn-sm']) ?>
+            <?= Html::a('View All', ['/competency/index', 'ent_id' => $model->id], ['class' => 'btn btn-info btn-sm']) ?>
 
           </div>
         </div>
@@ -178,6 +181,8 @@ $model->u_longitude = $model->longitude;
 
             <?= Html::a('Add New', ['/social-impact/create', 'b' => 'true', 'ent_id' => $model->id], ['class' => 'btn btn-success btn-sm']) ?>
 
+            <?= Html::a('View All', ['/social-impact/index', 'ent_id' => $model->id], ['class' => 'btn btn-info btn-sm']) ?>
+
           </div>
         </div>
 
@@ -196,6 +201,8 @@ $model->u_longitude = $model->longitude;
             ]); ?>
 
             <?= Html::a('Add New', ['/economic/create', 'b' => 'true', 'ent_id' => $model->id], ['class' => 'btn btn-success btn-sm']) ?>
+
+            <?= Html::a('View All', ['/economic/index', 'ent_id' => $model->id], ['class' => 'btn btn-info btn-sm']) ?>
 
           </div>
         </div>
@@ -220,6 +227,8 @@ $model->u_longitude = $model->longitude;
             ]); ?>
 
             <?= Html::a('Add New', ['/agency/create', 'b' => 'true', 'ent_id' => $model->id], ['class' => 'btn btn-success btn-sm']) ?>
+
+            <?= Html::a('View All', ['/agency/index', 'ent_id' => $model->id], ['class' => 'btn btn-info btn-sm']) ?>
 
           </div>
         </div>
@@ -251,6 +260,8 @@ $model->u_longitude = $model->longitude;
 
             <?= Html::a('Add New', ['/program/create', 'b' => 'true', 'ent_id' => $model->id], ['class' => 'btn btn-success btn-sm']) ?>
 
+            <?= Html::a('View All', ['/program/index', 'ent_id' => $model->id], ['class' => 'btn btn-info btn-sm']) ?>
+            
           </div>
         </div>
     </div>

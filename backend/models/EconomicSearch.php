@@ -11,6 +11,8 @@ use backend\models\Economic;
  */
 class EconomicSearch extends Economic
 {
+    public $limit;
+    public $others;
     /**
      * {@inheritdoc}
      */
@@ -40,12 +42,22 @@ class EconomicSearch extends Economic
      */
     public function search($params)
     {
-        $query = Economic::find();
+        if($this->limit > 0){
+           $query = Economic::find()->limit($this->limit); 
+           $pagination = false;
+        }
+        else{
+            $query = Economic::find();
+            $pagination = ['pageSize' => 50];
+            
+        }
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => $pagination,
+
         ]);
 
         $this->load($params);

@@ -35,7 +35,14 @@ class EconomicController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new EconomicSearch();
+
+        $request = Yii::$app->request;
+        if($request->get('ent_id')){
+            $searchModel = new EconomicSearch(['entrepreneur_id' => $request->get('ent_id')]);
+        }else{
+            $searchModel = new EconomicSearch();
+        }
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

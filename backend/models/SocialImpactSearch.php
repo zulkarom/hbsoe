@@ -11,6 +11,7 @@ use backend\models\SocialImpact;
  */
 class SocialImpactSearch extends SocialImpact
 {
+    public $limit;
     /**
      * {@inheritdoc}
      */
@@ -40,12 +41,22 @@ class SocialImpactSearch extends SocialImpact
      */
     public function search($params)
     {
-        $query = SocialImpact::find();
+        if($this->limit > 0){
+           $query = SocialImpact::find()->limit($this->limit); 
+           $pagination = false;
+        }
+        else{
+            $query = SocialImpact::find();
+            $pagination = ['pageSize' => 50];
+            
+        }
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => $pagination,
+
         ]);
 
         $this->load($params);
