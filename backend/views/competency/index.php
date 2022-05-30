@@ -11,10 +11,20 @@ $this->title = 'Competency Beneficiaries';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="competency-index">
+ 
+    <div class="row">
+        <div class="col-md-4">
+            <?= Html::a('Create Competency', ['create'], ['class' => 'btn btn-success']) ?><br/>
+        </div>
 
-    <p>
-        <?= Html::a('Create Competency', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>  
+        <div class="col-md-4"></div>
+    
+        <div class="col-md-4" align="right">
+            <?= $this->render('_form_search', [
+                'model' => $searchModel,
+            ]) ?>
+        </div>
+    </div>
 
     
 <br />
@@ -29,10 +39,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'entrepreneurName',
             [
-             'label' => \Yii::t('app', 'Competency'),
-             'value' => function($model){
-                return $model->category->category_name;
-             }
+                'label' => 'Competency',
+                'value' => function($model){
+                    if($model->category_id == 1){
+                        return 'Other ('.$model->other.')';
+                    }else{
+                        return $model->category->category_name;
+                    }
+                }
             ],
             // 'description',
 

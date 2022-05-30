@@ -21,6 +21,7 @@ class EconomicSearch extends Economic
         return [
             [['id', 'entrepreneur_id'], 'integer'],
             [['description'], 'safe'],
+            [['other','others'], 'string'],
         ];
     }
 
@@ -43,11 +44,14 @@ class EconomicSearch extends Economic
     public function search($params)
     {
         if($this->limit > 0){
-           $query = Economic::find()->limit($this->limit); 
+           $query = Economic::find()
+           ->alias('e')
+           ->joinWith(['category c'])
+           ->limit($this->limit); 
            $pagination = false;
         }
         else{
-            $query = Economic::find();
+            $query = Economic::find()->alias('e')->joinWith(['category c']);
             $pagination = ['pageSize' => 50];
             
         }
@@ -69,12 +73,10 @@ class EconomicSearch extends Economic
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'entrepreneur_id' => $this->entrepreneur_id,
-        ]);
+        
 
-        $query->andFilterWhere(['like', 'description', $this->description]);
+        $query->andFilterWhere(['like', 'c.category_name', $this->others]);
+        $query->orFilterWhere(['like', 'e.other', $this->others]);
 
         return $dataProvider;
     }

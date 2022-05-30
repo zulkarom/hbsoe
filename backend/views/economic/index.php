@@ -12,12 +12,22 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="economic-index">
 
-    <p>
-        <?= Html::a('Create Economic Beneficiary', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-      <br />
+    <div class="row">
+        <div class="col-md-4">
+            <?= Html::a('Create Economic Beneficiary', ['create'], ['class' => 'btn btn-success']) ?>
+            <br/>
+        </div>
 
-     <div class="card">
+        <div class="col-md-4"></div>
+    
+        <div class="col-md-4" align="right">
+            <?= $this->render('_form_search', [
+                'model' => $searchModel,
+            ]) ?>
+        </div>
+    </div>
+
+<div class="card">
     <div class="card-body">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -26,7 +36,16 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'entrepreneurName',
-            'economicName',
+            [
+                'label' => 'Economic',
+                'value' => function($model){
+                    if($model->category_id == 1){
+                        return 'Other ('.$model->other.')';
+                    }else{
+                        return $model->economicName;
+                    }
+                }
+            ],
 
             ['class' => 'yii\grid\ActionColumn',
             //     'contentOptions' => ['style' => 'width: 13%'],
@@ -55,7 +74,9 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
 
   </div>
-    </div>
+</div>
 
 
 </div>
+
+

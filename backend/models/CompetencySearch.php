@@ -12,6 +12,7 @@ use backend\models\Competency;
 class CompetencySearch extends Competency
 {
     public $limit;
+    public $others;
     /**
      * {@inheritdoc}
      */
@@ -20,6 +21,7 @@ class CompetencySearch extends Competency
         return [
             [['id', 'entrepreneur_id'], 'integer'],
             [['description'], 'safe'],
+            [['others'], 'string'],
         ];
     }
 
@@ -42,13 +44,15 @@ class CompetencySearch extends Competency
     public function search($params)
     {
         if($this->limit > 0){
-           $query = Competency::find()->limit($this->limit); 
+           $query = Competency::find()
+           ->alias('e')
+           ->joinWith(['category c'])
+           ->limit($this->limit); 
            $pagination = false;
         }
         else{
-            $query = Competency::find();
+            $query = Competency::find()->alias('e')->joinWith(['category c']);
             $pagination = ['pageSize' => 50];
-            
         }
 
         // add conditions that should always apply here
@@ -74,7 +78,8 @@ class CompetencySearch extends Competency
             'entrepreneur_id' => $this->entrepreneur_id,
         ]);
 
-        $query->andFilterWhere(['like', 'description', $this->description]);
+        $query->andFilterWhere(['like', 'c.category_name', $this->others]);
+        $query->orFilterWhere(['like', 'e.other', $this->others]);
 
         return $dataProvider;
     }

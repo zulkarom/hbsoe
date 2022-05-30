@@ -20,6 +20,7 @@ class AgencySearch extends Agency
         return [
             [['id', 'entrepreneur_id'], 'integer'],
             [['description'], 'safe'],
+            [['nama_agensi'], 'string', 'max' => 225],
         ];
     }
 
@@ -70,12 +71,7 @@ class AgencySearch extends Agency
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'entrepreneur_id' => $this->entrepreneur_id,
-        ]);
-
-        $query->andFilterWhere(['like', 'description', $this->description]);
+        $query->andFilterWhere(['like', 'nama_agensi', $this->nama_agensi]);
 
         return $dataProvider;
     }

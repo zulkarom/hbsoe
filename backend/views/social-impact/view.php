@@ -32,7 +32,16 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'entrepreneurName',
-            'socialImpactName',
+            [
+                'label' => 'Social Impact',
+                'value' => function($model){
+                    if($model->category_id == 1){
+                        return 'Other ('.$model->other.')';
+                    }else{
+                        return $model->socialImpactName;
+                    }
+                }
+            ],
             'description',
         ],
     ]) ?>

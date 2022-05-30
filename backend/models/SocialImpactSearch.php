@@ -12,6 +12,7 @@ use backend\models\SocialImpact;
 class SocialImpactSearch extends SocialImpact
 {
     public $limit;
+    public $others;
     /**
      * {@inheritdoc}
      */
@@ -20,6 +21,7 @@ class SocialImpactSearch extends SocialImpact
         return [
             [['id', 'entrepreneur_id'], 'integer'],
             [['description'], 'safe'],
+            [['other','others'], 'string'],
         ];
     }
 
@@ -42,11 +44,14 @@ class SocialImpactSearch extends SocialImpact
     public function search($params)
     {
         if($this->limit > 0){
-           $query = SocialImpact::find()->limit($this->limit); 
+           $query = SocialImpact::find()
+           ->alias('e')
+           ->joinWith(['category c'])
+           ->limit($this->limit); 
            $pagination = false;
         }
         else{
-            $query = SocialImpact::find();
+            $query = SocialImpact::find()->alias('e')->joinWith(['category c']);
             $pagination = ['pageSize' => 50];
             
         }
@@ -68,12 +73,9 @@ class SocialImpactSearch extends SocialImpact
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'entrepreneur_id' => $this->entrepreneur_id,
-        ]);
 
-        $query->andFilterWhere(['like', 'description', $this->description]);
+        $query->andFilterWhere(['like', 'c.category_name', $this->others]);
+        $query->orFilterWhere(['like', 'e.other', $this->others]);
 
         return $dataProvider;
     }

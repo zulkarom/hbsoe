@@ -34,10 +34,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'entrepreneurName',
             [
-             'label' => \Yii::t('app', 'Competency'),
-             'value' => function($model){
-                return $model->category->category_name;
-             }
+                'label' => 'Competency',
+                'value' => function($model){
+                    if($model->category_id == 1){
+                        return 'Other ('.$model->other.')';
+                    }else{
+                        return $model->category->category_name;
+                    }
+                }
             ],
             'description',
         ],

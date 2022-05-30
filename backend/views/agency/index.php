@@ -12,10 +12,19 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="agency-index">
 
-    <p>
-        <?= Html::a('Create Agency', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-    <br />
+    <div class="row">
+        <div class="col-md-4">
+            <?= Html::a('Create Agency', ['create'], ['class' => 'btn btn-success']) ?>
+        </div>
+
+        <div class="col-md-4"></div>
+    
+        <div class="col-md-4" align="right">
+            <?= $this->render('_form_search', [
+                'model' => $searchModel,
+            ]) ?>
+        </div>
+    </div>
 
     <div class="card">
     <div class="card-body">

@@ -11,13 +11,14 @@ use yii\data\ActiveDataProvider;
 class SectorEntrepreneurSearch extends SectorEntrepreneur
 {
     public $limit;
+    public $sector_id;
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['id', 'entrepreneur_id'], 'integer'],
+            [['id', 'entrepreneur_id', 'sector_id'], 'integer'],
             [['description'], 'safe'],
         ];
     }
@@ -41,11 +42,16 @@ class SectorEntrepreneurSearch extends SectorEntrepreneur
     public function search($params)
     {
         if($this->limit > 0){
-           $query = SectorEntrepreneur::find()->limit($this->limit); 
+           $query = SectorEntrepreneur::find()
+           ->alias('e')
+           ->joinWith(['sector s'])
+           ->limit($this->limit); 
            $pagination = false;
         }
         else{
-            $query = SectorEntrepreneur::find();
+            $query = SectorEntrepreneur::find()
+            ->alias('e')
+            ->joinWith(['sector s']);;
             $pagination = ['pageSize' => 50];
             
         }
@@ -67,12 +73,9 @@ class SectorEntrepreneurSearch extends SectorEntrepreneur
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'entrepreneur_id' => $this->entrepreneur_id,
-        ]);
+        
 
-        $query->andFilterWhere(['like', 'description', $this->description]);
+        $query->andFilterWhere(['s.id' => $this->sector_id]);
 
         return $dataProvider;
     }
