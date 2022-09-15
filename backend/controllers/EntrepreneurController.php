@@ -158,6 +158,61 @@ class EntrepreneurController extends Controller
         ]);
     }
 
+    public function actionViewEdit($id)
+    {
+        $searchModelSector = new SectorEntrepreneurSearch([
+            'entrepreneur_id' => $id
+        ]);
+        $searchModelSector->limit = 5;
+        $dataProviderSector = $searchModelSector->search(Yii::$app->request->queryParams);
+
+        $searchModelCompetency = new CompetencySearch([
+            'entrepreneur_id' => $id
+        ]);
+        $searchModelCompetency->limit = 5;
+        $dataProviderCompetency = $searchModelCompetency->search(Yii::$app->request->queryParams);
+
+        $searchModelSocial = new SocialImpactSearch([
+            'entrepreneur_id' => $id
+        ]);
+        $searchModelSocial->limit = 5;
+        $dataProviderSocial = $searchModelSocial->search(Yii::$app->request->queryParams);
+
+        $searchModelEconomic = new EconomicSearch([
+            'entrepreneur_id' => $id
+        ]);
+        $searchModelEconomic->limit = 5;
+        $dataProviderEconomic = $searchModelEconomic->search(Yii::$app->request->queryParams);
+
+        $searchModelAgency = new AgencySearch([
+            'entrepreneur_id' => $id
+        ]);
+        $searchModelAgency->limit = 5;
+        $dataProviderAgency = $searchModelAgency->search(Yii::$app->request->queryParams);
+
+        $searchModelProgram = new ProgramSearch([
+            'entrepreneur_id' => $id
+        ]);
+        $searchModelProgram->limit = 5;
+        $dataProviderProgram = $searchModelProgram->search(Yii::$app->request->queryParams);
+
+        return $this->render('view-edit', [
+            'searchModelSector' => $searchModelSector,
+            'dataProviderSector' => $dataProviderSector,
+            'searchModelCompetency' => $searchModelCompetency,
+            'dataProviderCompetency' => $dataProviderCompetency,
+            'searchModelSocial' => $searchModelSocial,
+            'dataProviderSocial' => $dataProviderSocial,
+            'searchModelEconomic' => $searchModelEconomic,
+            'dataProviderEconomic' => $dataProviderEconomic,
+            'searchModelAgency' => $searchModelAgency,
+            'dataProviderAgency' => $dataProviderAgency,
+            'searchModelProgram' => $searchModelProgram,
+            'dataProviderProgram' => $dataProviderProgram,
+            'model' => $this->findModel($id)
+        ]);
+    }
+
     /**
      * Creates a new Entrepreneur model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -264,6 +319,11 @@ class EntrepreneurController extends Controller
             if ($modelUser->rawPassword) {
                 $modelUser->setPassword($modelUser->rawPassword);
             }
+
+            $modelUser->fullname = $model->fullname;
+            $modelUser->username = $model->username;
+            $modelUser->email = $model->email;
+            $modelUser->nric = $model->nric;
 
             if ($modelUser->save()) {
                 if ($model->save()) {

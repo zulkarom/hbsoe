@@ -6,10 +6,28 @@ use backend\models\SocialImpact;
 use backend\models\Economic;
 use backend\models\Agency;
 use backend\models\Program;
+use yii\widgets\ActiveForm;
+
 /* @var $this yii\web\View */
 
-$this->title = 'Admin Dashboard';
+$this->title = 'Dashboard';
 ?>
+<br />
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+    
+<?php $form = ActiveForm::begin(['method' => 'get', 'action' => ['entrepreneur/index']]); ?>
+    <div class="input-group mb-3">
+  <input type="text" class="form-control form-control-lg" name="EntrepreneurSearch[fullname]" placeholder="Search Beneficiaries" aria-label="Search Beneficiaries" aria-describedby="basic-addon2">
+  <div class="input-group-append">
+    <button class="btn btn-outline-primary" type="submit"><i class="fa fa-search"></i> Search</button>
+  </div>
+</div>
+<?php ActiveForm::end(); ?>
+
+    </div>
+</div>
 
 
 

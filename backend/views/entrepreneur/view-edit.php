@@ -34,7 +34,7 @@ $model->u_longitude = $model->longitude;
                         'value' => function($model){
                             if($model->profile_file){
 
-                                return '<img src="'.Url::to(['/entrepreneur/profile-image', 'id' => $model->id]).'" width="150" >';
+                                return '<img src="'.Url::to(['/entrepreneur/profile-image', 'id' => $model->id]).'" width="110" height="110">';
                             }
                         }
                     ],
@@ -104,6 +104,16 @@ $model->u_longitude = $model->longitude;
                 ],
             ]) ?>
 
+            <p>
+                <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+                    'class' => 'btn btn-danger',
+                    'data' => [
+                        'confirm' => 'Are you sure you want to delete this item?',
+                        'method' => 'post',
+                    ],
+                ]) ?>
+            </p>
          
         </div>
         </div>
@@ -116,7 +126,6 @@ $model->u_longitude = $model->longitude;
         <div class="card-body">
             <?= GridView::widget([
                 'dataProvider' => $dataProviderSector,
-                'layout' => "{items}\n{pager}",
                 //'filterModel' => $searchModel,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
@@ -124,6 +133,9 @@ $model->u_longitude = $model->longitude;
                     'descriptionx:ntext',
                 ],
             ]); ?>  
+
+            <?= Html::a('Add New', ['/sector-entrepreneur/create', 'b' => 'true', 'ent_id' => $model->id], ['class' => 'btn btn-success btn-sm']) ?>
+            <?= Html::a('View All', ['/sector-entrepreneur/index', 'ent_id' => $model->id], ['class' => 'btn btn-info btn-sm']) ?>
 
           </div>
         </div>
@@ -133,7 +145,6 @@ $model->u_longitude = $model->longitude;
         <div class="card-body">
             <?= GridView::widget([
                 'dataProvider' => $dataProviderCompetency,
-                'layout' => "{items}\n{pager}",
                 //'filterModel' => $searchModel,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
@@ -147,6 +158,8 @@ $model->u_longitude = $model->longitude;
                 ],
             ]); ?>
 
+            <?= Html::a('Add New', ['/competency/create', 'b' => 'true', 'ent_id' => $model->id], ['class' => 'btn btn-success btn-sm']) ?>
+            <?= Html::a('View All', ['/competency/index', 'ent_id' => $model->id], ['class' => 'btn btn-info btn-sm']) ?>
 
           </div>
         </div>
@@ -157,7 +170,6 @@ $model->u_longitude = $model->longitude;
         <div class="card-body">
             <?= GridView::widget([
                 'dataProvider' => $dataProviderSocial,
-                'layout' => "{items}\n{pager}",
                 //'filterModel' => $searchModel,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
@@ -166,6 +178,9 @@ $model->u_longitude = $model->longitude;
                 ],
             ]); ?>
 
+            <?= Html::a('Add New', ['/social-impact/create', 'b' => 'true', 'ent_id' => $model->id], ['class' => 'btn btn-success btn-sm']) ?>
+
+            <?= Html::a('View All', ['/social-impact/index', 'ent_id' => $model->id], ['class' => 'btn btn-info btn-sm']) ?>
 
           </div>
         </div>
@@ -176,7 +191,6 @@ $model->u_longitude = $model->longitude;
         <div class="card-body">
             <?= GridView::widget([
                 'dataProvider' => $dataProviderEconomic,
-                'layout' => "{items}\n{pager}",
                 //'filterModel' => $searchModel,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
@@ -184,6 +198,10 @@ $model->u_longitude = $model->longitude;
                     'description:ntext',
                 ],
             ]); ?>
+
+            <?= Html::a('Add New', ['/economic/create', 'b' => 'true', 'ent_id' => $model->id], ['class' => 'btn btn-success btn-sm']) ?>
+
+            <?= Html::a('View All', ['/economic/index', 'ent_id' => $model->id], ['class' => 'btn btn-info btn-sm']) ?>
 
           </div>
         </div>
@@ -194,7 +212,6 @@ $model->u_longitude = $model->longitude;
         <div class="card-body">
             <?= GridView::widget([
                 'dataProvider' => $dataProviderAgency,
-                'layout' => "{items}\n{pager}",
                 //'filterModel' => $searchModel,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
@@ -208,6 +225,9 @@ $model->u_longitude = $model->longitude;
                 ],
             ]); ?>
 
+            <?= Html::a('Add New', ['/agency/create', 'b' => 'true', 'ent_id' => $model->id], ['class' => 'btn btn-success btn-sm']) ?>
+
+            <?= Html::a('View All', ['/agency/index', 'ent_id' => $model->id], ['class' => 'btn btn-info btn-sm']) ?>
 
           </div>
         </div>
@@ -218,7 +238,6 @@ $model->u_longitude = $model->longitude;
         <div class="card-body">
             <?= GridView::widget([
                 'dataProvider' => $dataProviderProgram,
-                'layout' => "{items}\n{pager}",
                 //'filterModel' => $searchModel,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
@@ -238,6 +257,9 @@ $model->u_longitude = $model->longitude;
                 ],
             ]); ?>
 
+            <?= Html::a('Add New', ['/program/create', 'b' => 'true', 'ent_id' => $model->id], ['class' => 'btn btn-success btn-sm']) ?>
+
+            <?= Html::a('View All', ['/program/index', 'ent_id' => $model->id], ['class' => 'btn btn-info btn-sm']) ?>
             
           </div>
         </div>

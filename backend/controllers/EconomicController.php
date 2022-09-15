@@ -64,6 +64,8 @@ class EconomicController extends Controller
         ]);
     }
 
+    
+
     /**
      * Creates a new Economic model.
      * If creation is successful, the browser will be redirected to the 'view' page.
