@@ -60,7 +60,7 @@ class SocialImpactCategoryrySearch extends SocialImpactCategory
         $query->andFilterWhere([
             'id' => $this->id,
             'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'update_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'category_name', $this->category_name]);
